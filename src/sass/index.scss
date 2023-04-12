@@ -1,2 +1,11 @@
-@import './common';
-@import './example';
+@import './utils/variables';
+@import './utils/mixin';
+@import './utils/placeholder';
+@import './utils/common';
+
+@import './componetns/header';
+@import './componetns/container';
+@import './componetns/footer';
+
+@import './componetns/modal-team';
+@import './componetns/modal-film';

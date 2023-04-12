@@ -1,0 +1,48 @@
+<header class="header-library">
+  <div class="container">
+    <nav class="nav">
+      <a class="logo" href="/src/index.html" aria-label="logo filmoteka">
+        <svg class="logo-icon" width="32" height="32">
+          <use href="/src/images/icons/icons.svg#icon-film"></use>
+        </svg>
+        <p class="logo-name">Filmoteka</p>
+      </a>
+
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a class="nav-link" href="/src/index.html" data-text="homeLink" aria-label="button home"
+            >home</a
+          >
+        </li>
+        <li class="nav-item nav-item--active">
+          <a class="nav-link" href="#" data-text="myLibraryLink" aria-label="button my library">my library</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="header-page-library">
+      <ul class="headerButtons start">
+        <li class="button-item-library">
+          <button
+            class="button-library button-watched"
+            data-action="watched"
+            data-text="buttonWatched"
+            aria-label="watched"
+          >
+            watched
+          </button>
+        </li>
+        <li class="button-item-library">
+          <button
+            class="button-library button-queue"
+            data-action="queue"
+            data-text="buttonQueue"
+            aria-label="queue"
+          >
+            queue
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
