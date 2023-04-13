@@ -34,3 +34,14 @@
   .catch(error => {
     console.error('Error:', error);
   });
+
+const watchedBtn = document.querySelector('#watched');
+const queueBtn = document.querySelector('#queue');
+
+watchedBtn.addEventListener('click', () => {
+//  Додавання id до списку
+});
+
+queueBtn.addEventListener('click', () => {
+//  Додавання id до списку
+});
