@@ -1,1 +1,144 @@
 
+main {
+    background-color: #f0f0f0;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+.film-card {
+    width: 100%;
+    margin-bottom: 20px;
+
+    &:nth-last-child {
+        margin-bottom: 0;
+    }
+
+    &:focus,
+    &:hover {
+        cursor: pointer;
+        border: 1px solid #b92f2c;
+    }
+}
+
+.film-card img {
+    border-radius: 5px;
+}
+
+
+.info {
+    padding-top: 10px;
+    font-family: Roboto, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+
+.film-name {
+    line-height: 1.33;
+    color: black;
+    text-transform: uppercase;
+}
+
+
+.film-info {
+    display: flex;
+    flex-wrap: nowrap;
+
+    line-height: 1.17;
+    color: #b92f2c;
+}
+
+
+.film-ganre {
+    padding-right: 4px;
+    border-right: 1px solid #b92f2c;
+}
+
+
+.film-year {
+    padding-left: 4px;
+}
+
+
+@media screen and (max-width: 767px) {
+    main {
+         max-width: 280px;     
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+    main {
+        width: 768px;
+        padding-left: 32px;
+        padding-right: 32px;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;  
+    }
+
+    .film-card {
+        flex-basis: calc((100% - 32px)/2);
+
+        margin-bottom: 32px;
+
+        &:nth-last-child(-n+2) {
+            margin-bottom: 0;
+        }
+    }
+
+    .info {
+        padding-top: 8px;
+    }
+}
+
+
+@media screen and (min-width: 1280px) {
+    main {
+        width: 1280px;
+    }
+
+    .film-card {
+        flex-basis: calc((100% - 32px)/3);
+
+        &:nth-last-child(-n+3) {
+            margin-bottom: 0;
+        }
+    }
+
+    .info {
+        padding-top: 12px;
+        font-size: 20px;
+        line-height: 1.2;
+    }
+}
+
+
+
+
+// const galleryBox = document.querySelector('main');
+
+// export default function renderCollection(collection) {
+//     const images = collection.map(item => {
+//       return `<a class="film-card" href="${item...}">
+//       <img src="${item...}" alt="${item...}" loading="lazy" />
+//       <div class="info">
+        
+//         <p class="film-name">${item...}</p>
+//         <div class="film__info">
+         
+//             <p class="film__ganre">${item...}</p>
+        
+//             <p class="film__year">${item...}</p>
+//         </div>
+      
+//       </div>
+//       </a>`
+      
+//     }).join("");
+//     galleryBox.insertAdjacentHTML('beforeend', images);
+// }
