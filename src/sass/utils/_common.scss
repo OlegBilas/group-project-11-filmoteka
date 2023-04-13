@@ -11,9 +11,9 @@ body {
   background-color: $color-white;
 }
 
-a,
-button {
-  // cursor: url(/src/images/cursor/vector.png), pointer;
+a:hover,
+button:hover {
+  cursor: pointer;
 }
 
 h1,
