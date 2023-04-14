@@ -1,3 +1,9 @@
+
+export function getFromLocalstorage(key) {
+        const dataJSON =  localStorage.getItem(`${key}`);
+        return JSON.parse(dataJSON);
+}
+
 export function addToLocalstorage(key, dataAboutFilm) {
     const arrayByKey = getFilmsFromLocalstorage(key);
 
@@ -5,11 +11,6 @@ export function addToLocalstorage(key, dataAboutFilm) {
         return;
     }
 
-    const data = JSON.stringify(dataAboutFilm);
+    const data = JSON.stringify(arrayByKey.push(dataAboutFilm));
     localStorage.setItem(`${key}`, data);
-}
-
-export function getFromLocalstorage(key) {
-        const dataJSON =  localStorage.getItem(`${key}`);
-        return JSON.parse(dataJSON);
 }
