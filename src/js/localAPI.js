@@ -5,7 +5,8 @@ export function getFromLocalstorage(key) {
 }
 
 export function addToLocalstorage(key, dataAboutFilm) {
-    const arrayByKey = getFromLocalstorage(key) ? getFromLocalstorage(key) : [];
+    const localData = getFromLocalstorage(key);
+    const arrayByKey = localData ? localData : [];
 
 
     if (arrayByKey.some(obj => obj.id === dataAboutFilm.id)) {
