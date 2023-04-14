@@ -60,7 +60,7 @@ const galleryItems = [
     const films = galleryItems.map(film => {
         return `<li class="film-card" data-id="${film.id}">
         <a class="film-link" href="${film.link}">
-          <div class="film-img"><img src="${film.link}" alt="${film.name}" loading="lazy" width=280px /></div>
+          <div class="film-img"><img src="${film.link}" alt="${film.name}" loading="lazy" /></div>
           <div class="film-meta">
             <p class="film-name">${film.name}</p>
             <div class="film-info">
