@@ -1,18 +1,21 @@
+const QUE = 'gue';
+const WATCHED = 'watched';
 
-export function getFromLocalstorage(key) {
-        const dataJSON =  localStorage.getItem(`${key}`);
-        return JSON.parse(dataJSON);
+function getFromLocalstorage(key) {
+  const dataJSON = localStorage.getItem(`${key}`);
+  return JSON.parse(dataJSON);
 }
 
-export function addToLocalstorage(key, dataAboutFilm) {
-    const localData = getFromLocalstorage(key);
-    const arrayByKey = localData ? localData : [];
+function addToLocalstorage(key, dataAboutFilm) {
+  const localData = getFromLocalstorage(key);
+  const arrayByKey = localData ? localData : [];
 
+  if (arrayByKey.some(obj => obj.id === dataAboutFilm.id)) {
+    return;
+  }
 
-    if (arrayByKey.some(obj => obj.id === dataAboutFilm.id)) {
-        return;
-    }
-
-    const data = JSON.stringify(arrayByKey.push(dataAboutFilm));
-    localStorage.setItem(`${key}`, data);
+  const data = JSON.stringify(arrayByKey.push(dataAboutFilm));
+  localStorage.setItem(`${key}`, data);
 }
+
+export { QUE, WATCHED, getFromLocalstorage, addToLocalstorage };
