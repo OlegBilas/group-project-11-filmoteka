@@ -1,1 +1,66 @@
-
+.header {
+  max-width: 1216px;
+  background: url(/src/images/header_backgr.png) no-repeat center;
+  height: 316px;
+  margin: 0 auto;
+  padding: 16px;
+  .header-form {
+    display: flex;
+    align-items: center;
+  }
+}
+.form-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+.search-form {
+  position: relative;
+}
+.border-btn {
+  border-radius: 100px;
+  border: none;
+  height: 42px;
+}
+.header-input {
+  width: 187px;
+  margin: 0 auto;
+  display: block;
+  height: 45px;
+  line-height: 3em;
+  padding: 0 1.5em;
+}
+.header-submit {
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  background: url(//src/images/healder_search_form.png) no-repeat center/16px
+    auto;
+  cursor: pointer;
+  text-align: center;
+  border: none;
+  top: 16px;
+  right: 16px;
+}
+.home-btn {
+  margin: auto 8px;
+  width: 100px;
+}
+.my-library-btn {
+  background: rgba(0, 0, 0, 1);
+  width: 118px;
+}
+.watcher-btn {
+  background: rgba(185, 47, 44, 1);
+  width: 120px;
+}
+.queue-btn {
+  width: 86px;
+}
+.logo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin: 150px auto 32px 32px;
+}
