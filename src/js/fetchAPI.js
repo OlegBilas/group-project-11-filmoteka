@@ -33,6 +33,7 @@ const fetchFilms = async (filmName, page = 1) => {
       total_pages: response.data.total_pages,
     };
     // console.log(info);
+    return info;
   } catch (error) {
     throw new Error(responce.status);
   }

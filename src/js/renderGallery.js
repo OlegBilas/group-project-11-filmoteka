@@ -1,6 +1,21 @@
 import * as basicLightbox from 'basiclightbox';
+import { fetchFilms } from './fetchAPI';
+import { renderCollection } from './templateGallery';
 
 const galleryList = document.querySelector('.list');
+
+async function makeLayout() {
+  const galleryItems = await fetchFilms();
+  console.log(galleryItems.results);
+  renderCollection(galleryItems.results);
+}
+
+
+makeLayout()
+
+
+
+// далі код Євгена
 
 export function renderCollection(collection) {
   const films = collection.results
@@ -21,6 +36,7 @@ export function renderCollection(collection) {
     .join('');
   galleryList.insertAdjacentHTML('beforeend', films);
 }
+
 
 galleryList.addEventListener('click', onMovieClick);
 
