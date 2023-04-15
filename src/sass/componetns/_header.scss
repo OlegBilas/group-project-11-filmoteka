@@ -1,1 +1,255 @@
+.header {
+  max-width: 1216px;
+  background: url(../images/header_backgr.png) no-repeat center;
+  height: 316px;
+  margin: 0 auto;
+  padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: flex-start;
+}
+.header-nav {
+  align-items: center;
+  width: 238px;
+  order: 2;
+  display: inline-block;
+}
+.header-form {
+  width: 187px;
+  order: 1;
+}
+.header-filters {
+  width: 730px;
+  order: 3;
+  padding-left: 520px;
+  justify-content: flex-end;
+}
+.logo-wrapper {
+  order: 4;
+  height: 240px;
+}
+.logo {
+  text-decoration: none;
+}
+.btn-text {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+}
 
+.search-form {
+  position: relative;
+}
+.icon-search {
+  width: 16px;
+  height: 16px;
+}
+.border-btn {
+  border-radius: 100px;
+  border: none;
+  height: 42px;
+}
+.header-input {
+  width: 187px;
+  margin: 0 auto;
+  display: block;
+  height: 45px;
+  line-height: 3em;
+  padding: 0 1.5em;
+}
+.header-submit {
+  position: absolute;
+  background-color: white;
+  cursor: pointer;
+  text-align: center;
+  border: none;
+  top: 16px;
+  right: 16px;
+}
+.home-btn {
+  margin: auto 8px;
+  width: 100px;
+}
+.my-library-btn {
+  background: rgba(0, 0, 0, 1);
+  width: 118px;
+
+  color: #fff;
+}
+.watched-btn {
+  background: rgba(185, 47, 44, 1);
+  width: 120px;
+  color: #fff;
+}
+.queue-btn {
+  width: 86px;
+  color: #b92f2c;
+}
+
+.logo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin: 150px auto 32px 0;
+}
+.svg-filmoteka {
+  width: 60px;
+  height: 60px;
+}
+h1 {
+  margin: auto 8px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 64px;
+  line-height: 75px;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+@media only screen and (max-width: 768px) {
+  .header {
+    max-width: 100%;
+    background-size: cover;
+    height: auto;
+    margin: 0 auto;
+    padding: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: flex-start;
+  }
+  .header-nav {
+    align-items: center;
+    width: 230px;
+    order: 2;
+    display: inline-block;
+  }
+  .header-form {
+    width: 165px;
+    order: 1;
+  }
+  .header-filters {
+    width: 300px;
+    order: 3;
+    padding-left: 105px;
+    justify-content: flex-end;
+  }
+  .logo-wrapper {
+    order: 4;
+    height: 135px;
+  }
+
+  .btn-text {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    text-transform: uppercase;
+  }
+
+  .search-form {
+    position: relative;
+  }
+
+  .border-btn {
+    height: 38px;
+  }
+  .header-input {
+    width: 165px;
+    margin: 0 auto;
+    display: block;
+    height: 45px;
+    line-height: 3em;
+    padding: 0 1.5em;
+  }
+
+  .home-btn {
+    width: 83px;
+  }
+  .my-library-btn {
+    width: 109px;
+  }
+  .watched-btn {
+    width: 102px;
+  }
+
+  .logo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin: 100px auto 32px 0;
+  }
+  .svg-filmoteka {
+    width: 40px;
+    height: 40px;
+  }
+  h1 {
+    margin: auto 8px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 50px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .header {
+    max-width: 320px;
+    min-height: 500px;
+    background: url(../images/-background-320px.png) no-repeat center;
+    background-size: cover;
+    margin: 0 auto;
+    padding: 0;
+    display: inline-block;
+  }
+  .header-nav {
+    margin: 8px 62px 8px 14px;
+  }
+  .header-form {
+    width: 252px;
+    margin: 0 14px 258px 14px;
+  }
+  .search-form {
+    position: relative;
+  }
+  .header-input {
+    width: 252px;
+    height: 34px;
+  }
+  .header-submit {
+    top: 8px;
+    right: 8px;
+  }
+
+  .logo-wrapper {
+    height: auto;
+    margin: 0 45px 16px 45px;
+  }
+  .logo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin: 150px auto 32px 0;
+  }
+
+  .header-filters {
+    padding: 0;
+    margin: 0 auto;
+    width: 192px;
+  }
+  .my-library-btn {
+    width: 86px;
+  }
+  .watched-btn {
+    width: 102px;
+  }
+}

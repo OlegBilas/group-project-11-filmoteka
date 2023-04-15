@@ -35,6 +35,7 @@ const fetchFilms = async (filmName, page = 1) => {
       total_pages: response.data.total_pages,
     };
     // console.log(info);
+    return info;
   } catch (error) {
     throw new Error(responce.status);
   }
@@ -81,8 +82,8 @@ const fetchFilmsById = async filmId => {
       vote_count,
       videoId: await fetchYouTubeKey(filmId),
     };
-    return newObj;
     // console.log(newObj);
+    return newObj;
   } catch (error) {
     throw new Error(responce.status);
   }

@@ -1,4 +1,4 @@
-import * as basicLightbox from 'basiclightbox';
+// import * as basicLightbox from 'basiclightbox';
 
 const galleryList = document.querySelector('.list');
 
@@ -6,7 +6,7 @@ export function renderCollection(collection) {
   const films = collection.results
     .map(film => {
       return `<li class="film-card" data-id="${film.id}">
-      <a class="film-link" href="${film.link}">
+      <a class="film-link" href="${film.poster_path}">
         <img src="${film.poster_path}" alt="${film.title}" loading="lazy" />
         <div class="film-meta">
           <span class="film-name">${film.title}</span>
@@ -19,19 +19,20 @@ export function renderCollection(collection) {
       </li>`;
     })
     .join('');
-  galleryList.insertAdjacentHTML('beforeend', films);
+  // galleryList.insertAdjacentHTML('beforeend', films);
+  galleryList.innerHTML = films;
 }
 
 galleryList.addEventListener('click', onMovieClick);
 
 function onMovieClick(event) {
   event.preventDefault();
+  event.currentTarget.classList.toggle('js-isActiveCard');
+  //   const instance = basicLightbox.create(`
+  //     <div class="modal">
 
-  const instance = basicLightbox.create(`
-    <div class="modal">
+  //     </div>
+  // `);
 
-    </div>
-`);
-
-  instance.show();
+  //   instance.show();
 }
