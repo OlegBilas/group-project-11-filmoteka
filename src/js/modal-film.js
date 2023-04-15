@@ -2,17 +2,28 @@ import * as basicLightbox from 'basiclightbox';
 import { YoutubeVideo } from './youtubevideo';
 import { QUE, WATCHED, addToLocalstorage } from './localAPI';
 
-export function renderMovieModal({ genres, id, poster_path, original_title, overview, popularity, vote_average, vote_count, videoId }) {
+export function renderMovieModal({
+  genres,
+  id,
+  poster_path,
+  original_title,
+  overview,
+  popularity,
+  vote_average,
+  vote_count,
+  videoId,
+}) {
   const youtubeVideo = new YoutubeVideo();
   const videoIframe = youtubeVideo.createIframe(videoId);
 
-  const instance = basicLightbox.create(`
+  const instance = basicLightbox.create(
+    `
 <div class="backdrop js-backdrop">
     <div class="modal">
         ​
         <button type="button" class="btn-close" id="btn-close">
             <svg class="form__close-icon" width="30px" height="30px">
-                <use href="/images/sprite.svg#icon-close"></use>
+                <use href="./images/icons.svg#icon-close"></use>
             </svg> </button>
         <div id="modal_form">
           <form class="form">
@@ -60,13 +71,39 @@ export function renderMovieModal({ genres, id, poster_path, original_title, over
         </div>
     </div>
 </div>
-`, {
-    onShow: (instance) => {
-        instance.element().querySelector('#watched').onclick = addToLocalstorage(WATCHED, { genres, id, poster_path, original_title, overview, popularity, vote_average, vote_count, videoId });
-        instance.element().querySelector('#queue').onclick = addToLocalstorage(QUE, { genres, id, poster_path, original_title, overview, popularity, vote_average, vote_count, videoId });
-        instance.element().querySelector('#btn-close').onclick = instance.close
+`,
+    {
+      onShow: instance => {
+        instance.element().querySelector('#watched').onclick =
+          addToLocalstorage(WATCHED, {
+            genres,
+            id,
+            poster_path,
+            original_title,
+            overview,
+            popularity,
+            vote_average,
+            vote_count,
+            videoId,
+          });
+        instance.element().querySelector('#queue').onclick = addToLocalstorage(
+          QUE,
+          {
+            genres,
+            id,
+            poster_path,
+            original_title,
+            overview,
+            popularity,
+            vote_average,
+            vote_count,
+            videoId,
+          }
+        );
+        instance.element().querySelector('#btn-close').onclick = instance.close;
+      },
     }
-  })
+  );
 
-  instance.show()
+  instance.show();
 }
