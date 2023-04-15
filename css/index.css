@@ -239,13 +239,10 @@ img {
   height: 100vh;
   top: 0;
   left: 0;
-  z-index: 1000;
-  background-color: rgba(0, 0, 0, 0.6);
   overflow-y: scroll;
 }
 
 .modal__btn-container {
-  margin-bottom: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -265,35 +262,17 @@ img {
   border: none;
   margin: 5px;
   border-radius: 5px;
-  font-family: sans-serif;
-  font-size: 16px;
   background: 1;
   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
-
-.modal__close-icon {
-  display: block;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  fill: currentColor;
-  -webkit-transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  -o-transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-.modal__close-icon:hover, .modal__close-icon:focus {
-  fill: #b92f2c;
+.modal-btn-close:hover, .modal-btn-close:focus {
+  background-color: #b92f2c;
 }
 
 .modal-team {
   overflow-x: hidden;
-  padding: 10px;
-  width: 1100px;
   background-color: #f7f7f7;
   width: 100%;
   -webkit-box-orient: vertical;
@@ -302,7 +281,7 @@ img {
           flex-direction: column;
 }
 
-.modal-team__adapt {
+.modal-team__wrap {
   position: relative;
   width: 280px;
   padding: 20px;
@@ -314,21 +293,21 @@ img {
   overflow: hidden;
   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
-  border-radius: 15px;
-  -webkit-transition: opacity 300ms cubic-bezier(0.38, 0.53, 0.8, 0.71), -webkit-transform 300ms cubic-bezier(0.38, 0.53, 0.8, 0.71);
-  transition: opacity 300ms cubic-bezier(0.38, 0.53, 0.8, 0.71), -webkit-transform 300ms cubic-bezier(0.38, 0.53, 0.8, 0.71);
-  -o-transition: transform 300ms cubic-bezier(0.38, 0.53, 0.8, 0.71), opacity 300ms cubic-bezier(0.38, 0.53, 0.8, 0.71);
-  transition: transform 300ms cubic-bezier(0.38, 0.53, 0.8, 0.71), opacity 300ms cubic-bezier(0.38, 0.53, 0.8, 0.71);
-  transition: transform 300ms cubic-bezier(0.38, 0.53, 0.8, 0.71), opacity 300ms cubic-bezier(0.38, 0.53, 0.8, 0.71), -webkit-transform 300ms cubic-bezier(0.38, 0.53, 0.8, 0.71);
+  border-radius: 10px;
+  -webkit-transition: opacity 250ms cubic-bezier(0.38, 0.53, 0.8, 0.71), -webkit-transform 250ms cubic-bezier(0.38, 0.53, 0.8, 0.71);
+  transition: opacity 250ms cubic-bezier(0.38, 0.53, 0.8, 0.71), -webkit-transform 250ms cubic-bezier(0.38, 0.53, 0.8, 0.71);
+  -o-transition: transform 250ms cubic-bezier(0.38, 0.53, 0.8, 0.71), opacity 250ms cubic-bezier(0.38, 0.53, 0.8, 0.71);
+  transition: transform 250ms cubic-bezier(0.38, 0.53, 0.8, 0.71), opacity 250ms cubic-bezier(0.38, 0.53, 0.8, 0.71);
+  transition: transform 250ms cubic-bezier(0.38, 0.53, 0.8, 0.71), opacity 250ms cubic-bezier(0.38, 0.53, 0.8, 0.71), -webkit-transform 250ms cubic-bezier(0.38, 0.53, 0.8, 0.71);
 }
 @media screen and (min-width: 768px) and (max-width: 1279px) {
-  .modal-team__adapt {
+  .modal-team__wrap {
     width: 600px;
     padding: 30px 25px 30px 25px;
   }
 }
 @media screen and (min-width: 1280px) {
-  .modal-team__adapt {
+  .modal-team__wrap {
     width: 900px;
     padding: 35px 30px 10px 30px;
   }
@@ -340,8 +319,6 @@ img {
   line-height: 1.16;
   letter-spacing: 0.03em;
   text-align: center;
-  padding: 1% 10%;
-  border-radius: 15px;
   color: #b92f2c;
 }
 
@@ -355,11 +332,6 @@ img {
   margin-top: 20px;
 }
 @media screen and (min-width: 768px) {
-  .modal-team__container {
-    margin-top: 30px;
-  }
-}
-@media screen and (min-width: 1280px) {
   .modal-team__container {
     margin-top: 30px;
   }
