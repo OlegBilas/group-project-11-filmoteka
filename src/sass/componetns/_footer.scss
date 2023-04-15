@@ -1,1 +1,34 @@
+.footer{
+	background-color: $color-grey;
+	&__icon {
+		stroke: #b92f2c;
+		fill: #b92f2c;
+		filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+	 }
+	 &__btn {
+		display: inline-block;
+		border: none;
+		background: transparent;
+		text-decoration: underline;
+		cursor: pointer;
+		color: #545454;
+	 }
+}
 
+.footer-wraper{
+	text-align: center;
+	font-family: 'Roboto';
+	font-size: 14px;
+	color: #545454;
+	padding-top: 28px;
+  padding-bottom: 28px;
+	@media screen and (min-width: $tablet) {
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  font-size: 16px;
+	  line-height: 1.19;
+	  padding-top: 30px;
+  padding-bottom: 30px;
+	}
+}
