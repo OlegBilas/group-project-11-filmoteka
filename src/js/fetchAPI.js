@@ -1,21 +1,23 @@
 import axios from 'axios';
-import { showGenres, showGenresById, start } from './genres';
+import { getGenresById } from './genres';
 
 const KEY = `731f4a410992078035fa504a629d03c1`;
 const URL = `https://api.themoviedb.org/3`;
-const imgURL = `https://image.tmdb.org/t/p/origina`;
+const imgURL = `https://image.tmdb.org/t/p/w500`;
 //
-// ЗАПИТ ЗА КЛЮЧОВИМ СЛОВОМ
+// ЗАПИТ ЗА КЛЮЧОВИМ СЛОВОМ АБО ПОПУЛЯРНИХ ФЫЛЬМЫВ
 const fetchFilms = async filmName => {
+  const request = filmName
+    ? `${URL}/search/movie?api_key=${KEY}&language=en-US&query=${filmName}&page=1`
+    : `${URL}/trending/all/day?api_key=${KEY}`;
+
   try {
-    const response = await axios.get(
-      `${URL}/search/movie?api_key=${KEY}&language=en-US&query=${filmName}&page=1`
-    );
+    const response = await axios.get(request);
     const takeInfo = object => {
       const result = object.map(
         ({ genre_ids, id, poster_path, release_date, title }) => {
           return {
-            genres: start(genre_ids),
+            genres: getGenresById(genre_ids),
             id,
             poster_path: `${imgURL}${poster_path}`,
             year: release_date.slice(0, 4),
@@ -36,18 +38,14 @@ const fetchFilms = async filmName => {
   }
 };
 //
-// ПОШУК КЛЮЧА
+// ПОШУК КЛЮЧА ТРЕЙЛЕРА ЮТУБ
 const fetchYouTubeKey = async filmId => {
   try {
     const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/${filmId}/videos?api_key=731f4a410992078035fa504a629d03c1&language=en-US`
+      `${URL}/movie/${filmId}/videos?api_key=${KEY}&language=en-US`
     );
 
-    const key = response.data.results.map(code => {
-      return code.key;
-    });
-
-    return key;
+    return response.data.results[0].key;
   } catch (error) {
     throw new Error(responce.status);
   }
@@ -57,7 +55,7 @@ const fetchYouTubeKey = async filmId => {
 const fetchFilmsById = async filmId => {
   try {
     const response = await axios.get(
-      `${URL}/movie/${filmId}videos?api_key=${KEY}&language=en-US`
+      `${URL}/movie/${filmId}?api_key=${KEY}&language=en-US`
     );
     const {
       genres,
@@ -68,10 +66,10 @@ const fetchFilmsById = async filmId => {
       popularity,
       vote_average,
       vote_count,
-      key,
     } = response.data;
+
     const newObj = {
-      genres: showGenresById(genres),
+      genres: genres.map(genre => genre.name).join(', '),
       id,
       poster_path: `${imgURL}${poster_path}`,
       original_title,
@@ -79,9 +77,7 @@ const fetchFilmsById = async filmId => {
       popularity,
       vote_average,
       vote_count,
-      videoId: fetchYouTubeKey(filmId).then(result => {
-        console.log(...result);
-      }),
+      videoId: await fetchYouTubeKey(filmId),
     };
     console.log(newObj);
   } catch (error) {

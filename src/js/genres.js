@@ -20,40 +20,13 @@ const genres = [
   { id: 37, name: 'Western' },
 ];
 
-const showGenres = id => {
-  let allGenres = ``;
-  genres
-    .filter(genre => genre.id === id)
-    .map(genre => {
-      allGenres += `${genre.name}`;
-    });
-  return allGenres;
+const getGenreById = id => {
+  return genres.find(genre => genre.id === id).name;
 };
 
-// const showGenres = id => {
-//   let allGenres = ``;
-//   genres.map(genre => {
-//     if (genre.id === id) {
-//       allGenres += genre.name;
-//       return;
-//     }
-//   });
-//   return allGenres;
-// };
-//
-const start = info => {
-  for (let i = 0; i < info.length; i++) {
-    showGenres(info[i]);
-  }
+const getGenresById = genres => {
+  const allGenres = genres.map(id => getGenreById(id));
+  return allGenres.join(', ');
 };
 
-//
-
-const showGenresById = data => {
-  let allGenres = ``;
-  data.map(genre => {
-    allGenres += genre.name;
-  });
-  return allGenres;
-};
-export { showGenres, showGenresById, start };
+export { getGenresById };
