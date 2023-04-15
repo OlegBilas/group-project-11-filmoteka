@@ -5,10 +5,10 @@ const KEY = `731f4a410992078035fa504a629d03c1`;
 const URL = `https://api.themoviedb.org/3`;
 const imgURL = `https://image.tmdb.org/t/p/w500`;
 //
-// ЗАПИТ ЗА КЛЮЧОВИМ СЛОВОМ АБО ПОПУЛЯРНИХ ФЫЛЬМЫВ
-const fetchFilms = async filmName => {
+// ЗАПИТ ЗА КЛЮЧОВИМ СЛОВОМ АБО ПОПУЛЯРНИХ ФІЛЬМІВ
+const fetchFilms = async (filmName, page = 1) => {
   const request = filmName
-    ? `${URL}/search/movie?api_key=${KEY}&language=en-US&query=${filmName}&page=1`
+    ? `${URL}/search/movie?api_key=${KEY}&language=en-US&query=${filmName}&page=${page}`
     : `${URL}/trending/all/day?api_key=${KEY}`;
 
   try {
@@ -32,7 +32,7 @@ const fetchFilms = async filmName => {
       results: takeInfo(response.data.results),
       total_pages: response.data.total_pages,
     };
-    console.log(info);
+    // console.log(info);
   } catch (error) {
     throw new Error(responce.status);
   }
@@ -79,7 +79,7 @@ const fetchFilmsById = async filmId => {
       vote_count,
       videoId: await fetchYouTubeKey(filmId),
     };
-    console.log(newObj);
+    // console.log(newObj);
   } catch (error) {
     throw new Error(responce.status);
   }
