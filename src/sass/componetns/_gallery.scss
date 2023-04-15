@@ -1,6 +1,4 @@
-// * {
-//     outline: 1px solid red;
-// } 
+ 
 
 .container {
     background-color: #ffffff;
@@ -28,12 +26,12 @@
     }
 }
 
+.film-link {
+    text-decoration: none;
+}
 
-// .film-link img {
-//     border-radius: 5px;
-// }
 
-.film-img {
+.film-img img{
     border-radius: 5px;
     // max-width: 280px; 
 }
@@ -44,7 +42,6 @@
     font-family: Roboto, sans-serif;
     font-size: 12px;
     font-weight: 500;
-    text-decoration: none;
 }
 
 
@@ -66,7 +63,7 @@
 
 .film-ganre {
     padding-right: 4px;
-    border-right: 1px solid #b92f2c;
+    border-right: 2px solid #b92f2c;
 }
 
 
