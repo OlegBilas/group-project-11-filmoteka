@@ -21,13 +21,17 @@ const genres = [
 ];
 
 const getGenreById = id => {
-  const name = genres.find(genre => genre.id === id).name;
-  return name ? name : '';
+  const genre = genres.find(genre => genre.id === id);
+  return genre ? genre.name : '';
 };
 
-const getGenresById = genres => {
-  const allGenres = genres.map(id => getGenreById(id));
-  return allGenres.join(', ');
+const getGenresById = genresArray => {
+  if (genresArray.length > 0) {
+    const allGenres = genresArray.map(id => getGenreById(id));
+    return allGenres.join(', ');
+  } else {
+    return '';
+  }
 };
 
 export { getGenresById };
