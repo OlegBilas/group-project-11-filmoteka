@@ -1,6 +1,8 @@
 import * as basicLightbox from 'basiclightbox'
 
-const instance = basicLightbox.create(`
+export function renderMovieModal({ genres, id, poster_path, original_title, overview, popularity, vote_average, vote_count, videoId }) {
+
+  const instance = basicLightbox.create(`
 <div class="backdrop js-backdrop">
     <div class="modal">
         ​
@@ -13,40 +15,35 @@ const instance = basicLightbox.create(`
             <form class="form">
                 <div class="form__film-card">
                     <div class="form__film-img">
-                        <img class="form-img" src="https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg"
-                            alt="Avatar: The Way of Water">
+                        <img class="form-img" src="https://image.tmdb.org/t/p/w400/${poster_path}"
+                            alt="${original_title}">
                     </div>
                 </div>
                 <div class="form__info">
-                    <h2 class="form__title">Avatar: The Way of Water</h2>
+                    <h2 class="form__title">${original_title}</h2>
                     <ul class="form__info-list">
                         <li class="form__info-item">
                             <p class="form__info-name">Vote / Votes</p>
-                            <p class="form__info-details"> <span class="film__rating">7.7
+                            <p class="form__info-details"> <span class="film__rating">${vote_average}
                                     ​
-                                </span>/<span class="film__voice">6970</span></p>
+                                </span>/<span class="film__voice">${vote_count}</span></p>
                         </li>
                         <li class="form__info-item">
                             <p class="form__info-name">Popularity</p>
-                            <p class="form__info-details">4810.649</p>
+                            <p class="form__info-details">${popularity}</p>
                         </li>
                         <li class="form__info-item">
                             <p class="form__info-name">Original Title</p>
-                            <p class="form__info-details details-title">Avatar: The Way of Water</p>
+                            <p class="form__info-details details-title">${original_title}</p>
                         </li>
                         <li class="form__info-item">
                             <p class="form__info-name">Genre</p>
-                            <p class="form__info-details">Science Fiction, Adventure, Action</p>
+                            <p class="form__info-details">${genres}</p>
                         </li>
                     </ul>
                     <div class="form__about">
                         <h3 class="form__about-name">About</h3>
-                        <p class="form__about-details">Four of the West’s most infamous outlaws assemble to steal a huge
-                            stash of gold from the most corrupt settlement of the gold rush towns. But not all goes to
-                            plan one is killed and the other three escapes with bags of gold hide out in the abandoned
-                            gold mine where they happen across another gang of three – who themselves were planning to
-                            hit the very same bank! As tensions rise, things go from bad to worse as they realise the
-                            bags of gold are filled with lead... they’ve been double crossed – but by who and how?</p>
+                        <p class="form__about-details">${overview}</p>
                     </div>
                     <div class="form__btn-list">
                         <button data-action="add" id="watched" class="form-button form-add-btn" type="button">Add to
@@ -59,26 +56,11 @@ const instance = basicLightbox.create(`
         </div>
     </div>
 </div>
-
 `, {
     onShow: (instance) => {
-        instance.element().querySelector('#btn-close').onclick = instance.close
+      instance.element().querySelector('#btn-close').onclick = instance.close
     }
-})
+  })
 
-instance.show()
-
-// const watchedBtn = document.querySelector('#watched');
-// const queueBtn = document.querySelector('#queue');
-
-// watchedBtn.addEventListener('click', () => {
-// //  Додавання id до списку
-// });
-
-// queueBtn.addEventListener('click', () => {
-// //  Додавання id до списку
-// });
-        // <a>Close</a>
-// {/* <div class="modal">
-    
-// </div> */}
+  instance.show()
+}
