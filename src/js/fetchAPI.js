@@ -79,6 +79,7 @@ const fetchFilmsById = async filmId => {
       vote_count,
       videoId: await fetchYouTubeKey(filmId),
     };
+    return newObj;
     // console.log(newObj);
   } catch (error) {
     throw new Error(responce.status);
