@@ -22,16 +22,10 @@ export function renderCollection(collection) {
   galleryList.insertAdjacentHTML('beforeend', films);
 }
 
-galleryList.addEventListener('click', onMovieClick);
-
-function onMovieClick(event) {
-  event.preventDefault();
-
-  const instance = basicLightbox.create(`
-    <div class="modal">
-
-    </div>
-`);
-
-  instance.show();
-}
+galleryList.addEventListener('click', async event => {
+  const filmCard = event.target.closest('.film-card');
+  if (!filmCard) return;
+  const filmId = filmCard.dataset.id;
+  const movieDetails = await fetchFilmsById(filmId);
+  renderMovieModal(movieDetails);
+});

@@ -2,17 +2,18 @@ import * as basicLightbox from 'basiclightbox';
 import { YoutubeVideo } from './youtubevideo';
 import { QUE, WATCHED, addToLocalstorage } from './localAPI';
 
-export function renderMovieModal({
-  genres,
-  id,
-  poster_path,
-  original_title,
-  overview,
-  popularity,
-  vote_average,
-  vote_count,
-  videoId,
-}) {
+export function renderMovieModal(movieData) {
+  const {
+    genres,
+    id,
+    poster_path,
+    original_title,
+    overview,
+    popularity,
+    vote_average,
+    vote_count,
+    videoId,
+  } = movieData;
   const youtubeVideo = new YoutubeVideo();
   const videoIframe = youtubeVideo.createIframe(videoId);
 
@@ -75,31 +76,9 @@ export function renderMovieModal({
     {
       onShow: instance => {
         instance.element().querySelector('#watched').onclick =
-          addToLocalstorage(WATCHED, {
-            genres,
-            id,
-            poster_path,
-            original_title,
-            overview,
-            popularity,
-            vote_average,
-            vote_count,
-            videoId,
-          });
-        instance.element().querySelector('#queue').onclick = addToLocalstorage(
-          QUE,
-          {
-            genres,
-            id,
-            poster_path,
-            original_title,
-            overview,
-            popularity,
-            vote_average,
-            vote_count,
-            videoId,
-          }
-        );
+          addToLocalstorage(WATCHED, movieData);
+        instance.element().querySelector('#queue').onclick =
+          addToLocalstorage(QUE, movieData);
         instance.element().querySelector('#btn-close').onclick = instance.close;
       },
     }
