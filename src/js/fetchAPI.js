@@ -9,13 +9,13 @@ const imgURL = `https://image.tmdb.org/t/p/w500`;
 const fetchFilms = async filmName => {
   const request = filmName
     ? `${URL}/search/movie?api_key=${KEY}&language=en-US&query=${filmName}&page=1`
-    : `${URL}/trending/all/day?api_key=${KEY}`;
+    : 'https://api.themoviedb.org/3/trending/all/day?api_key=731f4a410992078035fa504a629d03c1&page=1';
 
   try {
     const response = await axios.get(request);
     const takeInfo = object => {
       const result = object.map(
-        ({ genre_ids, id, poster_path, release_date, title }) => {
+        ({ genre_ids, id, poster_path, release_date = '', title }) => {
           return {
             genres: getGenresById(genre_ids),
             id,
