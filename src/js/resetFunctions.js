@@ -3,7 +3,7 @@ function pageReset() {
 }
 
 function clearMovies() {
-  refs.gallery.innerHTML = '';
+  refs.galleryList.innerHTML = '';
 }
 
 export {
