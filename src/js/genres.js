@@ -21,7 +21,8 @@ const genres = [
 ];
 
 const getGenreById = id => {
-  return genres.find(genre => genre.id === id).name;
+  const name = genres.find(genre => genre.id === id).name;
+  return name ? name : '';
 };
 
 const getGenresById = genres => {
