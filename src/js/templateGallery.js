@@ -9,21 +9,13 @@ const galleryList = document.querySelector('.list');
 //   galleryList.insertAdjacentHTML('beforeend', films);
 // }
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 const galleryItems = [
   {
     page: 1,
   results: [
    
 {genres: `Action`, id: 609578, poster_path: 'https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677__340.jpg', year: '2019', title: 'Hey'}
-<<<<<<< Updated upstream
 	],
-=======
-  ],
->>>>>>> Stashed changes
 total_pages: 792,
   },
 
@@ -32,11 +24,7 @@ total_pages: 792,
   results: [
    
 {genres: `Action`, id: 609578, poster_path: 'https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677__340.jpg', year: '2019', title: 'Hey'}
-<<<<<<< Updated upstream
 	],
-=======
-  ],
->>>>>>> Stashed changes
 total_pages: 792,
   },
   
@@ -45,11 +33,7 @@ total_pages: 792,
   results: [
    
 {genres: `Action`, id: 609578, poster_path: 'https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677__340.jpg', year: '2019', title: 'Hey'}
-<<<<<<< Updated upstream
 	],
-=======
-  ],
->>>>>>> Stashed changes
 total_pages: 792,
   },
 
@@ -58,11 +42,7 @@ total_pages: 792,
   results: [
    
 {genres: `Action`, id: 609578, poster_path: 'https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677__340.jpg', year: '2019', title: 'Hey'}
-<<<<<<< Updated upstream
 	],
-=======
-  ],
->>>>>>> Stashed changes
 total_pages: 792,
   },
 ]
@@ -88,14 +68,4 @@ console.log(galleryItems[0].results[0].poster_path);
     galleryList.insertAdjacentHTML('beforeend', films);
   }
 
-<<<<<<< Updated upstream
   renderCollection(galleryItems)
-=======
-  renderCollection(galleryItems)
-
-
-
-
-
-
->>>>>>> Stashed changes
