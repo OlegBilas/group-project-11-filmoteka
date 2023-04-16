@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { getGenresById } from './genres';
+import { renderCollection } from './renderGallery';
 
 const KEY = `731f4a410992078035fa504a629d03c1`;
 const URL = `https://api.themoviedb.org/3`;
 const imgURL = `https://image.tmdb.org/t/p/w500`;
 let page = 1;
-let perPage = 20;
 //
 // ЗАПИТ ЗА КЛЮЧОВИМ СЛОВОМ АБО ПОПУЛЯРНИХ ФІЛЬМІВ
-const fetchFilms = async (filmName, page = 1) => {
+const fetchFilms = async (filmName, page) => {
   const request = filmName
     ? `${URL}/search/movie?api_key=${KEY}&language=en-US&query=${filmName}&page=${page}`
     : `${URL}/trending/all/day?api_key=${KEY}`;
@@ -88,4 +88,37 @@ const fetchFilmsById = async filmId => {
     throw new Error(responce.status);
   }
 };
+
+// Нескінченний скролл
+
+// Метод 1
+const listObserver = new IntersectionObserver(entries => {
+  const gif = document.querySelector(`.gif`);
+  if (entries.isIntersecting) {
+    page += 1;
+    gif.classList.remove(`hidden`);
+    // Робимо запит та рендеримо нову розмітку
+  } else {
+    gif.classList.add(`hidden`);
+  }
+}, {});
+const lastChild = document.querySelector(`.list`).lastElementChild;
+listObserver.observe(lastChild);
+
+// Метод 2
+
+window.addEventListener(`scroll`, () => {
+  const documentRect = document.documentElement.getBoundingClientRect();
+  // console.log(documentRect.bottom); - перевірка скролу по сторінці
+  const gif = document.querySelector(`.gif`);
+  if (documentRect.bottom < document.documentElement.clientHeight + 150) {
+    // console.log(`DONE`); - перевірка
+    page += 1;
+    gif.classList.remove(`hidden`);
+    // Робимо запит та рендеримо нову розмітку
+  } else {
+    gif.classList.add(`hidden`);
+  }
+});
+
 export { fetchFilms, fetchFilmsById };

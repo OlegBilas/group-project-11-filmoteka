@@ -8,4 +8,4 @@ import modal from './js/modal';
 import { fetchFilms, fetchFilmsById } from './js/fetchAPI';
 import { renderCollection } from './js/renderGallery';
 
-fetchFilms('avatar').then(collection => renderCollection(collection));
+fetchFilms('avatar', 1).then(collection => renderCollection(collection));
