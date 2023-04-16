@@ -2,7 +2,7 @@ import { putEventListeners } from './modal';
 import { YoutubeVideo } from './youtubevideo';
 import { QUE, WATCHED, addToLocalstorage } from './localAPI';
 
-refContainer = document.querySelector('.backdrop-container');
+const refContainer = document.querySelector('.backdrop-container');
 
 export function renderMovieModal(movieData) {
   const {
