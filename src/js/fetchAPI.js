@@ -15,13 +15,20 @@ const fetchFilms = async (filmName, page = 1) => {
     const response = await axios.get(request);
     const takeInfo = object => {
       const result = object.map(
-        ({ genre_ids, id, poster_path, release_date = '', title }) => {
+        ({
+          genre_ids,
+          id,
+          poster_path,
+          release_date = '',
+          title,
+          original_title,
+        }) => {
           return {
             genres: getGenresById(genre_ids),
             id,
             poster_path: `${imgURL}${poster_path}`,
             year: release_date.slice(0, 4),
-            title,
+            title: original_title,
           };
         }
       );
