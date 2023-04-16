@@ -424,9 +424,12 @@ h1 {
   background-color: #ffffff;
   margin-right: auto;
   margin-left: auto;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .film-card {
+  min-width: 280px;
   margin-bottom: 20px;
   border-radius: 5px;
 }
@@ -495,22 +498,20 @@ h1 {
 @media screen and (min-width: 768px) {
   .container {
     width: 768px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
   .list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: space-between;
   }
   .film-card {
     flex-basis: calc((100% - 32px) / 2);
-    margin-bottom: 32px;
     overflow: hidden;
   }
   .film-card:nth-last-child(-n+2) {
     margin-bottom: 0;
-  }
-  .film-card:nth-child(odd) {
-    margin-right: 32px;
   }
   .film-meta {
     padding-top: 8px;
@@ -519,6 +520,9 @@ h1 {
 @media screen and (min-width: 1280px) {
   .container {
     width: 1280px;
+  }
+  .list {
+    justify-content: flex-start;
   }
   .film-card {
     flex-basis: calc((100% - 32px) / 3);
