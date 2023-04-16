@@ -1,6 +1,7 @@
-import * as basicLightbox from 'basiclightbox';
-import { fetchFilms } from './fetchAPI';
-import { renderCollection } from './templateGallery';
+
+import { fetchFilmsById } from './fetchAPI';
+import { renderMovieModal } from './modalFilm';
+
 
 const galleryList = document.querySelector('.list');
 
@@ -21,7 +22,7 @@ export function renderCollection(collection) {
   const films = collection.results
     .map(film => {
       return `<li class="film-card" data-id="${film.id}">
-      <a class="film-link" href="${film.link}">
+      <a class="film-link" href="${film.poster_path}">
         <img src="${film.poster_path}" alt="${film.title}" loading="lazy" />
         <div class="film-meta">
           <span class="film-name">${film.title}</span>
@@ -34,20 +35,19 @@ export function renderCollection(collection) {
       </li>`;
     })
     .join('');
-  galleryList.insertAdjacentHTML('beforeend', films);
+  // galleryList.insertAdjacentHTML('beforeend', films);
+  galleryList.innerHTML = films;
 }
 
 
-galleryList.addEventListener('click', onMovieClick);
+galleryList.addEventListener('click', async event => {
 
-function onMovieClick(event) {
   event.preventDefault();
-
-  const instance = basicLightbox.create(`
-    <div class="modal">
-
-    </div>
-`);
-
-  instance.show();
-}
+  if (event.target.nodeName === 'A') {
+    const filmCard = event.target.closest('.film-card');
+    if (!filmCard) return;
+    const filmId = filmCard.dataset.id;
+    const movieDetails = await fetchFilmsById(filmId);
+    renderMovieModal(movieDetails);
+  }
+});

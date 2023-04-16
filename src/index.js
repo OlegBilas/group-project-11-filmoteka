@@ -6,5 +6,9 @@
 
 import modal from './js/modal';
 import { fetchFilms, fetchFilmsById } from './js/fetchAPI';
-import templateGallery from './js/templateGallery';
-import renderGallery from './js/renderGallery';
+
+import { renderCollection } from './js/renderGallery';
+import { renderMovieModal } from './js/modalFilm';
+
+fetchFilms('').then(collection => renderCollection(collection));
+
