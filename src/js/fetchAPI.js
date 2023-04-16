@@ -28,7 +28,7 @@ const fetchFilms = async (filmName, page = 1) => {
             id,
             poster_path: `${imgURL}${poster_path}`,
             year: release_date.slice(0, 4),
-            title: title ? title : original_title,
+            title: title ? title : original_title ? original_title : 'no data',
           };
         }
       );
