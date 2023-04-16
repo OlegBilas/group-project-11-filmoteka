@@ -23,16 +23,12 @@ export function renderCollection(collection) {
   galleryList.innerHTML = films;
 }
 
-galleryList.addEventListener('click', onMovieClick);
 
-function onMovieClick(event) {
-  event.preventDefault();
-  event.currentTarget.classList.toggle('js-isActiveCard');
-  //   const instance = basicLightbox.create(`
-  //     <div class="modal">
+galleryList.addEventListener('click', async event => {
+  const filmCard = event.target.closest('.film-card');
+  if (!filmCard) return;
+  const filmId = filmCard.dataset.id;
+  const movieDetails = await fetchFilmsById(filmId);
+  renderMovieModal(movieDetails);
+});
 
-  //     </div>
-  // `);
-
-  //   instance.show();
-}
