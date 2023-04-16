@@ -1,13 +1,15 @@
 import { fetchFilmsById } from './fetchAPI';
 import { renderMovieModal } from './modalFilm';
+import { putEventListeners } from './modal';
+import { alertSearchModalFailure } from './alerts';
 
 const galleryList = document.querySelector('.list');
 
 export function renderCollection(collection) {
   const films = collection.results
     .map(film => {
-      return `<li class="film-card" data-id="${film.id}">
-      <a class="film-link" href="${film.poster_path}">
+      return `<li class="film-card">
+      <a class="film-link js-open-modal" href="${film.poster_path}" data-id="${film.id}" data-modal="2">
         <img src="${film.poster_path}" alt="${film.title}" loading="lazy" />
         <div class="film-meta">
           <span class="film-name">${film.title}</span>
@@ -20,17 +22,26 @@ export function renderCollection(collection) {
       </li>`;
     })
     .join('');
-  // galleryList.insertAdjacentHTML('beforeend', films);
-  galleryList.innerHTML = films;
+
+  if (films) {
+    galleryList.innerHTML = films;
+    putEventListeners(); //навішуємо слухачів для відкриття модалки фільму
+  } else {
+    galleryList.innerHTML = '';
+  }
 }
 
 galleryList.addEventListener('click', async event => {
   event.preventDefault();
-  if (event.target.nodeName === 'A') {
-    const filmCard = event.target.closest('.film-card');
-    if (!filmCard) return;
-    const filmId = filmCard.dataset.id;
+  const filmCard = event.target.closest('.film-link');
+  if (!filmCard) return;
+  const filmId = filmCard.dataset.id;
+  try {
     const movieDetails = await fetchFilmsById(filmId);
     renderMovieModal(movieDetails);
+  } catch (error) {
+    const refContainer = document.querySelector('.backdrop-container');
+    refContainer.innerHTML = '';
+    alertSearchModalFailure();
   }
 });

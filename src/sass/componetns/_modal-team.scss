@@ -1,185 +1,179 @@
 .is-hidden {
-	opacity: 0;
-	visibility: hidden;
-	pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
-.modal-container{
-	position: fixed;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    overflow-y: scroll;
+.modal__btn-container {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.modal__btn-container{
+.modal-btn-close {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 10px;
+  border: none;
+  margin: 5px;
+  border-radius: 5px;
+  background: opacity($color-grey);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: #b92f2c;
+  }
+}
+
+.modal-team {
+  overflow-x: hidden;
+  background-color: $color-grey;
+  width: 100%;
+  flex-direction: column;
+  position: fixed;
+  //   width: 100vw;
+  max-height: 100vh;
+  top: 0;
+  left: 0;
+  overflow-y: scroll;
+}
+
+.modal-team__wrap {
+  position: relative;
+  width: 280px;
+  padding: 20px;
+  //   top: 20px;
+  left: 50%;
+  transform: translateX(-50%) scale(1);
+  //   overflow: hidden;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  transition: transform 250ms cubic-bezier(0.38, 0.53, 0.8, 0.71),
+    opacity 250ms cubic-bezier(0.38, 0.53, 0.8, 0.71);
+
+  @media screen and (min-width: $tablet) and (max-width: 1279px) {
+    width: 600px;
+    padding: 30px 25px 30px 25px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 900px;
+    padding: 35px 30px 10px 30px;
+  }
+}
+
+.modal-title {
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 1.16;
+  letter-spacing: 0.03em;
+  text-align: center;
+  color: #b92f2c;
+}
+
+.modal-team__container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  @media screen and (min-width: $tablet) {
+    margin-top: 30px;
+  }
+}
+
+.modal-team__list {
+  padding: 0;
+
+  @media (min-width: $tablet) and (max-width: 1279px) {
     display: flex;
-    justify-content: flex-end;  
-}
+    flex-wrap: wrap;
+    margin: -15px;
+  }
 
-.modal-btn-close{
-	 display: inline-flex;
-    align-items: center;
-    padding: 10px 10px;
-    border: none;
-    margin: 5px;
-    border-radius: 5px;
-    background: opacity($color-grey);
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
-        0px 1px 1px rgba(0, 0, 0, 0.14),
-        0px 2px 1px rgba(0, 0, 0, 0.2);
-    cursor: pointer; 
-
-	 &:hover,
-	 &:focus{
-		background-color: #b92f2c;
-	 }
-}
-
-.modal-team{
-	overflow-x: hidden;
-    background-color: $color-grey;
-	 width: 100%;
-	 flex-direction: column;
-}
-
-.modal-team__wrap{
-	position: relative;
-    width: 280px;
-    padding: 20px;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%) scale(1);
-    overflow: hidden;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
-            0px 1px 1px rgba(0, 0, 0, 0.14),
-            0px 2px 1px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    transition: transform 250ms cubic-bezier(0.38, 0.53, 0.8, 0.71),
-        opacity 250ms cubic-bezier(0.38, 0.53, 0.8, 0.71);
-
-    @media screen and (min-width: $tablet) and (max-width: 1279px) {
-        width: 600px;
-        padding: 30px 25px 30px 25px;
-    }
-
-    @media screen and (min-width: $desktop) {
-        width: 900px;
-        padding: 35px 30px 10px 30px;
-    }
-}
-
-.modal-title{
-	font-weight: 700;
-	font-size: 30px;
-	line-height: 1.16;
-	letter-spacing: 0.03em;
-	text-align: center;   
-	color: #b92f2c;
-}
-
-.modal-team__container{
-	display: flex;
-	justify-content: center;
-	margin-top: 20px;
-
-	@media screen and (min-width: $tablet) {
-		 margin-top: 30px;
-	}
-}
-
-.modal-team__list{
-	padding: 0;       
-
-    @media (min-width: $tablet) and (max-width: 1279px) {
-        display: flex;
-        flex-wrap: wrap;
-        margin: -15px;
-    }
-
-    @media screen and (min-width: $desktop) {
-        display: flex;
-        flex-wrap: wrap;
-        margin-left: -30px;
-    }
+  @media screen and (min-width: $desktop) {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -30px;
+  }
 }
 
 .modal-team__item {
-	position: relative;    
-    width: 240px;
+  position: relative;
+  width: 240px;
 
-    @media screen and (min-width: $mobile) {
-        margin-bottom: 15px;
-    }
+  @media screen and (min-width: $mobile) {
+    margin-bottom: 15px;
+  }
 
-    @media (min-width: $tablet) and (max-width: 1279px) {
-        width: calc((100% - 2 * 30px) / 2);
-        margin: 15px;            
-    }
+  @media (min-width: $tablet) and (max-width: 1279px) {
+    width: calc((100% - 2 * 30px) / 2);
+    margin: 15px;
+  }
 
-    @media screen and (min-width: $desktop) {        
-        flex-basis: calc(100% / 3 - 30px);
-        margin-left: 30px;
-        margin-bottom: 30px;
-    }
+  @media screen and (min-width: $desktop) {
+    flex-basis: calc(100% / 3 - 30px);
+    margin-left: 30px;
+    margin-bottom: 30px;
+  }
 
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
-    0px 1px 1px rgba(0, 0, 0, 0.14),
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
+  border-radius: 15px;
 }
 
-.modal-team__img-container{
-	overflow: hidden;
-    width: 170px;
-    height: 170px;
-    border-radius: 15px;
-    margin: 0 auto;
-    margin-bottom: 10px;
-    position: relative;
+.modal-team__img-container {
+  overflow: hidden;
+  width: 170px;
+  height: 170px;
+  border-radius: 15px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  position: relative;
 }
 
-.modal-team__img{
-	margin-top: 5px;
-	width: 100%;
-	height: auto;
-	border-radius: 15px;
-	transition: 1s; 
+.modal-team__img {
+  margin-top: 5px;
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  transition: 1s;
 }
 
-.team__name{
-	font-style: 500;
-    font-size: 18px;
-    line-height: 1.18;
-    letter-spacing: 0.03em;
-    text-align: center;
-    margin-bottom: 5px;
-    border: none;        
-    color: #000000;
+.team__name {
+  font-style: 500;
+  font-size: 18px;
+  line-height: 1.18;
+  letter-spacing: 0.03em;
+  text-align: center;
+  margin-bottom: 5px;
+  border: none;
+  color: #000000;
 }
 
-.team__profession{
-	font-style: 400;
-    font-size: 16px;
-    line-height: 1.18;
-    letter-spacing: 0.03em;
-    text-align: center;
-    margin-bottom: 5px;
-    color:#b92f2c;
+.team__profession {
+  font-style: 400;
+  font-size: 16px;
+  line-height: 1.18;
+  letter-spacing: 0.03em;
+  text-align: center;
+  margin-bottom: 5px;
+  color: #b92f2c;
 }
 
-.team__social{
-	display: flex;
-	justify-content: center;
+.team__social {
+  display: flex;
+  justify-content: center;
 }
 
-.git-icon{
-	background: opacity($color: #000000);
-	border-radius: 50%;  
+.git-icon {
+  background: opacity($color: #000000);
+  border-radius: 50%;
 }
 
 .git-icon:hover,
-.git-icon:focus {   
-    background-color: #b92f2c;  
+.git-icon:focus {
+  background-color: #b92f2c;
 }

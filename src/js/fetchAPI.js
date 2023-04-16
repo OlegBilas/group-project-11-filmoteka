@@ -55,7 +55,7 @@ const fetchYouTubeKey = async filmId => {
       `${URL}/movie/${filmId}/videos?api_key=${KEY}&language=en-US`
     );
 
-    return response.data.results[0].key;
+    return response.data.results[0] ? response.data.results[0].key : '';
   } catch (error) {
     throw new Error(responce.status);
   }
