@@ -28,7 +28,7 @@
 }
 
 // .film-img {
-//   max-width: 100%;      
+//   max-width: 100%;
 // }
 
 .film-img img {
@@ -50,8 +50,8 @@
   text-transform: uppercase;
   max-width: 95%;
   white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .film-info {
@@ -67,8 +67,8 @@
   border-right: 2px solid #b92f2c;
   max-width: 320px;
   white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .film-year {
@@ -98,6 +98,7 @@
     flex-basis: calc((100% - 32px) / 2);
 
     margin-bottom: 32px;
+    overflow: hidden;
 
     &:nth-last-child(-n + 2) {
       margin-bottom: 0;
