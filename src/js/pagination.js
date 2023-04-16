@@ -2,12 +2,13 @@ import Pagination from 'tui-pagination';
 import { fetchFilms } from "./fetchAPI";
 import { renderCollection } from "./renderGallery";
 
+let instance
 const galleryList = document.querySelector('.list');
 const container = document.querySelector(".pagination");
 function createPagination(totalItems, filmName){
-    let instance = new Pagination(container, {
+    instance = new Pagination(container, {
         totalItems,
-        itemsPerPage: 1,
+        itemsPerPage: 20,
         visiblePages: 10,
         page: 1,
         centerAlign: true,
