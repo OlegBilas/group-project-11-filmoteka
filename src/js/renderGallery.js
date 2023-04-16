@@ -26,9 +26,11 @@ export function renderCollection(collection) {
 
 galleryList.addEventListener('click', async event => {
   event.preventDefault();
-  const filmCard = event.target.closest('.film-card');
-  if (!filmCard) return;
-  const filmId = filmCard.dataset.id;
-  const movieDetails = await fetchFilmsById(filmId);
-  renderMovieModal(movieDetails);
+  if (event.target.nodeName === 'A') {
+    const filmCard = event.target.closest('.film-card');
+    if (!filmCard) return;
+    const filmId = filmCard.dataset.id;
+    const movieDetails = await fetchFilmsById(filmId);
+    renderMovieModal(movieDetails);
+  }
 });

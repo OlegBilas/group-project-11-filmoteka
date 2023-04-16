@@ -18,8 +18,7 @@ export function renderMovieModal(movieData) {
   const videoIframe = youtubeVideo.createIframe(videoId);
 
   const instance = basicLightbox.create(
-    `
-<div class="backdrop js-backdrop">
+    `<div class="backdrop js-backdrop">
     <div class="modal">
         ​
         <button type="button" class="btn-close" id="btn-close">
@@ -71,14 +70,15 @@ export function renderMovieModal(movieData) {
           </form>
         </div>
     </div>
-</div>
-`,
+</div>`,
     {
       onShow: instance => {
         instance.element().querySelector('#watched').onclick =
           addToLocalstorage(WATCHED, movieData);
-        instance.element().querySelector('#queue').onclick =
-          addToLocalstorage(QUE, movieData);
+        instance.element().querySelector('#queue').onclick = addToLocalstorage(
+          QUE,
+          movieData
+        );
         instance.element().querySelector('#btn-close').onclick = instance.close;
       },
     }
