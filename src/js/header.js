@@ -1,6 +1,6 @@
 import { fetchFilms } from "./fetchAPI";
 import { renderCollection } from "./renderGallery";
-import { pageReset, clearMovies } from "./resetFunctions";
+// import { pageReset } from "./js/resetFunctions";
 import { getFromLocalstorage } from "./localAPI";
 import {
   alertSuccess,
@@ -17,12 +17,13 @@ const refs = {
   galleryList: document.querySelector('list')
 }
 let query = '';
-let page = 1;
+// let page = 1;
+let queryResults = 0;
 
 refs.searchForm.addEventListener('submit', onSearch);
 refs.homeBtn.addEventListener('click', onHomeClick);
 refs.myLibraryBtn.addEventListener('click', onLibraryClick);
-refs.watchedBtn.addEventListener('click', onWatchedClick);
+// refs.watchedBtn.addEventListener('click', onWatchedClick);
 refs.queueBtn.addEventListener('click', onQueueClick);
 
 
@@ -40,21 +41,22 @@ async function onSearch(e) {
   e.currentTarget.reset();
 
 // Записуємо фетч у змінну, перевіряємо кількість об'єктів отриманих від бекенду
-  const res = await fetchFilms(page, results, total_pages);
-
-// Якщо результат пошуку успішний, очищаємо існуючу галарею і рендеремо нову відповідно до запиту
+  const res = await fetchFilms(query);
+  // console.log(res.results.length);
+  queryResults = res.results.length;
+// Якщо результат пошуку успішний, показуємо алерт і рендеремо нову відповідно до запиту
   try {
-    if (res.results.lengths > 0) {
-      alertSuccess(res);
-      clearMovies();
+    if (queryResults > 0) {
+      alertSuccess();
+      // clearMovies();
       renderCollection(res);
-      lightbox.refresh();
     }
 
-// Якщо результатів пошуку не знайдено, показуємо алерт і очищаємо галерею
-    if (res.results.lengths === 0) {
-      clearMovies();
+// Якщо результатів пошуку не знайдено, показуємо алерт і порожню галерею
+    if (queryResults === 0) {
+      // clearMovies();
       alertSearchFailure();
+      renderCollection(res);
     }
   } catch (error) {
     console.log(error);
@@ -63,21 +65,33 @@ async function onSearch(e) {
 
 // Функціонал кнопок хедеру
 function onHomeClick() {
-  clearMovies();
+  // clearMovies();
   renderCollection();
 }
 
 function onLibraryClick() {
-  clearMovies();
+  // clearMovies();
   getFromLocalstorage();
+  console.log(getFromLocalstorage());
 }
 
 function onWatchedClick() {
-  clearMovies();
+  // clearMovies();
   getFromLocalstorage();
 }
 
 function onQueueClick() {
-  clearMovies();
+  // clearMovies();
   getFromLocalstorage();
 }
+
+// function clearMovies() {
+//   refs.galleryList.innerHTML = '';
+// }
+
+
+function pageReset() {
+  page = 1;
+}
+
+export { onSearch }
