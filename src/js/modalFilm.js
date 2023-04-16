@@ -1,6 +1,6 @@
 import * as basicLightbox from 'basiclightbox';
 import { YoutubeVideo } from './youtubevideo';
-import { QUE, WATCHED, addToLocalstorage } from './localAPI';
+// import { QUE, WATCHED, addToLocalstorage } from './localAPI';
 
 export function renderMovieModal(movieData) {
   const {
@@ -72,12 +72,8 @@ export function renderMovieModal(movieData) {
 </div>`,
     {
       onShow: instance => {
-        instance.element().querySelector('#watched').onclick =
-          addToLocalstorage(WATCHED, movieData);
-        instance.element().querySelector('#queue').onclick = addToLocalstorage(
-          QUE,
-          movieData
-        );
+        // instance.element().querySelector('#watched').onclick = addToLocalstorage(WATCHED, movieData);
+        // instance.element().querySelector('#queue').onclick = addToLocalstorage(QUE, movieData);
         instance.element().querySelector('#btn-close').onclick = instance.close;
       },
     }

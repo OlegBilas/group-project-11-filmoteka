@@ -6,8 +6,8 @@ const galleryList = document.querySelector('.list');
 export function renderCollection(collection) {
   const films = collection.results
     .map(film => {
-      return `<li class="film-card" data-id="${film.id}">
-      <a class="film-link" href="${film.poster_path}">
+      return `<li class="film-card">
+      <a class="film-link" href="${film.poster_path}" data-id="${film.id}">
         <img src="${film.poster_path}" alt="${film.title}" loading="lazy" />
         <div class="film-meta">
           <span class="film-name">${film.title}</span>
@@ -21,20 +21,21 @@ export function renderCollection(collection) {
     })
     .join('');
 
+
   if (films) {
     galleryList.innerHTML = films;
   } else {
     galleryList.innerHTML = '';
   }
+
 }
 
 galleryList.addEventListener('click', async event => {
   event.preventDefault();
-  if (event.target.nodeName === 'A') {
-    const filmCard = event.target.closest('.film-card');
-    if (!filmCard) return;
-    const filmId = filmCard.dataset.id;
-    const movieDetails = await fetchFilmsById(filmId);
-    renderMovieModal(movieDetails);
-  }
+  const filmCard = event.target.closest('.film-link');
+  if (!filmCard) return;
+  const filmId = filmCard.dataset.id;
+  const movieDetails = await fetchFilmsById(filmId);
+  renderMovieModal(movieDetails);
 });
+
