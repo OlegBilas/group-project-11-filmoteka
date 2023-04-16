@@ -1,4 +1,4 @@
-// import * as basicLightbox from 'basiclightbox';
+import { putEventListeners } from './modal';
 import { YoutubeVideo } from './youtubevideo';
 import { QUE, WATCHED, addToLocalstorage } from './localAPI';
 
@@ -71,6 +71,8 @@ export function renderMovieModal(movieData) {
         </div>
     </div>
 `;
+
+  putEventListeners(); //навішуємо слухачів для закриття модалки фільму
   //   {
   //     onShow: instance => {
   //       instance.element().querySelector('#watched').onclick =
