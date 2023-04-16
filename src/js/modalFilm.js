@@ -39,7 +39,8 @@ export function renderMovieModal(movieData) {
         <button type="button" class="btn-close js-close-modal" id="btn-close">
             <svg class="form__close-icon" width="30px" height="30px">
                 <use href="./images/icons.svg#icon-close"></use>
-            </svg> </button>
+            </svg>
+        </button>
         <div id="modal_form">
           <form class="form">
               <div class="form__film-card">
@@ -79,7 +80,7 @@ export function renderMovieModal(movieData) {
               </div>
               <div class="form__film-card">
                 <div class="form__film-img">
-                ${videoIframe.outerHTML}
+                    ${videoIframe ? videoIframe.outerHTML : ''}
                 </div>
               </div>
           </form>
