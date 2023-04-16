@@ -20,7 +20,14 @@ export function renderCollection(collection) {
       </li>`;
     })
     .join('');
-  galleryList.innerHTML = films;
+
+
+  if (films) {
+    galleryList.innerHTML = films;
+  } else {
+    galleryList.innerHTML = '';
+  }
+
 }
 
 galleryList.addEventListener('click', async event => {
