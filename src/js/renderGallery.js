@@ -1,6 +1,7 @@
 import { fetchFilmsById } from './fetchAPI';
 import { renderMovieModal } from './modalFilm';
 import { putEventListeners } from './modal';
+import { alertSearchModalFailure } from './alerts';
 
 const galleryList = document.querySelector('.list');
 
@@ -38,5 +39,9 @@ galleryList.addEventListener('click', async event => {
   try {
     const movieDetails = await fetchFilmsById(filmId);
     renderMovieModal(movieDetails);
-  } catch (error) {}
+  } catch (error) {
+    const refContainer = document.querySelector('.backdrop-container');
+    refContainer.innerHTML = '';
+    alertSearchModalFailure();
+  }
 });

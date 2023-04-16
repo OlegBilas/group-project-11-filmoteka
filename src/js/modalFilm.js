@@ -77,6 +77,7 @@ export function renderMovieModal(movieData) {
 `;
 
   putEventListeners(); //навішуємо слухачів для закриття модалки фільму
+
   //   {
   //     onShow: instance => {
   //       instance.element().querySelector('#watched').onclick =
