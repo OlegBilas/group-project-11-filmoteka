@@ -208,7 +208,6 @@
 
 .form__about {
     margin-top: 20px;
-    // margin-bottom: 20px;
 }
 
 // BUTTON
@@ -218,11 +217,11 @@
     margin-top: 20px;
 
 @media screen and (min-width: 120px) and (max-width: 767px) {
-        padding-top: 60px;
+        // padding-top: 60px;
     }
 
 @media screen and (min-width: 768px) and (max-width: 1279px) {
-        padding-top: 40px;
+        padding-top: 5px;
     }
 
 }
@@ -388,15 +387,16 @@ body.modal.active {
         position: relative;
         padding-bottom: 56.25%;
 
-    @media screen and (min-width: 768px) {
+
+    @media screen and (min-width: 240px) and (max-width: 767px) {
+        height: 334px;
         // width: 704px;
         // height: 552px; 
         // height: auto;
     }
 
-    @media screen and (min-width: 1280px) {
-        // width: 806px;
-        // height: 558px;
+    @media screen and (min-width: 768px) and (max-width: 1280px) {
+        height: 0;
     }
 }
 
