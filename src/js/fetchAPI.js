@@ -9,7 +9,7 @@ const imgURL = `https://image.tmdb.org/t/p/w500`;
 const fetchFilms = async (filmName, page = 1) => {
   const request = filmName
     ? `${URL}/search/movie?api_key=${KEY}&language=en-US&query=${filmName}&page=${page}`
-    : `${URL}/trending/all/day?api_key=${KEY}`;
+    : `${URL}/trending/all/day?api_key=${KEY}&page=${page}`;
 
   try {
     const response = await axios.get(request);
@@ -28,7 +28,7 @@ const fetchFilms = async (filmName, page = 1) => {
             id,
             poster_path: `${imgURL}${poster_path}`,
             year: release_date.slice(0, 4),
-            title: original_title,
+            title: title ? title : original_title,
           };
         }
       );
