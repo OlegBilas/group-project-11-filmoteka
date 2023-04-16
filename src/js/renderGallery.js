@@ -1,5 +1,5 @@
-import fetchFilmsById from './fetchAPI';
-import renderMovieModal from './modalFilm';
+import { fetchFilmsById } from './fetchAPI';
+import { renderMovieModal } from './modalFilm';
 
 const galleryList = document.querySelector('.list');
 
