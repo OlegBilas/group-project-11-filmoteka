@@ -11,19 +11,26 @@ let perPage = 20;
 const fetchFilms = async (filmName, page = 1) => {
   const request = filmName
     ? `${URL}/search/movie?api_key=${KEY}&language=en-US&query=${filmName}&page=${page}`
-    : `${URL}/trending/all/day?api_key=${KEY}`;
+    : `${URL}/trending/all/day?api_key=${KEY}&page=${page}`;
 
   try {
     const response = await axios.get(request);
     const takeInfo = object => {
       const result = object.map(
-        ({ genre_ids, id, poster_path, release_date = '', title }) => {
+        ({
+          genre_ids,
+          id,
+          poster_path,
+          release_date = '',
+          title,
+          original_title,
+        }) => {
           return {
             genres: getGenresById(genre_ids),
             id,
             poster_path: `${imgURL}${poster_path}`,
             year: release_date.slice(0, 4),
-            title,
+            title: title ? title : original_title ? original_title : 'no data',
           };
         }
       );

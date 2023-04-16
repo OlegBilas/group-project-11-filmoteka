@@ -1,4 +1,5 @@
-// import * as basicLightbox from 'basiclightbox';
+import { fetchFilmsById } from './fetchAPI';
+import { renderMovieModal } from './modalFilm';
 
 const galleryList = document.querySelector('.list');
 
@@ -23,16 +24,13 @@ export function renderCollection(collection) {
   galleryList.innerHTML = films;
 }
 
-galleryList.addEventListener('click', onMovieClick);
-
-function onMovieClick(event) {
+galleryList.addEventListener('click', async event => {
   event.preventDefault();
-  event.currentTarget.classList.toggle('js-isActiveCard');
-  //   const instance = basicLightbox.create(`
-  //     <div class="modal">
-
-  //     </div>
-  // `);
-
-  //   instance.show();
-}
+  if (event.target.nodeName === 'A') {
+    const filmCard = event.target.closest('.film-card');
+    if (!filmCard) return;
+    const filmId = filmCard.dataset.id;
+    const movieDetails = await fetchFilmsById(filmId);
+    renderMovieModal(movieDetails);
+  }
+});

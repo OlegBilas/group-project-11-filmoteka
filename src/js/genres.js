@@ -27,7 +27,14 @@ const getGenreById = id => {
 
 const getGenresById = genresArray => {
   if (genresArray.length > 0) {
-    const allGenres = genresArray.map(id => getGenreById(id));
+    const allGenres = [];
+    genresArray.forEach(id => {
+      const genreName = getGenreById(id);
+      if (!genreName) {
+        return;
+      }
+      allGenres.push(genreName);
+    });
     return allGenres.join(', ');
   } else {
     return '';
