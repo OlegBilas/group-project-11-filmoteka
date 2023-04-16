@@ -27,9 +27,14 @@
   text-decoration: none;
 }
 
+// .film-img {
+//   max-width: 100%;      
+// }
+
 .film-img img {
   border-radius: 5px;
-  // max-width: 280px;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 .film-meta {
@@ -43,6 +48,10 @@
   line-height: 1.33;
   color: black;
   text-transform: uppercase;
+  max-width: 95%;
+  white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .film-info {
@@ -56,6 +65,10 @@
 .film-ganre {
   padding-right: 4px;
   border-right: 2px solid #b92f2c;
+  max-width: 320px;
+  white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .film-year {
