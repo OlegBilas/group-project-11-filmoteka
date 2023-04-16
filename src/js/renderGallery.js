@@ -20,8 +20,12 @@ export function renderCollection(collection) {
       </li>`;
     })
     .join('');
-  // galleryList.insertAdjacentHTML('beforeend', films);
-  galleryList.innerHTML = films;
+
+  if (films) {
+    galleryList.innerHTML = films;
+  } else {
+    galleryList.innerHTML = '';
+  }
 }
 
 galleryList.addEventListener('click', async event => {
