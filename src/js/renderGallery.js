@@ -23,12 +23,11 @@ export function renderCollection(collection) {
   galleryList.innerHTML = films;
 }
 
-
 galleryList.addEventListener('click', async event => {
+  event.preventDefault();
   const filmCard = event.target.closest('.film-card');
   if (!filmCard) return;
   const filmId = filmCard.dataset.id;
   const movieDetails = await fetchFilmsById(filmId);
   renderMovieModal(movieDetails);
 });
-
