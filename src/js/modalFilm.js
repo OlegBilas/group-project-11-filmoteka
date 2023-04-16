@@ -1,6 +1,8 @@
-import * as basicLightbox from 'basiclightbox';
+// import * as basicLightbox from 'basiclightbox';
 import { YoutubeVideo } from './youtubevideo';
-// import { QUE, WATCHED, addToLocalstorage } from './localAPI';
+import { QUE, WATCHED, addToLocalstorage } from './localAPI';
+
+refContainer = document.querySelector('.backdrop-container');
 
 export function renderMovieModal(movieData) {
   const {
@@ -17,10 +19,9 @@ export function renderMovieModal(movieData) {
   const youtubeVideo = new YoutubeVideo();
   const videoIframe = youtubeVideo.createIframe(videoId);
 
-  const instance = basicLightbox.create(
-    `<div class="backdrop js-backdrop">
-      <div class="modal">
-        <button type="button" class="btn-close" id="btn-close">
+  refContainer.innerHTML = `
+      <div class="modal" data-modal="2">
+        <button type="button" class="btn-close js-close-modal" id="btn-close">
             <svg class="form__close-icon" width="30px" height="30px">
                 <use href="./images/icons.svg#icon-close"></use>
             </svg> </button>
@@ -69,15 +70,19 @@ export function renderMovieModal(movieData) {
           </form>
         </div>
     </div>
-</div>`,
-    {
-      onShow: instance => {
-        // instance.element().querySelector('#watched').onclick = addToLocalstorage(WATCHED, movieData);
-        // instance.element().querySelector('#queue').onclick = addToLocalstorage(QUE, movieData);
-        instance.element().querySelector('#btn-close').onclick = instance.close;
-      },
-    }
-  );
+`;
+  //   {
+  //     onShow: instance => {
+  //       instance.element().querySelector('#watched').onclick =
+  //         addToLocalstorage(WATCHED, movieData);
+  //       instance.element().querySelector('#queue').onclick = addToLocalstorage(
+  //         QUE,
+  //         movieData
+  //       );
+  //       instance.element().querySelector('#btn-close').onclick = instance.close;
+  //     },
+  //   }
+  // );
 
-  instance.show();
+  // instance.show();
 }

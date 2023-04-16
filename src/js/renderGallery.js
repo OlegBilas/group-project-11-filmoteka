@@ -1,5 +1,6 @@
 import { fetchFilmsById } from './fetchAPI';
 import { renderMovieModal } from './modalFilm';
+import { putEventListeners } from './modal';
 
 const galleryList = document.querySelector('.list');
 
@@ -7,7 +8,7 @@ export function renderCollection(collection) {
   const films = collection.results
     .map(film => {
       return `<li class="film-card">
-      <a class="film-link" href="${film.poster_path}" data-id="${film.id}">
+      <a class="film-link js-open-modal" href="${film.poster_path}" data-id="${film.id}" data-modal="2">
         <img src="${film.poster_path}" alt="${film.title}" loading="lazy" />
         <div class="film-meta">
           <span class="film-name">${film.title}</span>
@@ -21,13 +22,12 @@ export function renderCollection(collection) {
     })
     .join('');
 
-
   if (films) {
     galleryList.innerHTML = films;
+    putEventListeners(); //навішуємо слухачів для відкриття модалки фільму
   } else {
     galleryList.innerHTML = '';
   }
-
 }
 
 galleryList.addEventListener('click', async event => {
@@ -38,4 +38,3 @@ galleryList.addEventListener('click', async event => {
   const movieDetails = await fetchFilmsById(filmId);
   renderMovieModal(movieDetails);
 });
-

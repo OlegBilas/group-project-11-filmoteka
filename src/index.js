@@ -4,11 +4,13 @@
 //Приклад підключення файлу скрипта
 //import { Filmoteka } from './scripts/fetchAPI';
 
-import modal from './js/modal';
+import { putEventListeners } from './js/modal';
 import { fetchFilms, fetchFilmsById } from './js/fetchAPI';
 
 import { renderCollection } from './js/renderGallery';
 import { renderMovieModal } from './js/modalFilm';
+import { createPagination } from './js/pagination';
+
+putEventListeners(); // навішування обробників на кнопки відкриття модалок
 
 fetchFilms('').then(collection => renderCollection(collection));
-
