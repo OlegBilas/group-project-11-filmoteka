@@ -19,8 +19,7 @@ export function renderMovieModal(movieData) {
 
   const instance = basicLightbox.create(
     `<div class="backdrop js-backdrop">
-    <div class="modal">
-        ​
+      <div class="modal">
         <button type="button" class="btn-close" id="btn-close">
             <svg class="form__close-icon" width="30px" height="30px">
                 <use href="./images/icons.svg#icon-close"></use>
