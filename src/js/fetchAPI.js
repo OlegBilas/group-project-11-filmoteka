@@ -14,24 +14,30 @@ const fetchFilms = async (filmName, page = 1) => {
   try {
     const response = await axios.get(request);
     const takeInfo = object => {
-      const result = object.map(
-        ({
-          genre_ids,
-          id,
-          poster_path,
-          release_date = '',
-          title,
-          original_title,
-        }) => {
-          return {
-            genres: getGenresById(genre_ids),
+      const result = object
+        .filter(({ poster_path }) => poster_path.length > 0 && !null)
+        .map(
+          ({
+            genre_ids,
             id,
-            poster_path: `${imgURL}${poster_path}`,
-            year: release_date.slice(0, 4),
-            title: title ? title : original_title ? original_title : 'no data',
-          };
-        }
-      );
+            poster_path,
+            release_date = '',
+            title,
+            original_title,
+          }) => {
+            return {
+              genres: getGenresById(genre_ids),
+              id,
+              poster_path: `${imgURL}${poster_path}`,
+              year: release_date.slice(0, 4),
+              title: title
+                ? title
+                : original_title
+                ? original_title
+                : 'no data',
+            };
+          }
+        );
       return result;
     };
     const info = {
