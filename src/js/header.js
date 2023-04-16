@@ -1,6 +1,5 @@
 import { fetchFilms } from "./fetchAPI";
 import { renderCollection } from "./renderGallery";
-// import { pageReset } from "./js/resetFunctions";
 import { getFromLocalstorage } from "./localAPI";
 import {
   alertSuccess,
@@ -12,18 +11,16 @@ const refs = {
   searchForm: document.querySelector('.search-form'),
   homeBtn: document.querySelector('.home-btn'),
   myLibraryBtn: document.querySelector('.my-library-btn'),
-  watchedBtn: document.querySelector('.watcher-btn'),
+  watchedBtn: document.querySelector('.watched-btn'),
   queueBtn: document.querySelector('.queue-btn'),
-  galleryList: document.querySelector('list')
 }
 let query = '';
-// let page = 1;
 let queryResults = 0;
 
 refs.searchForm.addEventListener('submit', onSearch);
 refs.homeBtn.addEventListener('click', onHomeClick);
 refs.myLibraryBtn.addEventListener('click', onLibraryClick);
-// refs.watchedBtn.addEventListener('click', onWatchedClick);
+refs.watchedBtn.addEventListener('click', onWatchedClick);
 refs.queueBtn.addEventListener('click', onQueueClick);
 
 
@@ -42,19 +39,17 @@ async function onSearch(e) {
 
 // Записуємо фетч у змінну, перевіряємо кількість об'єктів отриманих від бекенду
   const res = await fetchFilms(query);
-  // console.log(res.results.length);
   queryResults = res.results.length;
+
 // Якщо результат пошуку успішний, показуємо алерт і рендеремо нову відповідно до запиту
   try {
     if (queryResults > 0) {
       alertSuccess();
-      // clearMovies();
       renderCollection(res);
     }
 
 // Якщо результатів пошуку не знайдено, показуємо алерт і порожню галерею
     if (queryResults === 0) {
-      // clearMovies();
       alertSearchFailure();
       renderCollection(res);
     }
@@ -65,33 +60,33 @@ async function onSearch(e) {
 
 // Функціонал кнопок хедеру
 function onHomeClick() {
-  // clearMovies();
-  renderCollection();
+  refs.watchedBtn.classList.add('is-hidden');
+  refs.queueBtn.classList.add('is-hidden');
+  fetchFilms('').then(collection => renderCollection(collection));
 }
 
 function onLibraryClick() {
-  // clearMovies();
+  refs.watchedBtn.classList.remove('is-hidden');
+  refs.queueBtn.classList.remove('is-hidden');
   getFromLocalstorage();
-  console.log(getFromLocalstorage());
 }
 
 function onWatchedClick() {
-  // clearMovies();
   getFromLocalstorage();
 }
 
 function onQueueClick() {
-  // clearMovies();
   getFromLocalstorage();
 }
-
-// function clearMovies() {
-//   refs.galleryList.innerHTML = '';
-// }
-
 
 function pageReset() {
   page = 1;
 }
 
-export { onSearch }
+export {
+  onSearch,
+  onHomeClick,
+  onLibraryClick,
+  onWatchedClick,
+  onQueueClick,
+}
