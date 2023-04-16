@@ -22,7 +22,18 @@ export function renderMovieModal(movieData) {
     const youtubeVideo = new YoutubeVideo();
     videoIframe = youtubeVideo.createIframe(videoId);
   }
+    function addModalListeners() {
+    const watchedBtn = document.getElementById('watched');
+    const queueBtn = document.getElementById('queue');
 
+    watchedBtn.addEventListener('click', () => {
+        addToLocalstorage(WATCHED, movieData);
+    });
+
+    queueBtn.addEventListener('click', () => {
+        addToLocalstorage(QUE, movieData);
+    });
+    }
   refContainer.innerHTML = `
       <div class="modal" data-modal="2">
         <button type="button" class="btn-close js-close-modal" id="btn-close">
@@ -75,21 +86,7 @@ export function renderMovieModal(movieData) {
         </div>
     </div>
 `;
+    putEventListeners(); //навішуємо слухачів для закриття модалки фільму    
+    addModalListeners(); // навішування обробників на кнопки додавання до локального сховища
+};
 
-  putEventListeners(); //навішуємо слухачів для закриття модалки фільму
-
-  //   {
-  //     onShow: instance => {
-  //       instance.element().querySelector('#watched').onclick =
-  //         addToLocalstorage(WATCHED, movieData);
-  //       instance.element().querySelector('#queue').onclick = addToLocalstorage(
-  //         QUE,
-  //         movieData
-  //       );
-  //       instance.element().querySelector('#btn-close').onclick = instance.close;
-  //     },
-  //   }
-  // );
-
-  // instance.show();
-}
