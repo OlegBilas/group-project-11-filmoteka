@@ -1,4 +1,5 @@
-// import * as basicLightbox from 'basiclightbox';
+import fetchFilmsById from './fetchAPI';
+import renderMovieModal from './modalFilm';
 
 const galleryList = document.querySelector('.list');
 
