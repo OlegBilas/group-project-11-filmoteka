@@ -16,8 +16,12 @@ export function renderMovieModal(movieData) {
     vote_count,
     videoId,
   } = movieData;
-  const youtubeVideo = new YoutubeVideo();
-  const videoIframe = youtubeVideo.createIframe(videoId);
+
+  let videoIframe = '';
+  if (videoId) {
+    const youtubeVideo = new YoutubeVideo();
+    videoIframe = youtubeVideo.createIframe(videoId);
+  }
 
   refContainer.innerHTML = `
       <div class="modal" data-modal="2">

@@ -35,6 +35,8 @@ galleryList.addEventListener('click', async event => {
   const filmCard = event.target.closest('.film-link');
   if (!filmCard) return;
   const filmId = filmCard.dataset.id;
-  const movieDetails = await fetchFilmsById(filmId);
-  renderMovieModal(movieDetails);
+  try {
+    const movieDetails = await fetchFilmsById(filmId);
+    renderMovieModal(movieDetails);
+  } catch (error) {}
 });
