@@ -46,6 +46,7 @@
   font-family: Roboto, sans-serif;
   font-size: 12px;
   font-weight: 500;
+  overflow: hidden;
 }
 
 .film-name {
@@ -54,7 +55,6 @@
   text-transform: uppercase;
   max-width: 95%;
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
 }
 
