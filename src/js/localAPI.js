@@ -18,4 +18,23 @@ function addToLocalstorage(key, dataAboutFilm) {
   localStorage.setItem(`${key}`, data);
 }
 
-export { QUE, WATCHED, getFromLocalstorage, addToLocalstorage };
+function removeFromLocalstorage(key, dataAboutFilm) {
+  const localData = getFromLocalstorage(key);
+  const arrayByKey = localData ? localData : [];
+
+  const index = arrayByKey.findIndex(obj => obj.id === dataAboutFilm.id);
+  if (index === -1) {
+    return;
+  }
+  arrayByKey.splice(index, 1);
+  const data = JSON.stringify(arrayByKey);
+  localStorage.setItem(`${key}`, data);
+}
+
+export {
+  QUE,
+  WATCHED,
+  getFromLocalstorage,
+  addToLocalstorage,
+  removeFromLocalstorage,
+};
