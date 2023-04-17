@@ -1,6 +1,7 @@
 import { putEventListenersToOverlay } from './modal';
 import { YoutubeVideo } from './youtubevideo';
 import { QUE, WATCHED, addToLocalstorage } from './localAPI';
+import { spinnerHandler } from './spinner';
 
 const refModalFilmContainer = document.querySelector('.backdrop-container');
 
@@ -126,6 +127,7 @@ export function renderMovieModal(movieData, objectCard) {
 `;
   }
 
+  refModalFilmContainer.addEventListener('load', spinnerHandler);
   refModalFilmContainer.classList.add('js-overlay-modal');
   putEventListenersToOverlay(refModalFilmContainer); //навішуємо слухачів для закриття модалки фільму
   addModalListeners(); // навішування обробників на кнопки додавання до локального сховища

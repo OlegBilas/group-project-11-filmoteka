@@ -2,6 +2,7 @@ import { fetchFilmsById } from './fetchAPI';
 import { renderMovieModal } from './modalFilm';
 import { putEventListenersToAll } from './modal';
 import { alertSearchModalFailure } from './alerts';
+import { spinnerHandler } from './spinner';
 
 const galleryList = document.querySelector('.list');
 const IS_FROM_FETCH = true;
@@ -32,7 +33,7 @@ function renderCollection(collection, IS_FROM_FETCH = true) {
     galleryList.innerHTML = '';
   }
 }
-
+galleryList.addEventListener('click', spinnerHandler);
 galleryList.addEventListener('click', async event => {
   event.preventDefault();
   const filmCard = event.target.closest('.film-link');
