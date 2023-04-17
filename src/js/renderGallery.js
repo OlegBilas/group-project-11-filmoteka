@@ -4,7 +4,7 @@ import { putEventListeners } from './modal';
 import { alertSearchModalFailure } from './alerts';
 
 const galleryList = document.querySelector('.list');
-let IS_FROM_STORADGE;
+let IS_FROM_STORADGE = false;
 
 function renderCollection(collection, IS_FROM_STORADGE = false) {
   collection = IS_FROM_STORADGE ? collection : collection.results;
