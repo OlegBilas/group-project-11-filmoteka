@@ -78,12 +78,17 @@ export function renderMovieModal(movieData) {
                       <button data-action="add" id="queue" class="form-button form-queue-btn" type="button">Add to queue</button>
                   </div>
               </div>
-          </form>
-          <div class="form__film-card">
+
+            ${videoIframe ? `
+              <div class="form__film-card">
+
                 <div class="form__film-img">
-                    ${videoIframe ? videoIframe.outerHTML : ''}
+                    ${videoIframe.outerHTML}
                 </div>
               </div>
+            ` : ''}
+          </form>
+
         </div>
     </div>
 `;
