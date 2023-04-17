@@ -1,4 +1,4 @@
-import { putEventListeners } from './modal';
+import { putEventListenersToOverlay } from './modal';
 import { YoutubeVideo } from './youtubevideo';
 import { QUE, WATCHED, addToLocalstorage } from './localAPI';
 
@@ -127,7 +127,7 @@ export function renderMovieModal(movieData) {
   }
 
   refModalFilmContainer.classList.add('js-overlay-modal');
-  putEventListeners(); //навішуємо слухачів для закриття модалки фільму
+  putEventListenersToOverlay(refModalFilmContainer); //навішуємо слухачів для закриття модалки фільму
   addModalListeners(); // навішування обробників на кнопки додавання до локального сховища
 
   function addModalListeners() {

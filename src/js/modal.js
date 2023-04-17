@@ -20,12 +20,24 @@ import {
     visibility: hidden;
  */
 
-export function putEventListeners() {
+function putEventListenersToAll() {
   // Записуємо в змінні масив елементів кнопок та бекдропів (підложка під модалку)
   const modalButtons = document.querySelectorAll('.js-open-modal');
   const overlaysArr = document.querySelectorAll('.js-overlay-modal');
   const closeButtons = document.querySelectorAll('.js-close-modal');
 
+  putEventListeners(modalButtons, overlaysArr, closeButtons);
+}
+
+function putEventListenersToOverlay(refOverlay) {
+  const modalButtons = refOverlay.querySelectorAll('.js-open-modal');
+  const overlaysArr = refOverlay.querySelectorAll('.js-overlay-modal');
+  const closeButtons = refOverlay.querySelectorAll('.js-close-modal');
+
+  putEventListeners(modalButtons, overlaysArr, closeButtons);
+}
+
+function putEventListeners(modalButtons, overlaysArr, closeButtons) {
   /* Перебираємо масив кнопок */
   modalButtons.forEach(function (item) {
     item.addEventListener('click', function (e) {
@@ -82,3 +94,5 @@ function onPressEscape(e) {
     enableBodyScroll(document.body); // added
   }
 }
+
+export { putEventListenersToOverlay, putEventListenersToAll };
