@@ -40,6 +40,7 @@ galleryList.addEventListener('click', async event => {
   const filmId = filmCard.dataset.id;
   const refModalFilmContainer = document.querySelector('.backdrop-container');
   try {
+    const objectCard = getDataCard(event.target);
     const movieDetails = await fetchFilmsById(filmId);
     renderMovieModal(movieDetails);
     refModalFilmContainer.style.display = 'block';
@@ -48,5 +49,10 @@ galleryList.addEventListener('click', async event => {
     alertSearchModalFailure();
   }
 });
+
+function getDataCard(element) {
+  const poster_path = element.href.textContent;
+  const id = element.dataset.id;
+}
 
 export { IS_FROM_FETCH, renderCollection };
