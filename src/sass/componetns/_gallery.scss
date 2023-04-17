@@ -32,15 +32,14 @@
   text-decoration: none;
 }
 
-// .film-img {
-//   max-width: 100%;
-// }
 
 .film-img img {
   border-radius: 5px;
   max-width: 100%;
-  object-fit: contain;
+  height: 100% !important;
+  object-fit: cover;
 }
+
 
 .film-meta {
   padding-top: 10px;
@@ -86,6 +85,12 @@
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 60px;
+  }
+
+  .film-link {
+    display: flex;
+    flex-direction: column;
+    justify-items: stretch;
   }
 
   .film-card {
