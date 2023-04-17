@@ -37,7 +37,7 @@ export function renderMovieModal(movieData) {
   refContainer.innerHTML = `
       <div class="modal" data-modal="2">
         <button type="button" class="btn-close js-close-modal" id="btn-close">
-            <svg class="form__close-icon" width="30px" height="30px">
+            Close<svg class="form__close-icon" width="30px" height="30px">
                 <use href="./images/icons.svg#icon-close"></use>
             </svg>
         </button>
@@ -78,14 +78,17 @@ export function renderMovieModal(movieData) {
                       <button data-action="add" id="queue" class="form-button form-queue-btn" type="button">Add to queue</button>
                   </div>
               </div>
+
             ${videoIframe ? `
               <div class="form__film-card">
+
                 <div class="form__film-img">
                     ${videoIframe.outerHTML}
                 </div>
               </div>
             ` : ''}
           </form>
+
         </div>
     </div>
 `;
