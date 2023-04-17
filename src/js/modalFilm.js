@@ -23,11 +23,13 @@ export function renderMovieModal(movieData) {
     videoIframe = youtubeVideo.createIframe(videoId);
 
     refContainer.innerHTML = `
+
       <div class="modal" data-modal="2">
         <button type="button" class="btn-close js-close-modal" id="btn-close">
-            <svg class="form__close-icon" width="30px" height="30px">
+            Close<svg class="form__close-icon" width="30px" height="30px">
                 <use href="./images/icons.svg#icon-close"></use>
-            </svg> </button>
+            </svg>
+        </button>
         <div id="modal_form">
           <form class="form">
               <div class="form__film-card">
@@ -65,15 +67,21 @@ export function renderMovieModal(movieData) {
                       <button data-action="add" id="queue" class="form-button form-queue-btn" type="button">Add to queue</button>
                   </div>
               </div>
+
+            ${videoIframe ? `
               <div class="form__film-card">
+
                 <div class="form__film-img">
-                ${videoIframe.outerHTML}
+                    ${videoIframe.outerHTML}
                 </div>
               </div>
+            ` : ''}
           </form>
+
         </div>
     </div>
 `;
+
   } else {
     refContainer.innerHTML = `
       <div class="modal" data-modal="2">
@@ -124,20 +132,21 @@ export function renderMovieModal(movieData) {
 `;
   }
 
-  putEventListeners(); //навішуємо слухачів для закриття модалки фільму
+    putEventListeners(); //навішуємо слухачів для закриття модалки фільму    
+    addModalListeners(); // навішування обробників на кнопки додавання до локального сховища
+    
+    function addModalListeners() {
+    const watchedBtn = document.getElementById('watched');
+    const queueBtn = document.getElementById('queue');
 
-  //   {
-  //     onShow: instance => {
-  //       instance.element().querySelector('#watched').onclick =
-  //         addToLocalstorage(WATCHED, movieData);
-  //       instance.element().querySelector('#queue').onclick = addToLocalstorage(
-  //         QUE,
-  //         movieData
-  //       );
-  //       instance.element().querySelector('#btn-close').onclick = instance.close;
-  //     },
-  //   }
-  // );
+    watchedBtn.addEventListener('click', () => {
+        addToLocalstorage(WATCHED, movieData);
+    });
 
-  // instance.show();
-}
+    queueBtn.addEventListener('click', () => {
+        addToLocalstorage(QUE, movieData);
+    });
+    }
+};
+
+

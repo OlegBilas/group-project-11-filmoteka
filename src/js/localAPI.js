@@ -13,8 +13,8 @@ function addToLocalstorage(key, dataAboutFilm) {
   if (arrayByKey.some(obj => obj.id === dataAboutFilm.id)) {
     return;
   }
-
-  const data = JSON.stringify(arrayByKey.push(dataAboutFilm));
+  arrayByKey.push(dataAboutFilm);
+  const data = JSON.stringify(arrayByKey);
   localStorage.setItem(`${key}`, data);
 }
 
