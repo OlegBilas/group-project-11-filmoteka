@@ -8,13 +8,16 @@
     justify-content: center;
     align-items: center;
 
+    font-weight: 500;
+    font-size: 12px;
+
     text-decoration: none;
     color: $color-black;
     
     &:hover, &:focus, &.tui-is-selected {
         background-color: $color-red;
         border: none;
-        
+        color: $color-white;
     }
 }
 
