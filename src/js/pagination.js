@@ -1,5 +1,5 @@
 import Pagination from 'tui-pagination';
-import '~node_modules/tui-pagination/dist/tui-pagination.css';
+// import '~node_modules/tui-pagination/dist/tui-pagination.css';
 import { fetchFilms } from './fetchAPI';
 import { renderCollection } from './renderGallery';
 
@@ -10,7 +10,7 @@ function createPagination(totalItems, filmName) {
   instance = new Pagination(container, {
     totalItems,
     itemsPerPage: 20,
-    visiblePages: 10,
+    visiblePages: 5,
     page: 1,
     centerAlign: true,
     firstItemClassName: 'tui-first-child',
@@ -34,11 +34,21 @@ function createPagination(totalItems, filmName) {
         '</a>',
     },
   });
+    
+    document.querySelector(".tui-prev").textContent = "<";
+    document.querySelector(".tui-next").textContent = ">";
+    document.querySelector(".tui-ico-last").textContent = totalItems / 20;
 
   instance.on('afterMove', event => {
     const currentPage = event.page;
     [...galleryList.children].forEach(element => element.remove());
-    fetchAndRender(filmName, currentPage);
+      fetchAndRender(filmName, currentPage);
+      document.querySelector(".tui-ico-first").textContent = currentPage === 1 ? "first" : "1";
+      document.querySelector(".tui-prev").textContent = "<";
+      if (currentPage === totalItems / 20) {
+          document.querySelector(".tui-next").textContent = ">";
+      }
+
   });
 }
 async function fetchAndRender(name, page) {

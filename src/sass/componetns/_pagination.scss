@@ -1,0 +1,39 @@
+.tui-page-btn {
+    border: none;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    padding: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-decoration: none;
+    color: $color-black;
+    
+    &:hover, &:focus, &.tui-is-selected {
+        background-color: $color-red;
+        border: none;
+        
+    }
+}
+
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    justify-content: center;
+    margin-top: 40px;
+
+    @media screen and (min-width: $tablet) {
+        margin-top: 60px;
+    }
+}
+
+.tui-next, .tui-first {
+        transform: translateX(42px);
+    }
+
+.tui-last, .tui-prev {
+    transform: translateX(-42px);
+}
