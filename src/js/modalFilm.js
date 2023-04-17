@@ -13,18 +13,22 @@ function localAPIInteraction(objectCard) {
         if (watchedBtn.classList.contains('is-added')) {
             removeFromLocalstorage(WATCHED, objectCard);
             watchedBtn.classList.toggle('is-added');
+            watchedBtn.textContent = 'Add to watched';
         } else {
             addToLocalstorage(WATCHED, objectCard);
             watchedBtn.classList.toggle('is-added');
+            watchedBtn.textContent = 'Remove from watched';
         }
     });
     queueBtn.addEventListener('click', () => {
         if (queueBtn.classList.contains('is-added')) {
             removeFromLocalstorage(QUE, objectCard);
             queueBtn.classList.toggle('is-added');
+            queueBtn.textContent = 'Add to queue';
         } else {
             addToLocalstorage(QUE, objectCard);
             queueBtn.classList.toggle('is-added');
+            queueBtn.textContent = 'Remove from queue';
         }
     });
   }
