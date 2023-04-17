@@ -38,12 +38,13 @@ galleryList.addEventListener('click', async event => {
   const filmCard = event.target.closest('.film-link');
   if (!filmCard) return;
   const filmId = filmCard.dataset.id;
+  const refModalFilmContainer = document.querySelector('.backdrop-container');
   try {
     const movieDetails = await fetchFilmsById(filmId);
     renderMovieModal(movieDetails);
+    refModalFilmContainer.style.display = 'block';
   } catch (error) {
-    const refContainer = document.querySelector('.backdrop-container');
-    refContainer.innerHTML = '';
+    refModalFilmContainer.style.display = 'none';
     alertSearchModalFailure();
   }
 });

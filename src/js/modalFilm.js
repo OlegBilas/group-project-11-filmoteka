@@ -2,7 +2,7 @@ import { putEventListeners } from './modal';
 import { YoutubeVideo } from './youtubevideo';
 import { QUE, WATCHED, addToLocalstorage } from './localAPI';
 
-const refContainer = document.querySelector('.backdrop-container');
+const refModalFilmContainer = document.querySelector('.backdrop-container');
 
 export function renderMovieModal(movieData) {
   const {
@@ -22,7 +22,7 @@ export function renderMovieModal(movieData) {
     const youtubeVideo = new YoutubeVideo();
     videoIframe = youtubeVideo.createIframe(videoId);
 
-    refContainer.innerHTML = `
+    refModalFilmContainer.innerHTML = `
 
       <div class="modal" data-modal="2">
         <button type="button" class="btn-close js-close-modal" id="btn-close">
@@ -77,10 +77,10 @@ export function renderMovieModal(movieData) {
     </div>
 `;
   } else {
-    refContainer.innerHTML = `
+    refModalFilmContainer.innerHTML = `
       <div class="modal" data-modal="2">
         <button type="button" class="btn-close js-close-modal" id="btn-close">
-            <svg class="form__close-icon" width="30px" height="30px">
+            Close<svg class="form__close-icon" width="30px" height="30px">
                 <use href="./images/icons.svg#icon-close"></use>
             </svg> </button>
         <div id="modal_form">
@@ -126,6 +126,7 @@ export function renderMovieModal(movieData) {
 `;
   }
 
+  refModalFilmContainer.classList.add('js-overlay-modal');
   putEventListeners(); //навішуємо слухачів для закриття модалки фільму
   addModalListeners(); // навішування обробників на кнопки додавання до локального сховища
 
