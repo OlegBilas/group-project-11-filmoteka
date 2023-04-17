@@ -67,21 +67,15 @@ export function renderMovieModal(movieData) {
                       <button data-action="add" id="queue" class="form-button form-queue-btn" type="button">Add to queue</button>
                   </div>
               </div>
-
-            ${videoIframe ? `
-              <div class="form__film-card">
-
+          </form>
+            <div class="form__film-card">
                 <div class="form__film-img">
                     ${videoIframe.outerHTML}
                 </div>
               </div>
-            ` : ''}
-          </form>
-
         </div>
     </div>
 `;
-
   } else {
     refContainer.innerHTML = `
       <div class="modal" data-modal="2">
@@ -132,21 +126,19 @@ export function renderMovieModal(movieData) {
 `;
   }
 
-    putEventListeners(); //навішуємо слухачів для закриття модалки фільму    
-    addModalListeners(); // навішування обробників на кнопки додавання до локального сховища
-    
-    function addModalListeners() {
+  putEventListeners(); //навішуємо слухачів для закриття модалки фільму
+  addModalListeners(); // навішування обробників на кнопки додавання до локального сховища
+
+  function addModalListeners() {
     const watchedBtn = document.getElementById('watched');
     const queueBtn = document.getElementById('queue');
 
     watchedBtn.addEventListener('click', () => {
-        addToLocalstorage(WATCHED, movieData);
+      addToLocalstorage(WATCHED, movieData);
     });
 
     queueBtn.addEventListener('click', () => {
-        addToLocalstorage(QUE, movieData);
+      addToLocalstorage(QUE, movieData);
     });
-    }
-};
-
-
+  }
+}
