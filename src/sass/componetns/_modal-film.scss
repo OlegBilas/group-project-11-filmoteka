@@ -208,7 +208,6 @@
 
 .form__about {
     margin-top: 20px;
-    // margin-bottom: 20px;
 }
 
 // BUTTON
@@ -218,11 +217,11 @@
     margin-top: 20px;
 
 @media screen and (min-width: 120px) and (max-width: 767px) {
-        padding-top: 60px;
+        // padding-top: 60px;
     }
 
 @media screen and (min-width: 768px) and (max-width: 1279px) {
-        padding-top: 40px;
+        padding-top: 5px;
     }
 
 }
@@ -281,7 +280,6 @@ display: flex;
     background-color: #B92F2C;
     border: 1px solid #B92F2C;
     border-radius: 100px;
-    // text-transform: uppercase;
 }
 
 .form-queue-btn:hover,
@@ -298,7 +296,6 @@ display: flex;
 .form-add-btn:focus,
 .remove-watched-btn {
     color: #fff;
-    // box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     cursor: pointer;
     color: #B92F2C;
@@ -332,7 +329,6 @@ display: flex;
     height: 30px;
     font-weight: 700;
     // border-radius: 50%;
-    // border: 2px solid #B92F2C;
     background: #fff;
     border: 0px solid rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
@@ -388,15 +384,16 @@ body.modal.active {
         position: relative;
         padding-bottom: 56.25%;
 
-    @media screen and (min-width: 768px) {
+
+    @media screen and (min-width: 240px) and (max-width: 767px) {
+        height: 334px;
         // width: 704px;
         // height: 552px; 
         // height: auto;
     }
 
-    @media screen and (min-width: 1280px) {
-        // width: 806px;
-        // height: 558px;
+    @media screen and (min-width: 768px) and (max-width: 1280px) {
+        height: 0;
     }
 }
 
