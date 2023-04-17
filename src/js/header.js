@@ -1,6 +1,6 @@
 import { fetchFilms } from './fetchAPI';
 import { IS_FROM_FETCH, renderCollection } from './renderGallery';
-import { createPagination } from './pagination';
+import { createPagination, hidePagination, showPagination } from './pagination';
 import { QUE, WATCHED, getFromLocalstorage } from './localAPI';
 import { alertSuccess, alertEmptyForm, alertSearchFailure } from './alerts';
 
@@ -60,6 +60,7 @@ async function onSearch(e) {
 function onHomeClick() {
   refs.watchedBtn.classList.add('is-hidden');
   refs.queueBtn.classList.add('is-hidden');
+  showPagination();
   fetchFilms('').then(collection => {
     renderCollection(collection);
     createPagination(collection.total_pages, '');
@@ -69,6 +70,7 @@ function onHomeClick() {
 function onLibraryClick() {
   refs.watchedBtn.classList.remove('is-hidden');
   refs.queueBtn.classList.remove('is-hidden');
+  hidePagination();
   getFromLocalstorage(); ///???
 }
 

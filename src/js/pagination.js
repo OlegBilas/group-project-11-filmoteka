@@ -46,4 +46,12 @@ async function fetchAndRender(name, page) {
   renderCollection(data);
 }
 
-export { createPagination };
+function hidePagination() {
+  container.classList.add('hidden');
+}
+
+function showPagination() {
+  container.classList.remove('hidden');
+}
+
+export { createPagination, hidePagination, showPagination };
