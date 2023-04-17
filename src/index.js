@@ -15,4 +15,7 @@ import { createPagination } from './js/pagination';
 
 putEventListeners(); // навішування обробників на кнопки відкриття модалок
 
-fetchFilms('').then(collection => renderCollection(collection));
+fetchFilms('').then(collection => {
+  renderCollection(collection);
+  createPagination(collection.total_pages, '');
+});

@@ -17,7 +17,9 @@ const fetchFilms = async (filmName, page = 1) => {
     const response = await axios.get(request);
     const takeInfo = object => {
       const result = object
-        .filter(({ poster_path }) => poster_path.length > 0 && !null)
+        .filter(
+          ({ poster_path }) => !(poster_path === null) && poster_path.length > 0
+        )
         .map(
           ({
             genre_ids,
