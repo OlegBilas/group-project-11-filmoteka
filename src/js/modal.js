@@ -52,16 +52,12 @@ function putEventListeners(modalButtons, overlaysArr, closeButtons) {
         '[data-modal="' + modalId + '"]:not(button):not(a)'
       );
 
-      try {
-        const overlay = modalElem.closest('.js-overlay-modal');
-        /* Після того, як знайшли потрібний бекдроп, видалимо клас is-hidden
+      const overlay = modalElem.closest('.js-overlay-modal');
+      /* Після того, як знайшли потрібний бекдроп, видалимо клас is-hidden
       у бекдропа, щоб показати останній, і блокуємо скролл на <body>. */
-        overlay.classList.remove('is-hidden');
-        document.addEventListener('keydown', onPressEscape);
-        disableBodyScroll(document.body);
-      } catch (error) {
-        //випадок, коли модальне вікно рендериться динамічно
-      }
+      overlay.classList.remove('is-hidden');
+      document.addEventListener('keydown', onPressEscape);
+      disableBodyScroll(document.body);
     }); // end click
   }); // end foreach
 
