@@ -1,27 +1,51 @@
 import { putEventListenersToOverlay } from './modal';
 import { YoutubeVideo } from './youtubevideo';
-import { QUE, WATCHED, addToLocalstorage } from './localAPI';
+import { QUE, WATCHED, addToLocalstorage, removeFromLocalstorage } from './localAPI';
 import { spinnerHandler } from './spinner';
 
 const refModalFilmContainer = document.querySelector('.backdrop-container');
 
-export function renderMovieModal(movieData, objectCard, isFirstCard = false) {
-  const {
-    genres,
-    id,
-    poster_path,
-    original_title,
-    overview,
-    popularity,
-    vote_average,
-    vote_count,
-    videoId,
-  } = movieData;
+function localAPIInteraction(objectCard) {
+    const watchedBtn = document.getElementById('watched');
+    const queueBtn = document.getElementById('queue');
+    
+    watchedBtn.addEventListener('click', () => {
+        if (watchedBtn.classList.contains('is-added')) {
+            removeFromLocalstorage(WATCHED, objectCard);
+            watchedBtn.classList.toggle('is-added');
+        } else {
+            addToLocalstorage(WATCHED, objectCard);
+            watchedBtn.classList.toggle('is-added');
+        }
+    });
+    queueBtn.addEventListener('click', () => {
+        if (queueBtn.classList.contains('is-added')) {
+            removeFromLocalstorage(QUE, objectCard);
+            queueBtn.classList.toggle('is-added');
+        } else {
+            addToLocalstorage(QUE, objectCard);
+            queueBtn.classList.toggle('is-added');
+        }
+    });
+  }
 
-  let videoIframe = '';
-  if (videoId && !isFirstCard) {
-    const youtubeVideo = new YoutubeVideo();
-    videoIframe = youtubeVideo.createIframe(videoId);
+export function renderMovieModal(movieData, objectCard, isFirstCard = false) {
+    const {
+        genres,
+        id,
+        poster_path,
+        original_title,
+        overview,
+        popularity,
+        vote_average,
+        vote_count,
+        videoId,
+    } = movieData;
+
+    let videoIframe = '';
+    if (videoId && !isFirstCard) {
+        const youtubeVideo = new YoutubeVideo();
+        videoIframe = youtubeVideo.createIframe(videoId);
 
     refModalFilmContainer.innerHTML = `
 
@@ -32,43 +56,43 @@ export function renderMovieModal(movieData, objectCard, isFirstCard = false) {
             </svg>
         </button>
         <div id="modal_form">
-          <form class="form">
-              <div class="form__film-card">
-                  <div class="form__film-img">
-                      <img class="form-img" src="${poster_path}"
-                          alt="${original_title}">
-                  </div>
-              </div>
-              <div class="form__info">
-                  <h2 class="form__title">${original_title}</h2>
-                  <ul class="form__info-list">
-                      <li class="form__info-item">
-                          <p class="form__info-name">Vote / Votes</p>
-                          <p class="form__info-details"> <span class="film__rating">${vote_average}</span>/<span class="film__voice">${vote_count}</span></p>
-                      </li>
-                      <li class="form__info-item">
-                          <p class="form__info-name">Popularity</p>
-                          <p class="form__info-details">${popularity}</p>
-                      </li>
-                      <li class="form__info-item">
-                          <p class="form__info-name">Original Title</p>
-                          <p class="form__info-details details-title">${original_title}</p>
-                      </li>
-                      <li class="form__info-item">
-                          <p class="form__info-name">Genre</p>
-                          <p class="form__info-details">${genres}</p>
-                      </li>
-                  </ul>
-                  <div class="form__about">
-                      <h3 class="form__about-name">About</h3>
-                      <p class="form__about-details">${overview}</p>
-                  </div>
-                  <div class="form__btn-list">
-                      <button data-action="add" id="watched" class="form-button form-add-btn" type="button">Add to watched</button>
-                      <button data-action="add" id="queue" class="form-button form-queue-btn" type="button">Add to queue</button>
-                  </div>
-              </div>
-          </form>
+            <form class="form">
+                <div class="form__film-card">
+                    <div class="form__film-img">
+                        <img class="form-img" src="${poster_path}"
+                            alt="${original_title}">
+                    </div>
+                </div>
+                <div class="form__info">
+                    <h2 class="form__title">${original_title}</h2>
+                    <ul class="form__info-list">
+                        <li class="form__info-item">
+                            <p class="form__info-name">Vote / Votes</p>
+                            <p class="form__info-details"> <span class="film__rating">${vote_average}</span>/<span class="film__voice">${vote_count}</span></p>
+                        </li>
+                        <li class="form__info-item">
+                            <p class="form__info-name">Popularity</p>
+                            <p class="form__info-details">${popularity}</p>
+                        </li>
+                        <li class="form__info-item">
+                            <p class="form__info-name">Original Title</p>
+                            <p class="form__info-details details-title">${original_title}</p>
+                        </li>
+                        <li class="form__info-item">
+                            <p class="form__info-name">Genre</p>
+                            <p class="form__info-details">${genres}</p>
+                        </li>
+                    </ul>
+                    <div class="form__about">
+                        <h3 class="form__about-name">About</h3>
+                        <p class="form__about-details">${overview}</p>
+                    </div>
+                    <div class="form__btn-list">
+                        <button data-action="add" id="watched" class="form-button form-add-btn" type="button">Add to watched</button>
+                        <button data-action="add" id="queue" class="form-button form-queue-btn" type="button">Add to queue</button>
+                    </div>
+                </div>
+            </form>
             <div class="form__film-card">
                 <div class="form__film-img">
                     ${videoIframe.outerHTML}
@@ -79,7 +103,7 @@ export function renderMovieModal(movieData, objectCard, isFirstCard = false) {
 `;
   } else {
     refModalFilmContainer.innerHTML = `
-      <div class="modal" data-modal="2">
+    <div class="modal" data-modal="2">
         <button type="button" class="btn-close js-close-modal" id="btn-close">
             Close<svg class="form__close-icon" width="30px" height="30px">
                 <use href="./images/icons.svg#icon-close"></use>
@@ -130,18 +154,5 @@ export function renderMovieModal(movieData, objectCard, isFirstCard = false) {
   refModalFilmContainer.addEventListener('load', spinnerHandler);
   refModalFilmContainer.classList.add('js-overlay-modal');
   putEventListenersToOverlay(refModalFilmContainer); //навішуємо слухачів для закриття модалки фільму
-  addModalListeners(); // навішування обробників на кнопки додавання до локального сховища
-
-  function addModalListeners() {
-    const watchedBtn = document.getElementById('watched');
-    const queueBtn = document.getElementById('queue');
-
-    watchedBtn.addEventListener('click', () => {
-      addToLocalstorage(WATCHED, objectCard);
-    });
-
-    queueBtn.addEventListener('click', () => {
-      addToLocalstorage(QUE, objectCard);
-    });
-  }
+  localAPIInteraction(objectCard); // навішування обробників на кнопки додавання до локального сховища  
 }
