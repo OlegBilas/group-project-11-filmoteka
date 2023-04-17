@@ -2,9 +2,10 @@
   background-color: #ffffff;
   margin-right: auto;
   margin-left: auto;
+}
 
-  padding-left: 20px;
-  padding-right: 20px;
+.list {
+  margin-bottom: 40px;
 }
 
 .film-card {
@@ -22,7 +23,7 @@
     // border: 1px solid #b92f2c;
     border-radius: 5px;
     box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.5);
-    transform: scale(1.05);
+    transform: scale(1.02);
     transition: all 200ms ease-in-out;
   }
 }
@@ -79,23 +80,12 @@
   padding-left: 4px;
 }
 
-@media screen and (max-width: 767px) {
-  .container {
-    max-width: 320px;
-  }
-}
-
 @media screen and (min-width: 768px) {
-  .container {
-    width: 768px;
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-
   .list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin-bottom: 60px;
   }
 
   .film-card {
@@ -119,10 +109,6 @@
 }
 
 @media screen and (min-width: 1280px) {
-  .container {
-    width: 1280px;
-  }
-
   .list {
     justify-content: flex-start;
   }
@@ -149,4 +135,9 @@
 
 .hidden {
   display: none;
+}
+
+.tui-pagination {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
