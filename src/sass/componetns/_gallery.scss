@@ -19,8 +19,11 @@
   &:focus,
   &:hover {
     cursor: pointer;
-    border: 1px solid #b92f2c;
+    // border: 1px solid #b92f2c;
     border-radius: 5px;
+    box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.5);
+    transform: scale(1.05);
+    transition: all 200ms ease-in-out;
   }
 }
 
