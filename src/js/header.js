@@ -1,7 +1,7 @@
 import { fetchFilms } from './fetchAPI';
-import { renderCollection } from './renderGallery';
+import { IS_FROM_STORADGE, renderCollection } from './renderGallery';
 import { createPagination } from './pagination';
-import { getFromLocalstorage } from './localAPI';
+import { QUE, WATCHED, getFromLocalstorage } from './localAPI';
 import { alertSuccess, alertEmptyForm, alertSearchFailure } from './alerts';
 
 const refs = {
@@ -69,15 +69,17 @@ function onHomeClick() {
 function onLibraryClick() {
   refs.watchedBtn.classList.remove('is-hidden');
   refs.queueBtn.classList.remove('is-hidden');
-  getFromLocalstorage();
+  getFromLocalstorage(); ///???
 }
 
 function onWatchedClick() {
-  getFromLocalstorage();
+  const collection = getFromLocalstorage(WATCHED);
+  renderCollection(collection, (IS_FROM_STORADGE = true));
 }
 
 function onQueueClick() {
-  getFromLocalstorage();
+  const collection = getFromLocalstorage(QUE);
+  renderCollection(collection, (IS_FROM_STORADGE = true));
 }
 
 function pageReset() {
