@@ -35,8 +35,12 @@ function createPagination(totalItems, filmName){
     instance.on('afterMove', (event) => {
         const currentPage = event.page;
         [...galleryList.children].forEach(element => element.remove());
-        renderCollection(fetchFilms(currentPage, filmName));
+        fetchAndRender(filmName, currentPage);
     });
+}
+async function fetchAndRender(name, page) {
+    const data = await fetchFilms(name, page);
+    renderCollection(data);
 }
 
 export {createPagination}

@@ -1,40 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filmoteka</title>
+    <link type="image/x-icon" href="./images/favicon.ico" rel="shortcut icon" />
+    <link type="Image/x-icon" href="./images/favicon.ico" rel="icon" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Filmoteka</title>
-  <link type="image/x-icon" href="./images/favicon.ico" rel="shortcut icon" />
-  <link type="Image/x-icon" href="./images/favicon.ico" rel="icon" />
+    <link rel="stylesheet" href="./sass/index.scss" />
+  </head>
 
-  <link rel="stylesheet" href="./sass/index.scss" />
-</head>
+  <body>
+    <include src="./partials/header.html"></include>
+    <main>
+      <include src="./partials/gallery.html"></include>
+    </main>
+    <include src="./partials/footer.html"></include>
 
-<body>
-  <include src="./partials/header.html"></include>
-  <main>
-    <include src="./partials/gallery.html"></include>
-  </main>
-  <include src="./partials/footer.html"></include>
-  
-  <!-- Модалки -->
-  <include src="./partials/modal-film.html"></include>
-  <include src="./partials/modal-team.html"></include>
-  
-  <a class="icon-home" href="#home"></a>
-  <div class="mask">
+    <!-- Модалки -->
+    <include src="./partials/modal-film.html"></include>
+    <include src="./partials/modal-team.html"></include>
+
+    <a class="icon-home" href="#home"></a>
+    <div class="mask">
       <div class="loader">
-      <div class="loader__filmstrip">
+        <div class="loader__filmstrip"></div>
+        <p class="loader__text">loading</p>
       </div>
-      <p class="loader__text">
-        loading
-      </p>
     </div>
-  </div>
 
-  <!-- Скрипти -->
-  <script type="module" src="./index.js"></script>
-</body>
-
+    <!-- Скрипти -->
+    <script type="module" src="./index.js"></script>
+  </body>
 </html>
