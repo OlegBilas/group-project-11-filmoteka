@@ -4,10 +4,10 @@ import { putEventListeners } from './modal';
 import { alertSearchModalFailure } from './alerts';
 
 const galleryList = document.querySelector('.list');
-let IS_FROM_STORADGE = false;
+const IS_FROM_FETCH = true;
 
-function renderCollection(collection, IS_FROM_STORADGE = false) {
-  collection = IS_FROM_STORADGE ? collection : collection.results;
+function renderCollection(collection, IS_FROM_FETCH = true) {
+  collection = IS_FROM_FETCH ? collection.results : collection;
   const films = collection
     .map(film => {
       return `<li class="film-card">
@@ -48,4 +48,4 @@ galleryList.addEventListener('click', async event => {
   }
 });
 
-export { IS_FROM_STORADGE, renderCollection };
+export { IS_FROM_FETCH, renderCollection };

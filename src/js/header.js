@@ -1,5 +1,5 @@
 import { fetchFilms } from './fetchAPI';
-import { IS_FROM_STORADGE, renderCollection } from './renderGallery';
+import { IS_FROM_FETCH, renderCollection } from './renderGallery';
 import { createPagination } from './pagination';
 import { QUE, WATCHED, getFromLocalstorage } from './localAPI';
 import { alertSuccess, alertEmptyForm, alertSearchFailure } from './alerts';
@@ -74,12 +74,12 @@ function onLibraryClick() {
 
 function onWatchedClick() {
   const collection = getFromLocalstorage(WATCHED);
-  renderCollection(collection, (IS_FROM_STORADGE = true));
+  renderCollection(collection, !IS_FROM_FETCH);
 }
 
 function onQueueClick() {
   const collection = getFromLocalstorage(QUE);
-  renderCollection(collection, (IS_FROM_STORADGE = true));
+  renderCollection(collection, !IS_FROM_FETCH);
 }
 
 function pageReset() {
