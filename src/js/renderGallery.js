@@ -70,7 +70,7 @@ function getDataCard(element) {
 async function renderFirstMovieModal(filmId, objectCard) {
   try {
     const movieDetails = await fetchFilmsById(filmId);
-    renderMovieModal(movieDetails, objectCard);
+    renderMovieModal(movieDetails, objectCard, (isFirstCard = true));
     // refModalFilmContainer.style.display = 'block';
   } catch (error) {
     // refModalFilmContainer.style.display = 'none';

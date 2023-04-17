@@ -5,7 +5,7 @@ import { spinnerHandler } from './spinner';
 
 const refModalFilmContainer = document.querySelector('.backdrop-container');
 
-export function renderMovieModal(movieData, objectCard) {
+export function renderMovieModal(movieData, objectCard, isFirstCard = false) {
   const {
     genres,
     id,
@@ -19,7 +19,7 @@ export function renderMovieModal(movieData, objectCard) {
   } = movieData;
 
   let videoIframe = '';
-  if (videoId) {
+  if (videoId && !isFirstCard) {
     const youtubeVideo = new YoutubeVideo();
     videoIframe = youtubeVideo.createIframe(videoId);
 
