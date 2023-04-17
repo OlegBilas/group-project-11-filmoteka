@@ -39,10 +39,10 @@ galleryList.addEventListener('click', async event => {
   if (!filmCard) return;
   const filmId = filmCard.dataset.id;
   const refModalFilmContainer = document.querySelector('.backdrop-container');
-  // const objectCard = getDataCard(event.target);
+  const objectCard = getDataCard(filmCard);
   try {
     const movieDetails = await fetchFilmsById(filmId);
-    renderMovieModal(movieDetails);
+    renderMovieModal(movieDetails, objectCard);
     refModalFilmContainer.style.display = 'block';
   } catch (error) {
     refModalFilmContainer.style.display = 'none';
@@ -51,7 +51,7 @@ galleryList.addEventListener('click', async event => {
 });
 
 function getDataCard(element) {
-  const poster_path = element.href.textContent;
+  const poster_path = element.href;
   const id = element.dataset.id;
   const title = element.querySelector('.film-name').textContent;
   const genres = element.querySelector('.film-ganre').textContent;

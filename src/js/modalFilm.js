@@ -4,7 +4,7 @@ import { QUE, WATCHED, addToLocalstorage } from './localAPI';
 
 const refModalFilmContainer = document.querySelector('.backdrop-container');
 
-export function renderMovieModal(movieData) {
+export function renderMovieModal(movieData, objectCard) {
   const {
     genres,
     id,
@@ -135,11 +135,11 @@ export function renderMovieModal(movieData) {
     const queueBtn = document.getElementById('queue');
 
     watchedBtn.addEventListener('click', () => {
-      addToLocalstorage(WATCHED, movieData);
+      addToLocalstorage(WATCHED, objectCard);
     });
 
     queueBtn.addEventListener('click', () => {
-      addToLocalstorage(QUE, movieData);
+      addToLocalstorage(QUE, objectCard);
     });
   }
 }
