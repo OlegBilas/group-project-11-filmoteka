@@ -81,27 +81,58 @@
 .home-btn {
   margin: auto 8px;
   width: 100px;
+  transition: 0.5s;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 15px $color-white;
+    letter-spacing: 0.15em;
+  }
 }
 .my-library-btn {
   background: rgba(0, 0, 0, 1);
   width: 118px;
 
   color: #fff;
+
+  transition: 0.5s;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 15px $color-black;
+    letter-spacing: 0.15em;
+  }
 }
 .watched-btn {
   background: rgba(185, 47, 44, 1);
   color: #fff;
   width: 120px;
+
+  transition: 0.5s;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 15px $color-red;
+    letter-spacing: 0.15em;
+  }
 }
 .queue-btn {
   width: 86px;
   color: #b92f2c;
+
+  transition: 0.5s;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 15px $color-white;
+    letter-spacing: 0.15em;
+  }
 }
 
 .logo {
   display: flex;
   justify-content: flex-start;
-  align-items: flex-end;
+  align-items: center;
   margin: 150px auto 32px 0;
 }
 .svg-filmoteka {

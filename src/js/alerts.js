@@ -1,11 +1,11 @@
 import Notiflix from 'notiflix';
 
 function alertSuccess() {
-  Notiflix.Notify.success(`Search success`);
+  Notiflix.Notify.success('We`ve what you were looking for!');
 }
 
 function alertEmptyForm() {
-  Notiflix.Notify.failure('Alert empty form');
+  Notiflix.Notify.failure('Enter your search query, please.');
 }
 
 function alertSearchFailure() {
