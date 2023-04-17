@@ -2,7 +2,7 @@
 //import Notiflix from 'notiflix';
 
 //Приклад підключення файлу скрипта
-//import { Filmoteka } from './scripts/fetchAPI';
+//import { fetchFilms, fetchFilmsById } from './js/fetchAPI';
 
 import { putEventListenersToAll } from './js/modal';
 import { fetchFilms, fetchFilmsById } from './js/fetchAPI';
