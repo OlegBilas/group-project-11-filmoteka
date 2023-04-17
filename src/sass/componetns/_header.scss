@@ -1,6 +1,14 @@
 .header {
   max-width: 1216px;
-  background: url(../images/header_backgr.png) no-repeat center/100%;
+  background-image: url(../images/header_backgr1280-@1x.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: url(../images/header_backgr1280-@2x.png);
+  }
   height: 316px;
   margin: 0 auto;
   padding: 30px;
@@ -115,7 +123,15 @@ h1 {
 
 @media only screen and (max-width: 768px) {
   .header {
-    background: url(../images/background-768.png) no-repeat center/100%;
+    background-image: url(../images/background-768-@1x.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url(../images/background-768-@2x.png);
+    }
     height: 222px;
     margin: 32px 32px 0 32px;
     padding: 16px;
@@ -207,8 +223,15 @@ h1 {
   .header {
     width: 280px;
     height: 460px;
-    background: url(../images/header_backgr320px.png) no-repeat center/100%;
+    background: url(../images/header_backgr320-@1x.png);
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url(../images/header_backgr320-@2x.png);
+    }
     margin: 20px 20px 0 20px;
     padding: 0;
     display: inline-block;
