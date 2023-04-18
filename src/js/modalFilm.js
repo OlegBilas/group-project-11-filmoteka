@@ -32,10 +32,9 @@ export function renderMovieModal(movieData, objectCard) {
     refModalFilmContainer.innerHTML = `
       <div class="modal" data-modal="2">
         <button type="button" class="btn-close js-close-modal" id="btn-close">
-
             <svg class="form__close-icon" width="24px" height="24px" viewBox="0 0 30 30">
-    <path data-btn="close" d="M14.734 10.304l-1.504-1.504-5.963 5.962-5.962-5.962-1.504 1.504 5.962 5.962-5.962 5.963 1.504 1.504 5.962-5.963 5.963 5.963 1.504-1.504-5.963-5.963 5.963-5.962z"></path>
-    </svg>
+              <path data-btn="close" d="M14.734 10.304l-1.504-1.504-5.963 5.962-5.962-5.962-1.504 1.504 5.962 5.962-5.962 5.963 1.504 1.504 5.962-5.963 5.963 5.963 1.504-1.504-5.963-5.963 5.963-5.962z"></path>
+            </svg>
         </button>
         <div id="modal_form">
             <div class="form">
@@ -87,12 +86,10 @@ export function renderMovieModal(movieData, objectCard) {
     refModalFilmContainer.innerHTML = `
     <div class="modal" data-modal="2">
         <button type="button" class="btn-close js-close-modal" id="btn-close">
-
-             <svg class="form__close-icon" width="24px" height="24px" viewBox="0 0 30 30">
-    <path data-btn="close" d="M14.734 10.304l-1.504-1.504-5.963 5.962-5.962-5.962-1.504 1.504 5.962 5.962-5.962 5.963 1.504 1.504 5.962-5.963 5.963 5.963 1.504-1.504-5.963-5.963 5.963-5.962z"></path>
-    </svg> 
-
-            </button>
+            <svg class="form__close-icon" width="24px" height="24px" viewBox="0 0 30 30">
+              <path data-btn="close" d="M14.734 10.304l-1.504-1.504-5.963 5.962-5.962-5.962-1.504 1.504 5.962 5.962-5.962 5.963 1.504 1.504 5.962-5.963 5.963 5.963 1.504-1.504-5.963-5.963 5.963-5.962z"></path>
+            </svg> 
+        </button>
         <div id="modal_form">
           <div class="form">
               <div class="form__film-card">
@@ -201,12 +198,13 @@ export function renderMovieModal(movieData, objectCard) {
 
   // Спроба зупинити відтворення відео при закритті модалки (не виходить)
   if (videoId) {
-    refModalFilmContainer.addEventListener('close', stopModalVideo);
+    const refClickBtn = document.getElementById('btn-close');
+    refClickBtn.addEventListener('click', stopModalVideo);
   }
 }
 
-function stopModalVideo(e) {
-  const filmWrapper = e.currentTarget.querySelector('.form__film-img');
+function stopModalVideo() {
+  const filmWrapper = refModalFilmContainer.querySelector('.form__film-img');
   filmWrapper.innerHTML = '';
   //   filmWrapper.style.display = 'none';
 }

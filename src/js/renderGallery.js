@@ -45,8 +45,8 @@ galleryList.addEventListener('click', async event => {
     renderMovieModal(movieDetails, objectCard);
   } catch (error) {
     const refModalFilmContainer = document.querySelector('.backdrop-container');
-    refModalFilmContainer.classList.add('is-hidden');
-    // alertSearchModalFailure();
+    //refModalFilmContainer.classList.add('is-hidden');
+    alertSearchModalFailure();
   }
 });
 
