@@ -15,7 +15,7 @@ function renderCollection(collection, IS_FROM_FETCH = true) {
     .map(film => {
       return `<li class="film-card">
       <a class="film-link js-open-modal" href="${film.poster_path}" data-id="${film.id}" data-modal="2">
-        <img src="${film.poster_path}" alt="${film.title}" loading="lazy" />
+        <div class="film-img"><img src="${film.poster_path}" alt="${film.title}" loading="lazy" /></div>
         <div class="film-meta">
           <span class="film-name">${film.title}</span>
           <div class="film-info">
@@ -70,7 +70,7 @@ function getDataCard(element) {
 async function renderFirstMovieModal(filmId, objectCard) {
   try {
     const movieDetails = await fetchFilmsById(filmId);
-    renderMovieModal(movieDetails, objectCard, (isFirstCard = true));
+    renderMovieModal(movieDetails, objectCard);
     // refModalFilmContainer.style.display = 'block';
   } catch (error) {
     // refModalFilmContainer.style.display = 'none';
