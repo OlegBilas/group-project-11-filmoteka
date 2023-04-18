@@ -3,6 +3,7 @@ import { IS_FROM_FETCH, renderCollection } from './renderGallery';
 import { createPagination, hidePagination, showPagination } from './pagination';
 import { QUE, WATCHED, getFromLocalstorage } from './localAPI';
 import { alertSuccess, alertEmptyForm, alertSearchFailure } from './alerts';
+import { onSpinner } from './spinner';
 
 const refs = {
   searchForm: document.querySelector('.search-form'),
@@ -10,6 +11,7 @@ const refs = {
   myLibraryBtn: document.querySelector('.my-library-btn'),
   watchedBtn: document.querySelector('.watched-btn'),
   queueBtn: document.querySelector('.queue-btn'),
+  galleryList: document.querySelector('.list'),
 };
 let query = '';
 let queryResults = 0;
@@ -23,11 +25,13 @@ refs.queueBtn.addEventListener('click', onQueueClick);
 // Відправляємо запит на бекенд
 async function onSearch(e) {
   e.preventDefault();
+  onSpinner('start');
   query = e.currentTarget.searchQuery.value.trim();
   pageReset();
 
   // Якщо поле пошуку не заповнене, показуємо алерт і ресетаємо форму
   if (!query) {
+    onSpinner('stop');
     alertEmptyForm();
     return;
   }
@@ -40,6 +44,7 @@ async function onSearch(e) {
   // Якщо результат пошуку успішний, показуємо алерт і рендеремо нову відповідно до запиту
   try {
     if (queryResults > 0) {
+      onSpinner('stop');
       alertSuccess();
       renderCollection(res);
       createPagination(res.total_pages, query);
@@ -47,31 +52,37 @@ async function onSearch(e) {
 
     // Якщо результатів пошуку не знайдено, показуємо алерт і порожню галерею
     if (queryResults === 0) {
+      onSpinner('stop');
       alertSearchFailure();
       renderCollection(res);
       createPagination(res.total_pages, query);
     }
   } catch (error) {
+    onSpinner('stop');
     console.log(error);
   }
 }
 
 // Функціонал кнопок хедеру
 function onHomeClick() {
+  onSpinner('start');
   refs.watchedBtn.classList.add('is-hidden');
   refs.queueBtn.classList.add('is-hidden');
+  refs.searchForm.classList.remove('is-hidden');
   showPagination();
   fetchFilms('').then(collection => {
     renderCollection(collection);
     createPagination(collection.total_pages, '');
   });
+  onSpinner('stop');
 }
 
 function onLibraryClick() {
   refs.watchedBtn.classList.remove('is-hidden');
   refs.queueBtn.classList.remove('is-hidden');
+  refs.searchForm.classList.add('is-hidden');
   hidePagination();
-  getFromLocalstorage(); ///???
+  refs.galleryList.innerHTML = '';
 }
 
 function onWatchedClick() {

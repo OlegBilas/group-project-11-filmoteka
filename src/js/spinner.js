@@ -1,12 +1,16 @@
-const mask = document.querySelector('.mask');
 
-window.addEventListener('load', spinnerHandler)
+// Спіннер викликається через колбек.
+// Приймає один з двох параметрів у вигляді строки: "start" або "stop".
 
-function spinnerHandler() {
-  mask.classList.add('is-hidden');
-  setTimeout(() => {
-    mask.remove();
-  }, 1000)
+function onSpinner (value) {
+  const mask = document.querySelector('.mask');
+  if (value === 'start') {
+    mask.classList.remove('is-hidden');
+  } else if (value === 'stop') {
+    setTimeout(() => {
+      mask.classList.add('is-hidden');
+    }, 1000);
+  }
 };
 
-export { spinnerHandler }
+export { onSpinner }
