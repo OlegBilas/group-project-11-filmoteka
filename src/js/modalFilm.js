@@ -201,10 +201,10 @@ export function renderMovieModal(movieData, objectCard) {
     const refClickBtn = document.getElementById('btn-close');
     refClickBtn.addEventListener('click', stopModalVideo);
   }
-}
 
-function stopModalVideo() {
-  const filmWrapper = refModalFilmContainer.querySelector('.form__film-img');
-  filmWrapper.innerHTML = '';
-  //   filmWrapper.style.display = 'none';
+  function stopModalVideo() {
+    const innerHTML = refModalFilmContainer.innerHTML;
+    innerHTML.replace(videoIframe.outerHTML, '');
+    refModalFilmContainer.innerHTML = innerHTML;
+  }
 }
