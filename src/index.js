@@ -13,8 +13,6 @@ import { renderCollection } from './js/renderGallery';
 import { renderMovieModal } from './js/modalFilm';
 import { createPagination } from './js/pagination';
 
-putEventListenersToAll(); // навішування обробників на кнопки відкриття модалок
-
 fetchFilms('').then(collection => {
   renderCollection(collection);
   createPagination(collection.total_pages, '');

@@ -30,11 +30,6 @@ function renderCollection(collection, IS_FROM_FETCH = true) {
 
   if (films) {
     galleryList.innerHTML = films;
-
-    //Коли розмітка модалки фільму пуста, щаповнимо її дамини першого фільму
-    if (!refModalFilmContainer.innerHTML) {
-      renderFirstMovieModal(collection[0].id, collection[0]);
-    }
     putEventListenersToAll(); //навішуємо слухачів для відкриття модалки фільму
   } else {
     galleryList.innerHTML = '';
@@ -65,17 +60,6 @@ function getDataCard(element) {
   const year = element.querySelector('.film-year').textContent;
 
   return { poster_path, id, title, genres, year };
-}
-
-async function renderFirstMovieModal(filmId, objectCard) {
-  try {
-    const movieDetails = await fetchFilmsById(filmId);
-    renderMovieModal(movieDetails, objectCard);
-    // refModalFilmContainer.style.display = 'block';
-  } catch (error) {
-    // refModalFilmContainer.style.display = 'none';
-    alertSearchModalFailure();
-  }
 }
 
 export { IS_FROM_FETCH, renderCollection };

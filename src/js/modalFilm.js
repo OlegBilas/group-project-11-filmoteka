@@ -1,58 +1,62 @@
 import { putEventListenersToOverlay } from './modal';
 import { YoutubeVideo } from './youtubevideo';
-import { QUE, WATCHED, addToLocalstorage, removeFromLocalstorage } from './localAPI';
+import {
+  QUE,
+  WATCHED,
+  addToLocalstorage,
+  removeFromLocalstorage,
+} from './localAPI';
 import { spinnerHandler } from './spinner';
 
 const refModalFilmContainer = document.querySelector('.backdrop-container');
 
 function localAPIInteraction(objectCard) {
-    const watchedBtn = document.getElementById('watched');
-    const queueBtn = document.getElementById('queue');
-    
-    watchedBtn.addEventListener('click', () => {
-        if (watchedBtn.classList.contains('is-added')) {
-            removeFromLocalstorage(WATCHED, objectCard);
-            watchedBtn.classList.toggle('is-added');
-            watchedBtn.textContent = 'Add to watched';
-        } else {
-            addToLocalstorage(WATCHED, objectCard);
-            watchedBtn.classList.toggle('is-added');
-            watchedBtn.textContent = 'Remove from watched';
-        }
-    });
-    queueBtn.addEventListener('click', () => {
-        if (queueBtn.classList.contains('is-added')) {
-            removeFromLocalstorage(QUE, objectCard);
-            queueBtn.classList.toggle('is-added');
-            queueBtn.textContent = 'Add to queue';
-        } else {
-            addToLocalstorage(QUE, objectCard);
-            queueBtn.classList.toggle('is-added');
-            queueBtn.textContent = 'Remove from queue';
-        }
-    });
-  }
+  const watchedBtn = document.getElementById('watched');
+  const queueBtn = document.getElementById('queue');
 
-export function renderMovieModal(movieData, objectCard, isFirstCard = false) {
-    const {
-        genres,
-        id,
-        poster_path,
-        original_title,
-        overview,
-        popularity,
-        vote_average,
-        vote_count,
-        videoId,
-    } = movieData;
+  watchedBtn.addEventListener('click', () => {
+    if (watchedBtn.classList.contains('is-added')) {
+      removeFromLocalstorage(WATCHED, objectCard);
+      watchedBtn.classList.toggle('is-added');
+      watchedBtn.textContent = 'Add to watched';
+    } else {
+      addToLocalstorage(WATCHED, objectCard);
+      watchedBtn.classList.toggle('is-added');
+      watchedBtn.textContent = 'Remove from watched';
+    }
+  });
+  queueBtn.addEventListener('click', () => {
+    if (queueBtn.classList.contains('is-added')) {
+      removeFromLocalstorage(QUE, objectCard);
+      queueBtn.classList.toggle('is-added');
+      queueBtn.textContent = 'Add to queue';
+    } else {
+      addToLocalstorage(QUE, objectCard);
+      queueBtn.classList.toggle('is-added');
+      queueBtn.textContent = 'Remove from queue';
+    }
+  });
+}
 
-    let videoIframe = '';
-    if (videoId && !isFirstCard) {
-        const youtubeVideo = new YoutubeVideo();
-        videoIframe = youtubeVideo.createIframe(videoId);
+export function renderMovieModal(movieData, objectCard) {
+  const {
+    genres,
+    id,
+    poster_path,
+    original_title,
+    overview,
+    popularity,
+    vote_average,
+    vote_count,
+    videoId,
+  } = movieData;
+
+  let videoIframe = '';
+  if (videoId) {
+    const youtubeVideo = new YoutubeVideo();
+    videoIframe = youtubeVideo.createIframe(videoId);
 
     refModalFilmContainer.innerHTML = `
-
       <div class="modal" data-modal="2">
         <button type="button" class="btn-close js-close-modal" id="btn-close">
             Close<svg class="form__close-icon" width="30px" height="30px">
@@ -158,5 +162,5 @@ export function renderMovieModal(movieData, objectCard, isFirstCard = false) {
   refModalFilmContainer.addEventListener('load', spinnerHandler);
   refModalFilmContainer.classList.add('js-overlay-modal');
   putEventListenersToOverlay(refModalFilmContainer); //навішуємо слухачів для закриття модалки фільму
-  localAPIInteraction(objectCard); // навішування обробників на кнопки додавання до локального сховища  
+  localAPIInteraction(objectCard); // навішування обробників на кнопки додавання до локального сховища
 }
