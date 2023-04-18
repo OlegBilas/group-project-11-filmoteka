@@ -32,9 +32,11 @@ export function renderMovieModal(movieData, objectCard) {
     refModalFilmContainer.innerHTML = `
       <div class="modal" data-modal="2">
         <button type="button" class="btn-close js-close-modal" id="btn-close">
-            Close<svg class="form__close-icon" width="30px" height="30px">
-                <use href="./images/icons.svg#icon-close"></use>
-            </svg>
+            <svg class="form__close-icon" width="24px" height="24px viewBox="0 0 30 30">
+<use data-btn="close" xlink:href="./src/images/icons.svg#icon-close" />
+    <path data-btn="close" d="M14.734 10.304l-1.504-1.504-5.963 5.962-5.962-5.962-1.504 1.504 5.962 5.962-5.962 5.963 1.504 1.504 5.962-5.963 5.963 5.963 1.504-1.504-5.963-5.963 5.963-5.962z"></path>
+</symbol>
+    </svg>
         </button>
         <div id="modal_form">
             <div class="form">
@@ -86,9 +88,12 @@ export function renderMovieModal(movieData, objectCard) {
     refModalFilmContainer.innerHTML = `
     <div class="modal" data-modal="2">
         <button type="button" class="btn-close js-close-modal" id="btn-close">
-            Close<svg class="form__close-icon" width="30px" height="30px">
-                <use href="./images/icons.svg#icon-close"></use>
-            </svg> </button>
+             <svg class="form__close-icon" width="24px" height="24px viewBox="0 0 30 30">
+<use data-btn="close" xlink:href="./src/images/icons.svg#icon-close" />
+    <path data-btn="close" d="M14.734 10.304l-1.504-1.504-5.963 5.962-5.962-5.962-1.504 1.504 5.962 5.962-5.962 5.963 1.504 1.504 5.962-5.963 5.963 5.963 1.504-1.504-5.963-5.963 5.963-5.962z"></path>
+</symbol>
+    </svg> 
+            </button>
         <div id="modal_form">
           <div class="form">
               <div class="form__film-card">

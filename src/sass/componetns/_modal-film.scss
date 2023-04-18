@@ -330,9 +330,9 @@ display: flex;
     position: absolute;
     top: 8px;
     right: 8px;
-    width: 40px;
+    width: 30px;
     height: 30px;
-    font-weight: 700;
+    font-weight: 900;
     // border-radius: 50%;
     background: #fff;
     border: 0px solid rgba(0, 0, 0, 0.1);
@@ -341,16 +341,18 @@ display: flex;
     transition: 0.5s;
 }
 
-// .form__close-icon {
-//     transform: rotate(-90deg);
-// }
+.form__close-icon {
+    position: absolute;
+        top: -2px;
+        right: -2px;
+}
 
 .btn-close:hover,
 .btn-close:focus {
-    border: 2px solid #B92F2C;
+    border: 1px solid #B92F2C;
     fill: #B92F2C;
-    background: #B92F2C;
-    color: #fff;
+    // background: #B92F2C;
+    // color: #fff;
     border-radius: 50%;
     // border: 0px solid rgba(0, 0, 0, 0.1);
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
