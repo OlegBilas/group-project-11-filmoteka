@@ -5,7 +5,7 @@ export class YoutubeVideo {
     iframe.setAttribute('allowfullscreen', '');
     iframe.setAttribute(
       'allow',
-      'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+      'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
     );
     iframe.setAttribute('src', this.generateURL(id));
     iframe.classList.add('video');
