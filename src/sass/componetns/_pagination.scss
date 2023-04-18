@@ -1,0 +1,54 @@
+.tui-page-btn {
+    border: none;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    padding: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 500;
+    font-size: 12px;
+
+    text-decoration: none;
+    color: $color-black;
+    
+    &:hover, &:focus, &.tui-is-selected {
+        background-color: $color-red;
+        border: none;
+        color: $color-white;
+    }
+}
+
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    justify-content: center;
+
+}
+
+.tui-next, .tui-first {
+        transform: translateX(42px);
+    }
+
+.tui-last, .tui-prev {
+    transform: translateX(-42px);
+}
+
+.tui-ico-prev, .tui-ico-next {
+    display: none;
+}
+
+.tui-prev {
+    background-image: url(../images/pagination/arrow-left.svg);
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.tui-next {
+    background-image: url(../images/pagination/arrow-right.svg);
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
