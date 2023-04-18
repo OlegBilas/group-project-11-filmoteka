@@ -37,7 +37,7 @@ export function renderMovieModal(movieData, objectCard) {
             </svg>
         </button>
         <div id="modal_form">
-            <form class="form">
+            <div class="form">
                 <div class="form__film-card">
                     <div class="form__film-img">
                         <img class="form-img" src="${poster_path}"
@@ -73,7 +73,7 @@ export function renderMovieModal(movieData, objectCard) {
                         <button data-action="add" id="queue" class="form-button form-queue-btn" type="button">Add to queue</button>
                     </div>
                 </div>
-            </form>
+            </div>
             <div class="form__film-card">
                 <div class="form__film-img">
                     ${videoIframe.outerHTML}
@@ -90,7 +90,7 @@ export function renderMovieModal(movieData, objectCard) {
                 <use href="./images/icons.svg#icon-close"></use>
             </svg> </button>
         <div id="modal_form">
-          <form class="form">
+          <div class="form">
               <div class="form__film-card">
                   <div class="form__film-img">
                       <img class="form-img" src="${poster_path}"
@@ -126,7 +126,7 @@ export function renderMovieModal(movieData, objectCard) {
                       <button data-action="add" id="queue" class="form-button form-queue-btn" type="button">Add to queue</button>
                   </div>
               </div>
-          </form>
+          </div>
         </div>
     </div>
 `;
@@ -207,21 +207,7 @@ export function renderMovieModal(movieData, objectCard) {
   }
 }
 
-// function stopModalVideo() {
-//   const modalVideo = document.querySelector('.video');
-//   modalVideo.pause();
-//   // modalVideo.currentTime = 0;
-// }
-
 function stopModalVideo(e) {
   const filmWrapper = e.currentTarget.querySelector('.video');
-  filmWrapper.dialog({
-    draggable: true,
-    autoOpen: true,
-    modal: false,
-    show: 'fade',
-    hide: 'fade',
-    width: 'auto',
-    height: 'auto',
-  });
+  filmWrapper.innerHTML = '';
 }
