@@ -10,7 +10,7 @@
 
 .film-card {
   // min-width: 280px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border-radius: 5px;
 
   &:nth-last-child {
@@ -38,11 +38,13 @@
   width: 100%;
   height: auto;
   object-fit: cover;
+  // margin-bottom: 8px;
 }
 
 
 .film-meta {
   padding-top: 10px;
+  padding-bottom: 12px;
   font-family: Roboto, sans-serif;
   font-size: 12px;
   font-weight: 500;
@@ -100,7 +102,7 @@
   .film-card {
     flex-basis: calc((100% - 32px) / 2);
 
-    // margin-bottom: auto;
+    margin-bottom: 24px;
     overflow: hidden;
 
     &:nth-last-child(-n + 2) {
@@ -113,7 +115,7 @@
   }
 
   .film-meta {
-    padding-top: 8px;
+    padding-top: 10px;
   }
 }
 
@@ -141,6 +143,7 @@
 
   .film-meta {
     padding-top: 12px;
+    padding-bottom: 14px;
     font-size: 20px;
     line-height: 1.2;
   }
