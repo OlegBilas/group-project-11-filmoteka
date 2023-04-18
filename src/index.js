@@ -8,12 +8,14 @@ import { putEventListenersToAll } from './js/modal';
 import { fetchFilms, fetchFilmsById } from './js/fetchAPI';
 
 import { onSearch } from './js/header';
-import { spinnerHandler } from './js/spinner';
+import { onSpinner } from './js/spinner';
 import { renderCollection } from './js/renderGallery';
 import { renderMovieModal } from './js/modalFilm';
 import { createPagination } from './js/pagination';
 
 fetchFilms('').then(collection => {
+  onSpinner('start');
   renderCollection(collection);
   createPagination(collection.total_pages, '');
+  onSpinner('stop');
 });
