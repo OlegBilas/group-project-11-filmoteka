@@ -26,11 +26,7 @@
     flex-wrap: wrap;
     gap: 2px;
     justify-content: center;
-    margin-top: 40px;
 
-    @media screen and (min-width: $tablet) {
-        margin-top: 60px;
-    }
 }
 
 .tui-next, .tui-first {
