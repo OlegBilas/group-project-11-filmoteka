@@ -41,10 +41,10 @@ galleryList.addEventListener('click', async event => {
   const filmId = filmCard.dataset.id;
   const objectCard = getDataCard(filmCard);
   try {
-    // onSpinner('start');
+    onSpinner('start');
     const movieDetails = await fetchFilmsById(filmId);
-    // onSpinner('stop');
     renderMovieModal(movieDetails, objectCard);
+    onSpinner('stop');
   } catch (error) {
     const refModalFilmContainer = document.querySelector('.backdrop-container');
     //refModalFilmContainer.classList.add('is-hidden');
