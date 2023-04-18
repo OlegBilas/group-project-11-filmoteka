@@ -7,8 +7,6 @@ import { spinnerHandler } from './spinner';
 const galleryList = document.querySelector('.list');
 const IS_FROM_FETCH = true;
 
-const refModalFilmContainer = document.querySelector('.backdrop-container');
-
 function renderCollection(collection, IS_FROM_FETCH = true) {
   collection = IS_FROM_FETCH ? collection.results : collection;
   const films = collection
@@ -45,10 +43,10 @@ galleryList.addEventListener('click', async event => {
   try {
     const movieDetails = await fetchFilmsById(filmId);
     renderMovieModal(movieDetails, objectCard);
-    //refModalFilmContainer.style.display = 'block';
   } catch (error) {
-    //refModalFilmContainer.style.display = 'none';
-    alertSearchModalFailure();
+    const refModalFilmContainer = document.querySelector('.backdrop-container');
+    refModalFilmContainer.classList.add('is-hidden');
+    // alertSearchModalFailure();
   }
 });
 
