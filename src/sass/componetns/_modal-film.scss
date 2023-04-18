@@ -273,14 +273,12 @@ display: flex;
     margin-right: 15px;
 }
 
-// .form-add-btn {
-//     color: #fff;
-//     box-shadow: none;
-//     cursor: auto;
-//     background-color: #B92F2C;
-//     border: 1px solid #B92F2C;
-//     border-radius: 100px;
-// }
+.is-added {
+        // cursor: pointer;
+        color: #B92F2C;
+        background-color: #FFFFFF;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
 
 
 
@@ -291,7 +289,7 @@ display: flex;
 .form-queue-btn:focus,
 .remove-queue-btn {
     color: #fff;
-    cursor: pointer;
+    // cursor: pointer;
     background-color: #B92F2C;
     border: 2px solid #B92F2C;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
@@ -343,8 +341,8 @@ display: flex;
 
 .form__close-icon {
     position: absolute;
-        top: -2px;
-        right: -2px;
+        top: 1px;
+        right: -3px;
 }
 
 .btn-close:hover,
