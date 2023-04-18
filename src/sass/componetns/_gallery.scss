@@ -35,8 +35,8 @@
 
 .film-img img {
   border-radius: 5px;
-  max-width: 100%;
-  height: 100% !important;
+  width: 100%;
+  height: auto;
   object-fit: cover;
 }
 
@@ -90,7 +90,11 @@
   .film-link {
     display: flex;
     flex-direction: column;
-    justify-items: stretch;
+    justify-content: space-between;
+  }
+
+  .film-img img {
+    height: 455px;
   }
 
   .film-card {
@@ -129,6 +133,10 @@
     &:nth-child(3n + 3) {
       margin-right: 0px;
     }
+  }
+
+  .film-img img {
+    height: 574px;
   }
 
   .film-meta {
