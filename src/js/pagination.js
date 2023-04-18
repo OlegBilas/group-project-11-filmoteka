@@ -40,6 +40,9 @@ function createPagination(totalItems, filmName) {
     [...galleryList.children].forEach(element => element.remove());
       fetchAndRender(filmName, currentPage);
       document.querySelector(".tui-ico-first").textContent = currentPage === 1 ? "first" : "1";
+      document.querySelector(".tui-ico-first").textContent = currentPage <= 3 ? "first" : "1";
+      document.querySelector(".tui-ico-last").textContent = totalItems / 20 - currentPage < 3 ? "last" : totalItems / 20;
+
   });
 }
 async function fetchAndRender(name, page) {
