@@ -195,19 +195,14 @@ export function renderMovieModal(movieData, objectCard) {
     }
   }
 
-  // Спроба зупинити відтворення відео при закритті модалки
-  //   if (videoId) {
-  //     refModalFilmContainer.addEventListener('close', refModalFilmContainer =>
-  //       refModalFilmContainer.classList.add('is-hidden')
-  //     );
-  //   }
-
+  // Спроба зупинити відтворення відео при закритті модалки (не виходить)
   if (videoId) {
-    refModalFilmContainer.addEventListener('close', stopModalVideo);
+    refModalFilmContainer.addEventListener('click', stopModalVideo);
   }
 }
 
 function stopModalVideo(e) {
-  const filmWrapper = e.currentTarget.querySelector('.video');
+  const filmWrapper = e.currentTarget.querySelector('.form__film-img');
   filmWrapper.innerHTML = '';
+  //   filmWrapper.style.display = 'none';
 }
