@@ -40,3 +40,19 @@
 .tui-last, .tui-prev {
     transform: translateX(-42px);
 }
+
+.tui-ico-prev, .tui-ico-next {
+    display: none;
+}
+
+.tui-prev {
+    background-image: url(../images/pagination/arrow-left.svg);
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.tui-next {
+    background-image: url(../images/pagination/arrow-right.svg);
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
