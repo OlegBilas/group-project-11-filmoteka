@@ -40,16 +40,16 @@ galleryList.addEventListener('click', async event => {
   if (!filmCard) return;
   const filmId = filmCard.dataset.id;
   const objectCard = getDataCard(filmCard);
+  onSpinner('start');
   try {
-    onSpinner('start');
     const movieDetails = await fetchFilmsById(filmId);
     renderMovieModal(movieDetails, objectCard);
-    onSpinner('stop');
   } catch (error) {
     const refModalFilmContainer = document.querySelector('.backdrop-container');
     //refModalFilmContainer.classList.add('is-hidden');
     alertSearchModalFailure();
   }
+  onSpinner('stop');
 });
 
 function getDataCard(element) {
