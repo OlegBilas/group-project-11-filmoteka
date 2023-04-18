@@ -60,7 +60,7 @@ export function renderMovieModal(movieData, objectCard) {
       <div class="modal" data-modal="2">
         <button type="button" class="btn-close js-close-modal" id="btn-close">
             <svg class="form__close-icon" width="14px" height="14px">
-                <use href="/icons.adfc4680.svg#icon-close"></use>
+                <use href="/src/images/icons.svg#icon-close"></use>
             </svg>
         </button>
         <div id="modal_form">
@@ -114,7 +114,7 @@ export function renderMovieModal(movieData, objectCard) {
     <div class="modal" data-modal="2">
         <button type="button" class="btn-close js-close-modal" id="btn-close">
             Close<svg class="form__close-icon" width="30px" height="30px">
-                <use href="/icons.adfc4680.svg#icon-close"></use>
+                <use href="/src/images/icons.svg#icon-close"></use>
             </svg> </button>
         <div id="modal_form">
           <form class="form">
