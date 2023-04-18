@@ -38,7 +38,7 @@ const fetchFilms = async (filmName, page = 1) => {
                 ? title
                 : original_title
                 ? original_title
-                : 'no data',
+                : 'The title in shown above',
             };
           }
         );

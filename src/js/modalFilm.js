@@ -5,38 +5,11 @@ import {
   WATCHED,
   addToLocalstorage,
   removeFromLocalstorage,
+  getFromLocalstorage,
 } from './localAPI';
 import { spinnerHandler } from './spinner';
 
 const refModalFilmContainer = document.querySelector('.backdrop-container');
-
-function localAPIInteraction(objectCard) {
-  const watchedBtn = document.getElementById('watched');
-  const queueBtn = document.getElementById('queue');
-
-  watchedBtn.addEventListener('click', () => {
-    if (watchedBtn.classList.contains('is-added')) {
-      removeFromLocalstorage(WATCHED, objectCard);
-      watchedBtn.classList.toggle('is-added');
-      watchedBtn.textContent = 'Add to watched';
-    } else {
-      addToLocalstorage(WATCHED, objectCard);
-      watchedBtn.classList.toggle('is-added');
-      watchedBtn.textContent = 'Remove from watched';
-    }
-  });
-  queueBtn.addEventListener('click', () => {
-    if (queueBtn.classList.contains('is-added')) {
-      removeFromLocalstorage(QUE, objectCard);
-      queueBtn.classList.toggle('is-added');
-      queueBtn.textContent = 'Add to queue';
-    } else {
-      addToLocalstorage(QUE, objectCard);
-      queueBtn.classList.toggle('is-added');
-      queueBtn.textContent = 'Remove from queue';
-    }
-  });
-}
 
 export function renderMovieModal(movieData, objectCard) {
   const {
@@ -160,7 +133,95 @@ export function renderMovieModal(movieData, objectCard) {
   }
 
   refModalFilmContainer.addEventListener('load', spinnerHandler);
-  //   refModalFilmContainer.classList.add('js-overlay-modal');
   putEventListenersToOverlay(refModalFilmContainer); //навішуємо слухачів для закриття модалки фільму
   localAPIInteraction(objectCard); // навішування обробників на кнопки додавання до локального сховища
+
+  function localAPIInteraction(objectCard) {
+    const watchedBtn = document.getElementById('watched');
+    const queueBtn = document.getElementById('queue');
+
+    // Перевірка на наявність фільму у локальному сховищі
+    let filmsArray = getFromLocalstorage(WATCHED);
+    if (filmsArray.find(film => film.id === objectCard.id)) {
+      watchedBtn.textContent = 'Remove from watched';
+    } else {
+      watchedBtn.textContent = 'Add to watched';
+    }
+
+    filmsArray = getFromLocalstorage(QUE);
+    if (filmsArray.find(film => film.id === objectCard.id)) {
+      queueBtn.textContent = 'Remove from queue';
+    } else {
+      queueBtn.textContent = 'Add to queue';
+    }
+
+    watchedBtn.addEventListener('click', () => {
+      if (watchedBtn.textContent === 'Remove from watched') {
+        removeFromLocalstorage(WATCHED, objectCard);
+        toggleText(watchedBtn);
+      } else if (watchedBtn.textContent === 'Add to watched') {
+        addToLocalstorage(WATCHED, objectCard);
+        toggleText(watchedBtn);
+      }
+    });
+    queueBtn.addEventListener('click', () => {
+      if (queueBtn.textContent === 'Remove from queue') {
+        removeFromLocalstorage(QUE, objectCard);
+        toggleText(queueBtn);
+      } else if (queueBtn.textContent === 'Add to queue') {
+        addToLocalstorage(QUE, objectCard);
+        toggleText(queueBtn);
+      }
+    });
+  }
+
+  function toggleText(btn) {
+    switch (btn.textContent) {
+      case 'Add to watched':
+        btn.textContent = 'Remove from watched';
+        break;
+
+      case 'Remove from watched':
+        btn.textContent = 'Add to watched';
+        break;
+
+      case 'Add to queue':
+        btn.textContent = 'Remove from queue';
+        break;
+
+      case 'Remove from queue':
+        btn.textContent = 'Add to queue';
+        break;
+    }
+  }
+
+  // Спроба зупинити відтворення відео при закритті модалки
+  //   if (videoId) {
+  //     refModalFilmContainer.addEventListener('close', refModalFilmContainer =>
+  //       refModalFilmContainer.classList.add('is-hidden')
+  //     );
+  //   }
+
+  if (videoId) {
+    refModalFilmContainer.addEventListener('close', stopModalVideo);
+  }
+}
+
+// function stopModalVideo() {
+//   const modalVideo = document.querySelector('.video');
+//   modalVideo.pause();
+//   // modalVideo.currentTime = 0;
+// }
+
+function stopModalVideo(e) {
+  const filmWrapper = e.currentTarget.querySelector('.video');
+  filmWrapper.dialog({
+    draggable: true,
+    autoOpen: true,
+    modal: false,
+    show: 'fade',
+    hide: 'fade',
+    width: 'auto',
+    height: 'auto',
+  });
 }
