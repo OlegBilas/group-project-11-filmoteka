@@ -141,6 +141,11 @@ export function renderMovieModal(movieData, objectCard) {
     const watchedBtn = document.getElementById('watched');
     const queueBtn = document.getElementById('queue');
 
+    //кнопки навігації
+    const activeNaviganionBtn = document.querySelector('.active-btn');
+    const headerWatchedBtn = document.querySelector('.watched-btn');
+    const headerQueueBtn = document.querySelector('.queue-btn');
+
     // Перевірка на наявність фільму у локальному сховищі
     let filmsArray = getFromLocalstorage(WATCHED);
     if (filmsArray.find(film => film.id === objectCard.id)) {
@@ -164,7 +169,11 @@ export function renderMovieModal(movieData, objectCard) {
         addToLocalstorage(WATCHED, objectCard);
         toggleText(watchedBtn);
       }
-      onWatchedClick();
+      if (activeNaviganionBtn.classList.contains('my-library-btn')) {
+        onWatchedClick();
+        headerWatchedBtn.classList.add('active-library-btn');
+        headerQueueBtn.classList.remove('active-library-btn');
+      }
     });
     queueBtn.addEventListener('click', () => {
       if (queueBtn.textContent === 'Remove from queue') {
@@ -174,7 +183,11 @@ export function renderMovieModal(movieData, objectCard) {
         addToLocalstorage(QUE, objectCard);
         toggleText(queueBtn);
       }
-      onQueueClick();
+      if (activeNaviganionBtn.classList.contains('my-library-btn')) {
+        onQueueClick();
+        headerWatchedBtn.classList.remove('active-library-btn');
+        headerQueueBtn.classList.add('active-library-btn');
+      }
     });
   }
 
