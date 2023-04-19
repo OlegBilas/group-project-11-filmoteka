@@ -112,7 +112,7 @@ function onQueueClick() {
 }
 
 function pageReset() {
-  page = 1;
+  const page = 1;
 }
 
 export { onSearch, onHomeClick, onLibraryClick, onWatchedClick, onQueueClick };

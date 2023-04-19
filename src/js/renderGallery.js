@@ -45,11 +45,11 @@ galleryList.addEventListener('click', async event => {
   try {
     const movieDetails = await fetchFilmsById(filmId);
     renderMovieModal(movieDetails, objectCard);
-    //refModalFilmContainer.style.display = 'block';
+    refModalFilmContainer.style.display = 'block';
   } catch (error) {
-    //refModalFilmContainer.style.display = 'none';
+    refModalFilmContainer.style.display = 'none';
     alertSearchModalFailure();
-    console.log(error);
+    // console.log(error);
   }
   onSpinner('stop');
 });
