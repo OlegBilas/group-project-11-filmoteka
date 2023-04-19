@@ -196,7 +196,7 @@ export function renderMovieModal(movieData, objectCard) {
     }
   }
 
-  // Спроба зупинити відтворення відео при закритті модалки (не виходить)
+  // Зупинення відтворення відео при закритті модалки
   if (videoId) {
     const refClickBtn = document.getElementById('btn-close');
     refClickBtn.addEventListener('click', stopModalVideo);
