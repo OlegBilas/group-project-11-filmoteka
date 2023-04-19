@@ -6,7 +6,8 @@ import { alertSuccess, alertEmptyForm, alertSearchFailure } from './alerts';
 import { onSpinner } from './spinner';
 
 const refs = {
-  searchForm: document.querySelector('.header-form'),
+  headerhForm: document.querySelector('.header-form'),
+  searchForm: document.querySelector('.search-form'),
   nav: document.querySelector('.header-nav'),
   homeBtn: document.querySelector('.home-btn'),
   myLibraryBtn: document.querySelector('.my-library-btn'),
@@ -70,7 +71,7 @@ function onHomeClick() {
   onSpinner('start');
   refs.watchedBtn.classList.add('is-hidden');
   refs.queueBtn.classList.add('is-hidden');
-  refs.searchForm.classList.remove('js-form-inactive');
+  refs.headerhForm.classList.remove('js-form-inactive');
   refs.nav.classList.remove('js-home-inactive');
   refs.logo.classList.remove('js-library-active');
 
@@ -85,7 +86,7 @@ function onHomeClick() {
 function onLibraryClick() {
   refs.watchedBtn.classList.remove('is-hidden');
   refs.queueBtn.classList.remove('is-hidden');
-  refs.searchForm.classList.add('js-form-inactive');
+  refs.headerhForm.classList.add('js-form-inactive');
   refs.nav.classList.add('js-home-inactive');
   refs.logo.classList.add('js-library-active');
   hidePagination();
