@@ -20,7 +20,7 @@ const deleteActivePage = () => {
 };
 
 // Функція має відпрацьовувати при завантаженні сторінки,якщо гість вперше на сторінці,має відпрацьовувати ф-я onHomeClick()
-loadActivePage = () => {
+const loadActivePage = () => {
   const pageInfo = JSON.parse(localStorage.getItem(`button`));
   //   console.log(pageInfo);
   if (pageInfo) {
