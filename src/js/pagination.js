@@ -20,7 +20,7 @@ function createPagination(totalItems, filmName) {
       currentPage:
         '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
       moveButton:
-        '<a href="#" class="tui-page-btn tui-{{type}}">' +
+        '<a href="#" class="tui-page-btn tui-{{type}}" aria-label="next-page">' +
         '<span class="tui-ico-{{type}}">{{type}}</span>' +
         '</a>',
       disabledMoveButton:
