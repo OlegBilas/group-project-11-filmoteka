@@ -76,6 +76,8 @@ function onHomeClick() {
   refs.headerhForm.classList.remove('js-form-inactive');
   refs.nav.classList.remove('js-home-inactive');
   refs.logo.classList.remove('js-library-active');
+  refs.homeBtn.classList.add('active-btn');
+  refs.myLibraryBtn.classList.remove('active-btn');
 
   showPagination();
   fetchFilms('').then(collection => {
@@ -93,6 +95,8 @@ function onLibraryClick() {
   refs.logo.classList.add('js-library-active');
   hidePagination();
   refs.galleryList.innerHTML = '';
+  refs.homeBtn.classList.remove('active-btn');
+  refs.myLibraryBtn.classList.add('active-btn');
 }
 
 function onWatchedClick() {
