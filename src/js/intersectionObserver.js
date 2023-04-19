@@ -1,3 +1,5 @@
+import { getGenresById } from './genres';
+
 const observer = new IntersectionObserver(intersectingHandler);
 observer.observe(document.querySelector('footer'));
 

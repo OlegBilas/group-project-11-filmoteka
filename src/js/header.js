@@ -97,18 +97,28 @@ function onLibraryClick() {
   refs.galleryList.innerHTML = '';
   refs.homeBtn.classList.remove('active-btn');
   refs.myLibraryBtn.classList.add('active-btn');
+  //за умовчанням вікриваємо сторінку черги до перегляду
+  onQueueClick();
 }
 
 function onWatchedClick() {
+  onSpinner('start');
   const collection = getFromLocalstorage(WATCHED);
   renderCollection(collection, !IS_FROM_FETCH);
   hidePagination();
+  refs.watchedBtn.classList.add('active-library-btn');
+  refs.queueBtn.classList.remove('active-library-btn');
+  onSpinner('stop');
 }
 
 function onQueueClick() {
+  onSpinner('start');
   const collection = getFromLocalstorage(QUE);
   renderCollection(collection, !IS_FROM_FETCH);
   hidePagination();
+  refs.watchedBtn.classList.remove('active-library-btn');
+  refs.queueBtn.classList.add('active-library-btn');
+  onSpinner('stop');
 }
 
 function pageReset() {

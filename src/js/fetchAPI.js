@@ -17,16 +17,15 @@ const fetchFilms = async (filmName, page = 1) => {
     const response = await axios.get(request);
     const takeInfo = object => {
       const result = object
-        .filter(
-          (object) => { return (
+        .filter(object => {
+          return (
             object.poster_path &&
             object.genre_ids &&
             object.id &&
             object.release_date &&
             (object.title || object.original_title)
-            );
-          }
-        )
+          );
+        })
         .map(
           ({
             genre_ids,
