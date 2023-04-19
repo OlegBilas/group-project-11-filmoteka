@@ -3,7 +3,7 @@ const WATCHED = 'watched';
 
 function getFromLocalstorage(key) {
   const dataJSON = localStorage.getItem(`${key}`);
-  localData = JSON.parse(dataJSON);
+  const localData = JSON.parse(dataJSON);
   return localData ? localData : [];
 }
 
