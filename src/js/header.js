@@ -100,15 +100,19 @@ function onLibraryClick() {
 }
 
 function onWatchedClick() {
+  onSpinner('start');
   const collection = getFromLocalstorage(WATCHED);
   renderCollection(collection, !IS_FROM_FETCH);
   hidePagination();
+  onSpinner('stop');
 }
 
 function onQueueClick() {
+  onSpinner('start');
   const collection = getFromLocalstorage(QUE);
   renderCollection(collection, !IS_FROM_FETCH);
   hidePagination();
+  onSpinner('stop');
 }
 
 function pageReset() {

@@ -7,7 +7,7 @@ import {
   removeFromLocalstorage,
   getFromLocalstorage,
 } from './localAPI';
-import { spinnerHandler } from './spinner';
+import { onWatchedClick, onQueueClick } from '../js/header';
 
 const refModalFilmContainer = document.querySelector('.backdrop-container');
 
@@ -133,7 +133,7 @@ export function renderMovieModal(movieData, objectCard) {
 `;
   }
 
-//   refModalFilmContainer.addEventListener('load', spinnerHandler);
+  //   refModalFilmContainer.addEventListener('load', spinnerHandler);
   putEventListenersToOverlay(refModalFilmContainer); //навішуємо слухачів для закриття модалки фільму
   localAPIInteraction(objectCard); // навішування обробників на кнопки додавання до локального сховища
 
@@ -164,6 +164,7 @@ export function renderMovieModal(movieData, objectCard) {
         addToLocalstorage(WATCHED, objectCard);
         toggleText(watchedBtn);
       }
+      onWatchedClick();
     });
     queueBtn.addEventListener('click', () => {
       if (queueBtn.textContent === 'Remove from queue') {
@@ -173,6 +174,7 @@ export function renderMovieModal(movieData, objectCard) {
         addToLocalstorage(QUE, objectCard);
         toggleText(queueBtn);
       }
+      onQueueClick();
     });
   }
 
