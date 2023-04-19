@@ -33,16 +33,32 @@ function createPagination(totalItems, filmName) {
         '</a>',
     },
   });
-    document.querySelector(".tui-ico-last").textContent = totalItems / 20;
-
+    document.querySelector(".tui-ico-last").textContent = Math.ceil(totalItems / 20);
+    document.querySelector(".tui-first").classList.add("hidden")
+    document.querySelector(".tui-last-child").classList.add("mobile-hidden");
+    
   instance.on('afterMove', event => {
     const currentPage = event.page;
     [...galleryList.children].forEach(element => element.remove());
       fetchAndRender(filmName, currentPage);
-      document.querySelector(".tui-ico-first").textContent = currentPage === 1 ? "first" : "1";
-      document.querySelector(".tui-ico-first").textContent = currentPage <= 3 ? "first" : "1";
-      document.querySelector(".tui-ico-last").textContent = totalItems / 20 - currentPage < 3 ? "last" : totalItems / 20;
-
+      
+      currentPage <= 3 ? document.querySelector(".tui-first").classList.add("hidden") : document.querySelector(".tui-first").classList.remove("hidden");
+      document.querySelector(".tui-ico-first").textContent = "1";
+      document.querySelector(".tui-ico-last").textContent = Math.ceil(totalItems / 20);
+      totalItems / 20 - currentPage >= 2 ? document.querySelector(".tui-last").classList.remove("hidden") : document.querySelector(".tui-last").classList.add("hidden");
+      if (window.innerWidth <= 320) {
+              document.querySelector(".tui-last-child").classList.add("mobile-hidden");
+              document.querySelector(".tui-first-child").classList.add("mobile-hidden");
+          if (currentPage <= 3) {
+              document.querySelector(".tui-last-child").classList.add("mobile-hidden");
+              document.querySelector(".tui-first-child").classList.remove("mobile-hidden");
+              document.querySelector(".tui-first-child").nextSibling.classList.remove("mobile-hidden");
+          }
+          if (totalItems / 20 - currentPage <= 1) {
+              document.querySelector(".tui-last-child").classList.remove("mobile-hidden");
+              document.querySelector(".tui-first-child").classList.add("mobile-hidden");
+          }
+      }
   });
 }
 async function fetchAndRender(name, page) {
