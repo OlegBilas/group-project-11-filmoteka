@@ -1,7 +1,7 @@
 import Notiflix from 'notiflix';
 
 function alertSuccess() {
-  Notiflix.Notify.success('We`ve what you were looking for!');
+  Notiflix.Notify.success('We`ve found what you were looking for!');
 }
 
 function alertEmptyForm() {
