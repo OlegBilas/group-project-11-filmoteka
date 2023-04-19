@@ -49,6 +49,7 @@ galleryList.addEventListener('click', async event => {
   } catch (error) {
     //refModalFilmContainer.style.display = 'none';
     alertSearchModalFailure();
+    console.log(error);
   }
   onSpinner('stop');
 });
