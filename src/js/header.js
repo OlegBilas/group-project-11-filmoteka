@@ -6,11 +6,13 @@ import { alertSuccess, alertEmptyForm, alertSearchFailure } from './alerts';
 import { onSpinner } from './spinner';
 
 const refs = {
-  searchForm: document.querySelector('.search-form'),
+  searchForm: document.querySelector('.header-form'),
+  nav: document.querySelector('.header-nav'),
   homeBtn: document.querySelector('.home-btn'),
   myLibraryBtn: document.querySelector('.my-library-btn'),
   watchedBtn: document.querySelector('.watched-btn'),
   queueBtn: document.querySelector('.queue-btn'),
+  logo: document.querySelector('.logo-wrapper'),
   galleryList: document.querySelector('.list'),
 };
 let query = '';
@@ -68,7 +70,10 @@ function onHomeClick() {
   onSpinner('start');
   refs.watchedBtn.classList.add('is-hidden');
   refs.queueBtn.classList.add('is-hidden');
-  refs.searchForm.classList.remove('is-hidden');
+  refs.searchForm.classList.remove('js-form-inactive');
+  refs.nav.classList.remove('js-home-inactive');
+  refs.logo.classList.remove('js-library-active');
+
   showPagination();
   fetchFilms('').then(collection => {
     renderCollection(collection);
@@ -80,7 +85,9 @@ function onHomeClick() {
 function onLibraryClick() {
   refs.watchedBtn.classList.remove('is-hidden');
   refs.queueBtn.classList.remove('is-hidden');
-  refs.searchForm.classList.add('is-hidden');
+  refs.searchForm.classList.add('js-form-inactive');
+  refs.nav.classList.add('js-home-inactive');
+  refs.logo.classList.add('js-library-active');
   hidePagination();
   refs.galleryList.innerHTML = '';
 }
