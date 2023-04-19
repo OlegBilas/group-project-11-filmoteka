@@ -18,7 +18,14 @@ const fetchFilms = async (filmName, page = 1) => {
     const takeInfo = object => {
       const result = object
         .filter(
-          ({ poster_path }) => !(poster_path === null) && poster_path.length > 0
+          (object) => { return (
+            object.poster_path &&
+            object.genre_ids &&
+            object.id &&
+            object.release_date &&
+            (object.title || object.original_title)
+            );
+          }
         )
         .map(
           ({
