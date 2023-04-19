@@ -14,6 +14,7 @@ const refs = {
   watchedBtn: document.querySelector('.watched-btn'),
   queueBtn: document.querySelector('.queue-btn'),
   logo: document.querySelector('.logo-wrapper'),
+  logoRef: document.querySelector('.logo'),
   galleryList: document.querySelector('.list'),
 };
 let query = '';
@@ -21,6 +22,7 @@ let queryResults = 0;
 
 refs.searchForm.addEventListener('submit', onSearch);
 refs.homeBtn.addEventListener('click', onHomeClick);
+refs.logoRef.addEventListener('click', onHomeClick);
 refs.myLibraryBtn.addEventListener('click', onLibraryClick);
 refs.watchedBtn.addEventListener('click', onWatchedClick);
 refs.queueBtn.addEventListener('click', onQueueClick);
@@ -96,11 +98,13 @@ function onLibraryClick() {
 function onWatchedClick() {
   const collection = getFromLocalstorage(WATCHED);
   renderCollection(collection, !IS_FROM_FETCH);
+  hidePagination();
 }
 
 function onQueueClick() {
   const collection = getFromLocalstorage(QUE);
   renderCollection(collection, !IS_FROM_FETCH);
+  hidePagination();
 }
 
 function pageReset() {

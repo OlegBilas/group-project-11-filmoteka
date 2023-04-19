@@ -57,9 +57,9 @@
 //   height: 16px;
 // }
 // .border-btn {
-  // border-radius: 100px;
-  // border: none;
-  // height: 42px;
+// border-radius: 100px;
+// border: none;
+// height: 42px;
 // }
 // .header-input {
 //   width: 187px;
@@ -153,177 +153,176 @@
 // }
 
 // @media only screen and (max-width: 768px) {
-  // .header {
-  //   background-image: url(../images/background-768-@1x.png);
-  //   background-repeat: no-repeat;
-  //   background-position: center;
-  //   background-size: 100%;
-  //   @media (min-device-pixel-ratio: 2),
-  //     (min-resolution: 192dpi),
-  //     (min-resolution: 2dppx) {
-  //     background-image: url(../images/background-768-@2x.png);
-  //   }
-  //   height: 222px;
-  //   margin: 32px 32px 0 32px;
-  //   padding: 16px;
-  //   display: flex;
-  //   flex-wrap: wrap;
-  //   align-content: space-between;
-  //   justify-content: space-evenly;
-  // }
-  // .header-nav {
-  //   align-items: center;
-  //   width: auto;
-  //   order: 2;
-  //   display: inline-block;
-  // }
-  // .header-form {
-  //   width: 165px;
-    // order: 1;
-  // }
-  // .header-filters {
-  //   width: auto;
-  //   order: 3;
-  //   padding-left: 105px;
-  //   justify-content: flex-end;
-  // }
+// .header {
+//   background-image: url(../images/background-768-@1x.png);
+//   background-repeat: no-repeat;
+//   background-position: center;
+//   background-size: 100%;
+//   @media (min-device-pixel-ratio: 2),
+//     (min-resolution: 192dpi),
+//     (min-resolution: 2dppx) {
+//     background-image: url(../images/background-768-@2x.png);
+//   }
+//   height: 222px;
+//   margin: 32px 32px 0 32px;
+//   padding: 16px;
+//   display: flex;
+//   flex-wrap: wrap;
+//   align-content: space-between;
+//   justify-content: space-evenly;
+// }
+// .header-nav {
+//   align-items: center;
+//   width: auto;
+//   order: 2;
+//   display: inline-block;
+// }
+// .header-form {
+//   width: 165px;
+// order: 1;
+// }
+// .header-filters {
+//   width: auto;
+//   order: 3;
+//   padding-left: 105px;
+//   justify-content: flex-end;
+// }
 
-  // .btn-text {
-  //   font-family: 'Roboto', sans-serif;
-  //   font-style: normal;
-  //   font-weight: 500;
-  //   font-size: 12px;
-  //   line-height: 14px;
-  //   text-transform: uppercase;
-  // }
-  // .home-btn {
-  //   margin: auto 4px;
-  //   width: 100px;
-  // }
-  // .search-form {
-  //   position: relative;
-  // }
+// .btn-text {
+//   font-family: 'Roboto', sans-serif;
+//   font-style: normal;
+//   font-weight: 500;
+//   font-size: 12px;
+//   line-height: 14px;
+//   text-transform: uppercase;
+// }
+// .home-btn {
+//   margin: auto 4px;
+//   width: 100px;
+// }
+// .search-form {
+//   position: relative;
+// }
 
-  // .border-btn {
-  //   height: 38px;
-  //   padding: 0;
-  // }
-  // .header-input {
-  //   width: 165px;
-  //   margin: 0 auto;
-  //   display: block;
-  //   height: 38px;
-  //   line-height: 3em;
-  //   padding: 0 1.5em;
-  // }
+// .border-btn {
+//   height: 38px;
+//   padding: 0;
+// }
+// .header-input {
+//   width: 165px;
+//   margin: 0 auto;
+//   display: block;
+//   height: 38px;
+//   line-height: 3em;
+//   padding: 0 1.5em;
+// }
 
-  // .home-btn {
-  //   width: 83px;
-  // }
-  // .my-library-btn {
-  //   width: 109px;
-  // }
-  // .watched-btn {
-  //   width: 102px;
-  // }
+// .home-btn {
+//   width: 83px;
+// }
+// .my-library-btn {
+//   width: 109px;
+// }
+// .watched-btn {
+//   width: 102px;
+// }
 
-  // .logo-wrapper {
-  //   order: 4;
-  // }
-  // .logo {
-  //   display: flex;
-  //   justify-content: flex-start;
-  //   align-items: flex-end;
-  //   margin: 105px 0 0 0;
-  //   width: 680px;
-  // }
-  // .svg-filmoteka {
-  //   width: 40px;
-  //   height: 40px;
-  // }
-  // h1 {
-  //   margin: auto 8px;
-  //   font-style: normal;
-  //   font-weight: 500;
-  //   font-size: 40px;
-  //   line-height: 50px;
-  // }
+// .logo-wrapper {
+//   order: 4;
+// }
+// .logo {
+//   display: flex;
+//   justify-content: flex-start;
+//   align-items: flex-end;
+//   margin: 105px 0 0 0;
+//   width: 680px;
+// }
+// .svg-filmoteka {
+//   width: 40px;
+//   height: 40px;
+// }
+// h1 {
+//   margin: auto 8px;
+//   font-style: normal;
+//   font-weight: 500;
+//   font-size: 40px;
+//   line-height: 50px;
+// }
 // }
 
 // @media only screen and (max-width: 320px) {
-  // .header {
-  //   width: 280px;
-  //   height: 460px;
-  //   background: url(../images/header_backgr320-@1x.png);
-  //   background-repeat: no-repeat;
-  //   background-position: center;
-  //   background-size: cover;
-  //   @media (min-device-pixel-ratio: 2),
-  //     (min-resolution: 192dpi),
-  //     (min-resolution: 2dppx) {
-  //     background-image: url(../images/header_backgr320-@2x.png);
-  //   }
-  //   margin: 20px 20px 0 20px;
-  //   padding: 0;
-  //   display: inline-block;
-  // }
-  // .header-nav {
-  //   margin: 14px 62px 8px 14px;
-  // }
-  // .header-form {
-  //   width: 252px;
-  //   margin: 0 14px 258px 14px;
-  // }
-  // .search-form {
-  //   position: relative;
-  // }
-  // .header-input {
-  //   width: 252px;
-  //   height: 34px;
-  // }
-  // .header-submit {
-  //   top: 8px;
-  //   right: 8px;
-  // }
-  // .border-btn {
-  //   height: 34px;
-  // }
-
-  // .logo-wrapper {
-  //   height: auto;
-  //   margin: 0 45px 16px 45px;
-  // }
-  // .logo {
-  //   display: flex;
-  //   justify-content: flex-start;
-  //   align-items: flex-end;
-  //   margin: 0 auto;
-  // }
-
-  // .header-filters {
-  //   padding: 0;
-  //   margin: 0 auto;
-  //   width: 192px;
-  // }
-  // .my-library-btn {
-  //   width: 86px;
-  // }
-  // .watched-btn {
-  //   width: 102px;
-  // }
-  // .svg-filmoteka {
-  //   width: 32px;
-  //   height: 32px;
-  // }
-  // h1 {
-  //   margin: auto 8px;
-  //   font-style: normal;
-  //   font-weight: 500;
-  //   font-size: 32px;
-  //   line-height: 38px;
-  // }
+// .header {
+//   width: 280px;
+//   height: 460px;
+//   background: url(../images/header_backgr320-@1x.png);
+//   background-repeat: no-repeat;
+//   background-position: center;
+//   background-size: cover;
+//   @media (min-device-pixel-ratio: 2),
+//     (min-resolution: 192dpi),
+//     (min-resolution: 2dppx) {
+//     background-image: url(../images/header_backgr320-@2x.png);
+//   }
+//   margin: 20px 20px 0 20px;
+//   padding: 0;
+//   display: inline-block;
+// }
+// .header-nav {
+//   margin: 14px 62px 8px 14px;
+// }
+// .header-form {
+//   width: 252px;
+//   margin: 0 14px 258px 14px;
+// }
+// .search-form {
+//   position: relative;
+// }
+// .header-input {
+//   width: 252px;
+//   height: 34px;
+// }
+// .header-submit {
+//   top: 8px;
+//   right: 8px;
+// }
+// .border-btn {
+//   height: 34px;
 // }
 
+// .logo-wrapper {
+//   height: auto;
+//   margin: 0 45px 16px 45px;
+// }
+// .logo {
+//   display: flex;
+//   justify-content: flex-start;
+//   align-items: flex-end;
+//   margin: 0 auto;
+// }
+
+// .header-filters {
+//   padding: 0;
+//   margin: 0 auto;
+//   width: 192px;
+// }
+// .my-library-btn {
+//   width: 86px;
+// }
+// .watched-btn {
+//   width: 102px;
+// }
+// .svg-filmoteka {
+//   width: 32px;
+//   height: 32px;
+// }
+// h1 {
+//   margin: auto 8px;
+//   font-style: normal;
+//   font-weight: 500;
+//   font-size: 32px;
+//   line-height: 38px;
+// }
+// }
 
 .header {
   position: relative;
@@ -358,7 +357,7 @@
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-        background-image: url(../images/background-768-@2x.png);
+      background-image: url(../images/background-768-@2x.png);
     }
   }
   @media screen and (min-width: $desktop) {
@@ -384,7 +383,7 @@
   width: 238px;
 
   transition: 0.5s;
-  
+
   @media screen and (min-width: $tablet) {
     top: 16px;
     left: 185px;
@@ -502,6 +501,7 @@
     height: 38px;
     padding-left: 16px;
     display: block;
+    font-size: 14px;
   }
 
   @media screen and (min-width: $desktop) {
@@ -613,7 +613,7 @@
   position: absolute;
   top: 402px;
   right: 44px;
-  
+
   @media screen and (min-width: $tablet) {
     top: 16px;
     right: 32px;
@@ -646,7 +646,7 @@
   background-color: $color-white;
 
   transition: 0.5s;
-  
+
   &:hover,
   &:focus {
     color: $color-white;

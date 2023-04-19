@@ -32,7 +32,6 @@
   text-decoration: none;
 }
 
-
 .film-img img {
   border-radius: 5px;
   width: 100%;
@@ -40,7 +39,6 @@
   object-fit: cover;
   // margin-bottom: 8px;
 }
-
 
 .film-meta {
   padding-top: 10px;
@@ -149,11 +147,7 @@
   }
 }
 
-.hidden {
-  display: none;
-}
-
-.tui-pagination {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-}
+// .tui-pagination {
+//   margin-top: 0 !important;
+//   margin-bottom: 0 !important;
+// }
