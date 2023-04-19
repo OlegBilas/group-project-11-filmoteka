@@ -18,9 +18,14 @@ function alertSearchModalFailure() {
   Notiflix.Notify.failure('Search result about this film is not successful');
 }
 
+function alertEndOfCollection() {
+  Notiflix.Notify.failure("We've reached the end of your collection!");
+}
+
 export {
   alertSuccess,
   alertEmptyForm,
   alertSearchFailure,
   alertSearchModalFailure,
+  alertEndOfCollection,
 };

@@ -6,8 +6,13 @@ import { onSpinner } from './spinner';
 
 const galleryList = document.querySelector('.list');
 const IS_FROM_FETCH = true;
+const ADD_TO_COLLECTION = false;
 
-function renderCollection(collection, IS_FROM_FETCH = true) {
+function renderCollection(
+  collection,
+  IS_FROM_FETCH = true,
+  ADD_TO_COLLECTION = false
+) {
   collection = IS_FROM_FETCH ? collection.results : collection;
   const films = collection
     .map(film => {
@@ -27,7 +32,11 @@ function renderCollection(collection, IS_FROM_FETCH = true) {
     .join('');
 
   if (films) {
+    // if (ADD_TO_COLLECTION) {
+    //   galleryList.insertAdjacentHTML(films, 'beforeend');
+    // } else {
     galleryList.innerHTML = films;
+    // }
     putEventListenersToAll(); //навішуємо слухачів для відкриття модалки фільму
   } else {
     galleryList.innerHTML = '';
@@ -64,4 +73,4 @@ function getDataCard(element) {
   return { poster_path, id, title, genres, year };
 }
 
-export { IS_FROM_FETCH, renderCollection };
+export { IS_FROM_FETCH, renderCollection, ADD_TO_COLLECTION };

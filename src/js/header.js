@@ -4,6 +4,8 @@ import { createPagination, hidePagination, showPagination } from './pagination';
 import { QUE, WATCHED, getFromLocalstorage } from './localAPI';
 import { alertSuccess, alertEmptyForm, alertSearchFailure } from './alerts';
 import { onSpinner } from './spinner';
+import { observer } from './intersectionObserver';
+import { saveActiveBtn, deleteActivePage } from './page-save';
 
 const refs = {
   headerhForm: document.querySelector('.header-form'),
@@ -85,6 +87,8 @@ function onHomeClick() {
     createPagination(collection.total_pages, '');
   });
   onSpinner('stop');
+  deleteActivePage();
+  saveActiveBtn();
 }
 
 function onLibraryClick() {
@@ -99,6 +103,8 @@ function onLibraryClick() {
   refs.myLibraryBtn.classList.add('active-btn');
   //за умовчанням вікриваємо сторінку черги до перегляду
   onQueueClick();
+  deleteActivePage();
+  saveActiveBtn();
 }
 
 function onWatchedClick() {

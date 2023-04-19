@@ -133,7 +133,6 @@ export function renderMovieModal(movieData, objectCard) {
 `;
   }
 
-  //   refModalFilmContainer.addEventListener('load', spinnerHandler);
   putEventListenersToOverlay(refModalFilmContainer); //навішуємо слухачів для закриття модалки фільму
   localAPIInteraction(objectCard); // навішування обробників на кнопки додавання до локального сховища
 
