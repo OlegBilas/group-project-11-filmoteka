@@ -1,5 +1,5 @@
 .container {
-  background-color: #ffffff;
+  background-color: $color-white;
   margin-right: auto;
   margin-left: auto;
 }
@@ -51,7 +51,7 @@
 
 .film-name {
   line-height: 1.33;
-  color: black;
+  color: $color-black;
   text-transform: uppercase;
   max-width: 95%;
   white-space: nowrap;
@@ -63,12 +63,12 @@
   flex-wrap: nowrap;
 
   line-height: 1.17;
-  color: #b92f2c;
+  color: $color-red;
 }
 
 .film-ganre {
   padding-right: 4px;
-  border-right: 2px solid #b92f2c;
+  border-right: 2px solid $color-red;
   max-width: 320px;
   white-space: nowrap;
   overflow: hidden;
@@ -79,7 +79,7 @@
   padding-left: 4px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: $tablet) {
   .list {
     display: flex;
     flex-wrap: wrap;
@@ -117,7 +117,7 @@
   }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: $desktop) {
   .list {
     justify-content: flex-start;
   }
