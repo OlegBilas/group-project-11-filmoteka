@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 
 // .is-hidden {
 //     opacity: 0;
@@ -20,6 +21,23 @@
     transition-duration: 500ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1;
+=======
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  border-color: $color-black;
+  visibility: hidden;
+  z-index: -1;
+  opacity: 0;
+  transition-property: opacity visibility;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+>>>>>>> Stashed changes
 
     &.active {
         visibility: visible;
@@ -27,6 +45,7 @@
         opacity: 1;
     }
 
+<<<<<<< Updated upstream
     .modal {
         background-color: #fff;
         color: #000;
@@ -38,6 +57,19 @@
         height: auto;
         font-weight: 500;
         padding: 0;
+=======
+  .modal {
+    background-color: $color-white;
+    color: #000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    height: auto;
+    font-weight: 500;
+    padding: 0;
+>>>>>>> Stashed changes
 
         @media screen and (max-width: 1279px) {
             max-height: 90%;
@@ -74,6 +106,7 @@
         flex-direction: column;
     }
 
+<<<<<<< Updated upstream
     @media screen and (min-width: 768px) {
         display: flex;
         padding: 40px 72px 40px 36px;
@@ -97,20 +130,72 @@
     // text-transform: uppercase;
     font-size: 20px;
     line-height: 23px;
+=======
+    @media screen and (min-width: $tablet) {
+      width: 704px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      width: 806px;
+      height: auto;
+      max-height: 558px;
+    }
+  }
+}
+
+.form {
+  padding: 40px 20px 48px 20px;
+
+  @media screen and (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media screen and (min-width: $tablet) {
+    display: flex;
+    padding: 40px 72px 40px 36px;
+    width: 704px;
+    height: auto;
+  }
+
+  @media screen and (min-width: $desktop) {
+    display: flex;
+    padding: 40px 12px;
+    width: 806px;
+    max-height: 558px;
+  }
+}
+
+.form__title {
+  color: $color-black;
+  // text-transform: uppercase;
+  font-size: 20px;
+  line-height: 23px;
+>>>>>>> Stashed changes
 
     @media screen and (max-width: 767px) {
         margin-top: 30px;
     }
 
+<<<<<<< Updated upstream
     @media screen and (min-width: 1280px) {
         font-size: 30px;
         line-height: 35px;
     }
+=======
+  @media screen and (min-width: $desktop) {
+    font-size: 30px;
+    line-height: 35px;
+  }
+>>>>>>> Stashed changes
 }
 
 .form__info {
     max-height: 850px;
 
+<<<<<<< Updated upstream
     @media screen and (min-width: 768px) {
         margin-left: 68px;
         max-height: 470px;
@@ -122,6 +207,17 @@
         max-height: 478px;
     }
 
+=======
+  @media screen and (min-width: $tablet) {
+    margin-left: 68px;
+    max-height: 470px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    margin-left: 18px;
+    max-height: 478px;
+  }
+>>>>>>> Stashed changes
 }
 
 // INFO
@@ -145,6 +241,7 @@
     width: 110px;
     color: #8C8C8C;
 
+<<<<<<< Updated upstream
     @media screen and (min-width: 768px) {
         width: 140px;
     }
@@ -154,6 +251,17 @@
     display: flex;
     align-items: center;
     color: #000000;
+=======
+  @media screen and (min-width: $tablet) {
+    width: 140px;
+  }
+}
+
+.form__info-details {
+  display: flex;
+  align-items: center;
+  color: $color-black;
+>>>>>>> Stashed changes
 }
 
 .details-title {
@@ -161,6 +269,7 @@
 }
 
 .film__rating {
+<<<<<<< Updated upstream
     color: #fff;
     background-color: #B92F2C;
     border-radius: 5px;
@@ -168,6 +277,14 @@
     padding-right: 10px;
     margin-right: 5px;
     
+=======
+  color: $color-white;
+  background-color: $color-red;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: 5px;
+>>>>>>> Stashed changes
 }
 .film__voice {
     margin-left: 5px;
@@ -181,6 +298,7 @@
 
 // ABOUT
 .form__about-details {
+<<<<<<< Updated upstream
     width: 240px;
     max-height: 200px;
     // overflow: auto;
@@ -197,6 +315,23 @@
     @media screen and (min-width: 1280px) {
         width: 391px;
     }
+=======
+  width: 240px;
+  max-height: 200px;
+  // overflow: auto;
+  font-size: 12px;
+  line-height: 20px;
+  color: $color-black;
+
+
+  @media screen and (min-width: $tablet) {
+    width: 264px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 391px;
+  }
+>>>>>>> Stashed changes
 }
 
 .form__about-name {
@@ -212,6 +347,7 @@
 
 // BUTTON
 .form__btn-list {
+<<<<<<< Updated upstream
     display: flex;
     // padding-top: 20px;
     margin-top: 20px;
@@ -224,6 +360,14 @@
         padding-top: 5px;
     }
 
+=======
+  display: flex;
+  margin-top: 20px;
+
+  @media screen and (min-width: $tablet) and (max-width: 1279px) {
+    padding-top: 5px;
+  }
+>>>>>>> Stashed changes
 }
 
 
@@ -240,11 +384,18 @@ display: flex;
             margin-left: 70px;
         }
 
+<<<<<<< Updated upstream
+=======
+  @media screen and (min-width: $tablet) and (max-width: 1279px) {
+    margin-left: 70px;
+  }
+>>>>>>> Stashed changes
 }
 
 
 .form-add-btn,
 .form-button {
+<<<<<<< Updated upstream
     text-align: center;
     width: 110px;
     height: 42px;
@@ -267,6 +418,32 @@ display: flex;
     @media screen and (min-width: 1280px) {
         width: 165px;
     }
+=======
+  text-align: center;
+  width: 110px;
+  height: 42px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+  font-style: normal;
+  cursor: pointer;
+  color: $color-red;
+  background-color: $color-white;
+  border: 1px solid $color-black;
+  border-radius: 100px;
+  transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media screen and (min-width: $tablet) {
+    width: 125px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 165px;
+  }
+>>>>>>> Stashed changes
 }
 
 .form-button:not(:last-child) {
@@ -274,10 +451,17 @@ display: flex;
 }
 
 .is-added {
+<<<<<<< Updated upstream
         // cursor: pointer;
         color: #B92F2C;
         background-color: #FFFFFF;
         box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+=======
+  color: $color-red;
+  background-color: $color-white;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+>>>>>>> Stashed changes
 }
 
 
@@ -288,6 +472,7 @@ display: flex;
 .form-queue-btn:hover,
 .form-queue-btn:focus,
 .remove-queue-btn {
+<<<<<<< Updated upstream
     color: #fff;
     // cursor: pointer;
     background-color: #B92F2C;
@@ -337,6 +522,31 @@ display: flex;
     box-sizing: border-box;
     cursor: pointer;
     transition: 0.5s;
+=======
+  color: $color-white;
+  background-color: $color-red;
+  border: 2px solid $color-red;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+// BUTTON-CLOSE
+.btn-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  font-weight: 900;
+  background: $color-white;
+  border: 0px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: 0.5s;
+>>>>>>> Stashed changes
 }
 
 .form__close-icon {
@@ -347,6 +557,7 @@ display: flex;
 
 .btn-close:hover,
 .btn-close:focus {
+<<<<<<< Updated upstream
     border: 1px solid #B92F2C;
     fill: #B92F2C;
     // background: #B92F2C;
@@ -354,6 +565,13 @@ display: flex;
     border-radius: 50%;
     // border: 0px solid rgba(0, 0, 0, 0.1);
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+=======
+  border: 1px solid $color-red;
+  fill: $color-red;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+>>>>>>> Stashed changes
 }
 
 // IMG
@@ -366,6 +584,7 @@ display: flex;
     margin-right: auto;
     display: block;
 
+<<<<<<< Updated upstream
     @media screen and (min-width: 768px) {
         width: 264px;
         height: 374px;
@@ -376,6 +595,17 @@ display: flex;
         height: 478px;
         width: 100%;
     }
+=======
+  @media screen and (min-width: $tablet) {
+    width: 264px;
+    height: 374px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    height: 478px;
+    width: 100%;
+  }
+>>>>>>> Stashed changes
 }
 
 body.modal.active {
@@ -386,6 +616,7 @@ body.modal.active {
 
 
 .form__film-card {
+<<<<<<< Updated upstream
         // height: 0;
         position: relative;
         padding-bottom: 56.25%;
@@ -401,13 +632,19 @@ body.modal.active {
     @media screen and (min-width: 768px) and (max-width: 1280px) {
         height: 0;
     }
-}
+=======
+  position: relative;
+  padding-bottom: 56.25%;
 
-// .video {
-//     height: 50%;
-//     position: center;
-//     padding-bottom: 56.25%;
-// }
+  @media screen and (min-width: 240px) and (max-width: 767px) {
+    height: 334px;
+  }
+
+  @media screen and (min-width: $tablet) and (max-width: $desktop) {
+    height: 0;
+  }
+>>>>>>> Stashed changes
+}
 
 .form__film-card iframe {
     position: absolute;
