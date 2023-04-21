@@ -6,14 +6,11 @@ import { onSpinner } from './spinner';
 
 const galleryList = document.querySelector('.list');
 const IS_FROM_FETCH = true;
-const ADD_TO_COLLECTION = false;
 
-function renderCollection(
-  collection,
-  IS_FROM_FETCH = true,
-  ADD_TO_COLLECTION = false
-) {
+function renderCollection(collection, IS_FROM_FETCH = true) {
   collection = IS_FROM_FETCH ? collection.results : collection;
+  console.log(collection);
+
   const films = collection
     .map(film => {
       return `<li class="film-card">
@@ -32,10 +29,10 @@ function renderCollection(
     .join('');
 
   if (films) {
-    // if (ADD_TO_COLLECTION) {
-    //   galleryList.insertAdjacentHTML(films, 'beforeend');
-    // } else {
+    // if (IS_FROM_FETCH) {
     galleryList.innerHTML = films;
+    // } else {
+    //   galleryList.insertAdjacentHTML(films, 'beforeend');
     // }
     putEventListenersToAll(); //навішуємо слухачів для відкриття модалки фільму
   } else {
@@ -58,7 +55,7 @@ galleryList.addEventListener('click', async event => {
   } catch (error) {
     refModalFilmContainer.style.display = 'none';
     alertSearchModalFailure();
-    // console.log(error);
+    console.log(error);
   }
   onSpinner('stop');
 });

@@ -4,7 +4,7 @@ import { createPagination, hidePagination, showPagination } from './pagination';
 import { QUE, WATCHED, getFromLocalstorage } from './localAPI';
 import { alertSuccess, alertEmptyForm, alertSearchFailure } from './alerts';
 import { onSpinner } from './spinner';
-import { observer } from './intersectionObserver';
+import { startObservering, stopObservering } from './intersectionObserver';
 import { saveActiveBtn, deleteActivePage } from './page-save';
 
 const refs = {
@@ -79,13 +79,16 @@ function onHomeClick() {
   refs.nav.classList.remove('js-home-inactive');
   refs.logo.classList.remove('js-library-active');
   refs.homeBtn.classList.add('active-btn');
-  refs.myLibraryBtn.classList.remove('active-btn');
+  if (refs.myLibraryBtn.classList.contains('active-btn')) {
+    stopObservering();
+    refs.myLibraryBtn.classList.remove('active-btn');
+  }
 
-  showPagination();
   fetchFilms('').then(collection => {
     renderCollection(collection);
     createPagination(collection.total_pages, '');
   });
+  showPagination();
   onSpinner('stop');
   deleteActivePage();
   saveActiveBtn();
@@ -108,24 +111,27 @@ function onLibraryClick() {
 }
 
 function onWatchedClick() {
-  onSpinner('start');
-  const collection = getFromLocalstorage(WATCHED);
-  renderCollection(collection, !IS_FROM_FETCH);
+  // onSpinner('start');
   hidePagination();
+  startObservering(WATCHED);
   refs.watchedBtn.classList.add('active-library-btn');
   refs.queueBtn.classList.remove('active-library-btn');
-  onSpinner('stop');
+  // onSpinner('stop');
 }
 
 function onQueueClick() {
-  onSpinner('start');
-  const collection = getFromLocalstorage(QUE);
-  renderCollection(collection, !IS_FROM_FETCH);
+  // onSpinner('start');
   hidePagination();
+  startObservering(QUE);
   refs.watchedBtn.classList.remove('active-library-btn');
   refs.queueBtn.classList.add('active-library-btn');
-  onSpinner('stop');
+  // onSpinner('stop');
 }
+
+// function renderLibraryByPage(QUE_WATCHED) {
+//   hidePagination();
+//   startObservering(QUE_WATCHED);
+// }
 
 function pageReset() {
   const page = 1;
