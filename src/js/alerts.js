@@ -1,17 +1,24 @@
 import Notiflix from 'notiflix';
 
+const options = {
+  position: 'center-top',
+  distance: '100px',
+  width: '240px',
+  borderRadius: '50px',
+  fontSize: '16px',
+}
+
 function alertSuccess() {
-  Notiflix.Notify.success('We`ve found what you were looking for!');
+  Notiflix.Notify.success('We`ve found what you were looking for!', options);
 }
 
 function alertEmptyForm() {
-  Notiflix.Notify.failure('Enter your search query, please.');
+  Notiflix.Notify.failure('Enter your search query, please.', options);
 }
 
 function alertSearchFailure() {
   Notiflix.Notify.failure(
-    'Search result not successful. Enter the correct movie name.'
-  );
+    'Search result not successful. Enter the correct movie name.', options);
 }
 
 function alertSearchModalFailure() {
