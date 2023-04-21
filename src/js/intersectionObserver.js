@@ -1,12 +1,9 @@
 import { onSpinner } from './spinner';
 import { alertEndOfCollection } from './alerts';
-import {
-  IS_FROM_FETCH,
-  ADD_TO_COLLECTION,
-  renderCollection,
-} from './renderGallery';
+import { IS_FROM_FETCH, renderCollection } from './renderGallery';
 import { hidePagination, showPagination } from './pagination';
 import { QUE, WATCHED, getFromLocalstorage } from './localAPI';
+import { CARDS_PER_PAGE } from '../index';
 
 let library;
 let observer;
@@ -28,6 +25,7 @@ function intersectingHandler(entries) {
 
 function stopObservering() {
   observer.disconnect();
+  console.log('observer.disconnect');
 }
 
 // QUE_WATCHED - вхідний параметр конструктора класу, дорівнює одному із значень:
@@ -41,9 +39,8 @@ class RenderLibrary {
   renderingCollectionByPage() {
     onSpinner('start');
     const collection = getFromLocalstorage(this.currentLibrary);
-    console.log(collection);
     const collectionPart = this.getCollectionBox(collection);
-    console.log(collectionPart);
+    // console.log(collectionPart);
 
     if (collectionPart.length === 0) {
       stopObservering();
@@ -52,12 +49,12 @@ class RenderLibrary {
     }
 
     renderCollection(collectionPart, !IS_FROM_FETCH);
-    this.index += 20;
+    this.index += CARDS_PER_PAGE;
     onSpinner('stop');
   }
 
   getCollectionBox(collection) {
-    return collection.slice(this.index, this.index + 20);
+    return collection.slice(this.index, this.index + CARDS_PER_PAGE);
   }
 }
 

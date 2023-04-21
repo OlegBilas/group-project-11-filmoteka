@@ -7,6 +7,7 @@ import { createPagination } from './js/pagination';
 import { slideShow } from './js/slider';
 import { saveActiveBtn, loadActivePage } from './js/page-save';
 
+const CARDS_PER_PAGE = 20;
 loadActivePage();
 
 // getGallery('', IS_FROM_FETCH);
@@ -19,3 +20,5 @@ loadActivePage();
 //     onSpinner('stop');
 //   });
 // }
+
+export { CARDS_PER_PAGE };

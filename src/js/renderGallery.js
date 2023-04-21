@@ -3,6 +3,7 @@ import { renderMovieModal } from './modalFilm';
 import { putEventListenersToAll } from './modal';
 import { alertSearchModalFailure } from './alerts';
 import { onSpinner } from './spinner';
+import { CARDS_PER_PAGE } from '../index';
 
 const galleryList = document.querySelector('.list');
 const IS_FROM_FETCH = true;
@@ -29,11 +30,11 @@ function renderCollection(collection, IS_FROM_FETCH = true) {
     .join('');
 
   if (films) {
-    // if (IS_FROM_FETCH) {
-    galleryList.innerHTML = films;
-    // } else {
-    //   galleryList.insertAdjacentHTML(films, 'beforeend');
-    // }
+    if (IS_FROM_FETCH || galleryList.children.length <= CARDS_PER_PAGE) {
+      galleryList.innerHTML = films;
+    } else {
+      galleryList.insertAdjacentHTML(films, 'beforeend');
+    }
     putEventListenersToAll(); //навішуємо слухачів для відкриття модалки фільму
   } else {
     galleryList.innerHTML = '';
