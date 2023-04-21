@@ -57,7 +57,7 @@ class RenderLibrary {
   }
 
   getCollectionBox(collection) {
-    return collection.slice(this.index, 20);
+    return collection.slice(this.index, this.index + 20);
   }
 }
 
