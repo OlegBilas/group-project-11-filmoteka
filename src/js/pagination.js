@@ -1,5 +1,4 @@
 import Pagination from 'tui-pagination';
-import '~node_modules/tui-pagination/dist/tui-pagination.css';
 import { fetchFilms } from './fetchAPI';
 import { renderCollection } from './renderGallery';
 
@@ -10,7 +9,7 @@ function createPagination(totalItems, filmName) {
   instance = new Pagination(container, {
     totalItems,
     itemsPerPage: 20,
-    visiblePages: 10,
+    visiblePages: 5,
     page: 1,
     centerAlign: true,
     firstItemClassName: 'tui-first-child',
@@ -21,7 +20,7 @@ function createPagination(totalItems, filmName) {
       currentPage:
         '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
       moveButton:
-        '<a href="#" class="tui-page-btn tui-{{type}}">' +
+        '<a href="#" class="tui-page-btn tui-{{type}}" aria-label="next-page">' +
         '<span class="tui-ico-{{type}}">{{type}}</span>' +
         '</a>',
       disabledMoveButton:
@@ -34,11 +33,32 @@ function createPagination(totalItems, filmName) {
         '</a>',
     },
   });
-
+    document.querySelector(".tui-ico-last").textContent = Math.ceil(totalItems / 20);
+    document.querySelector(".tui-first").classList.add("hidden")
+    document.querySelector(".tui-last-child").classList.add("mobile-hidden");
+    
   instance.on('afterMove', event => {
     const currentPage = event.page;
     [...galleryList.children].forEach(element => element.remove());
-    fetchAndRender(filmName, currentPage);
+      fetchAndRender(filmName, currentPage);
+      
+      currentPage <= 3 ? document.querySelector(".tui-first").classList.add("hidden") : document.querySelector(".tui-first").classList.remove("hidden");
+      document.querySelector(".tui-ico-first").textContent = "1";
+      document.querySelector(".tui-ico-last").textContent = Math.ceil(totalItems / 20);
+      totalItems / 20 - currentPage >= 2 ? document.querySelector(".tui-last").classList.remove("hidden") : document.querySelector(".tui-last").classList.add("hidden");
+      if (window.innerWidth <= 320) {
+              document.querySelector(".tui-last-child").classList.add("mobile-hidden");
+              document.querySelector(".tui-first-child").classList.add("mobile-hidden");
+          if (currentPage <= 3) {
+              document.querySelector(".tui-last-child").classList.add("mobile-hidden");
+              document.querySelector(".tui-first-child").classList.remove("mobile-hidden");
+              document.querySelector(".tui-first-child").nextSibling.classList.remove("mobile-hidden");
+          }
+          if (totalItems / 20 - currentPage <= 1) {
+              document.querySelector(".tui-last-child").classList.remove("mobile-hidden");
+              document.querySelector(".tui-first-child").classList.add("mobile-hidden");
+          }
+      }
   });
 }
 async function fetchAndRender(name, page) {

@@ -3,7 +3,10 @@ export class YoutubeVideo {
     const iframe = document.createElement('iframe');
 
     iframe.setAttribute('allowfullscreen', '');
-    // iframe.setAttribute('allow', 'autoplay');
+    iframe.setAttribute(
+      'allow',
+      'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+    );
     iframe.setAttribute('src', this.generateURL(id));
     iframe.classList.add('video');
 

@@ -1,21 +1,15 @@
-//Приклад підключення бібліотеки
-//import Notiflix from 'notiflix';
-
-//Приклад підключення файлу скрипта
-//import { fetchFilms, fetchFilmsById } from './js/fetchAPI';
-
-import { putEventListenersToAll } from './js/modal';
 import { fetchFilms, fetchFilmsById } from './js/fetchAPI';
 
 import { onSearch } from './js/header';
-import { spinnerHandler } from './js/spinner';
-import { renderCollection } from './js/renderGallery';
-import { renderMovieModal } from './js/modalFilm';
+import { onSpinner } from './js/spinner';
+import { IS_FROM_FETCH, renderCollection } from './js/renderGallery';
 import { createPagination } from './js/pagination';
+import { slideShow } from './js/slider';
+import { saveActiveBtn, loadActivePage } from './js/page-save';
 
-putEventListenersToAll(); // навішування обробників на кнопки відкриття модалок
+const CARDS_PER_PAGE = 20; // кількість карток в галереї на сторінку
 
-fetchFilms('').then(collection => {
-  renderCollection(collection);
-  createPagination(collection.total_pages, '');
-});
+//Завантаження сторінки, що була активна у попередній сесії
+loadActivePage();
+
+export { CARDS_PER_PAGE };

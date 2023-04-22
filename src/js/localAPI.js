@@ -3,12 +3,12 @@ const WATCHED = 'watched';
 
 function getFromLocalstorage(key) {
   const dataJSON = localStorage.getItem(`${key}`);
-  return JSON.parse(dataJSON);
+  const localData = JSON.parse(dataJSON);
+  return localData ? localData : [];
 }
 
 function addToLocalstorage(key, dataAboutFilm) {
-  const localData = getFromLocalstorage(key);
-  const arrayByKey = localData ? localData : [];
+  const arrayByKey = getFromLocalstorage(key);
 
   if (arrayByKey.some(obj => obj.id === dataAboutFilm.id)) {
     return;
@@ -19,8 +19,7 @@ function addToLocalstorage(key, dataAboutFilm) {
 }
 
 function removeFromLocalstorage(key, dataAboutFilm) {
-  const localData = getFromLocalstorage(key);
-  const arrayByKey = localData ? localData : [];
+  const arrayByKey = getFromLocalstorage(key);
 
   const index = arrayByKey.findIndex(obj => obj.id === dataAboutFilm.id);
   if (index === -1) {

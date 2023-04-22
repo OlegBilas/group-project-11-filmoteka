@@ -2,20 +2,21 @@ import { fetchFilmsById } from './fetchAPI';
 import { renderMovieModal } from './modalFilm';
 import { putEventListenersToAll } from './modal';
 import { alertSearchModalFailure } from './alerts';
-import { spinnerHandler } from './spinner';
+import { onSpinner } from './spinner';
+import { CARDS_PER_PAGE } from '../index';
 
 const galleryList = document.querySelector('.list');
 const IS_FROM_FETCH = true;
 
-const refModalFilmContainer = document.querySelector('.backdrop-container');
-
 function renderCollection(collection, IS_FROM_FETCH = true) {
   collection = IS_FROM_FETCH ? collection.results : collection;
+  // console.log(collection);
+
   const films = collection
     .map(film => {
       return `<li class="film-card">
       <a class="film-link js-open-modal" href="${film.poster_path}" data-id="${film.id}" data-modal="2">
-        <img src="${film.poster_path}" alt="${film.title}" loading="lazy" />
+        <div class="film-img"><img src="${film.poster_path}" alt="${film.title}" loading="lazy" /></div>
         <div class="film-meta">
           <span class="film-name">${film.title}</span>
           <div class="film-info">
@@ -29,24 +30,31 @@ function renderCollection(collection, IS_FROM_FETCH = true) {
     .join('');
 
   if (films) {
-    galleryList.innerHTML = films;
-
-    //Коли розмітка модалки фільму пуста, щаповнимо її дамини першого фільму
-    if (!refModalFilmContainer.innerHTML) {
-      renderFirstMovieModal(collection[0].id, collection[0]);
+    if (
+      IS_FROM_FETCH ||
+      (!IS_FROM_FETCH && galleryList.children.length === 0)
+    ) {
+      galleryList.innerHTML = films;
+      // console.log('repainted!');
+    } else if (!IS_FROM_FETCH && galleryList.children.length > 1) {
+      // console.log(galleryList.children.length);
+      galleryList.insertAdjacentHTML('beforeend', films);
+      // console.log('Added cards');
     }
     putEventListenersToAll(); //навішуємо слухачів для відкриття модалки фільму
   } else {
     galleryList.innerHTML = '';
   }
 }
-galleryList.addEventListener('click', spinnerHandler);
+
 galleryList.addEventListener('click', async event => {
   event.preventDefault();
   const filmCard = event.target.closest('.film-link');
   if (!filmCard) return;
   const filmId = filmCard.dataset.id;
   const objectCard = getDataCard(filmCard);
+  const refModalFilmContainer = document.querySelector('.backdrop-container');
+  onSpinner('start');
   try {
     const movieDetails = await fetchFilmsById(filmId);
     renderMovieModal(movieDetails, objectCard);
@@ -54,7 +62,9 @@ galleryList.addEventListener('click', async event => {
   } catch (error) {
     refModalFilmContainer.style.display = 'none';
     alertSearchModalFailure();
+    // console.log(error);
   }
+  onSpinner('stop');
 });
 
 function getDataCard(element) {
@@ -67,15 +77,4 @@ function getDataCard(element) {
   return { poster_path, id, title, genres, year };
 }
 
-async function renderFirstMovieModal(filmId, objectCard) {
-  try {
-    const movieDetails = await fetchFilmsById(filmId);
-    renderMovieModal(movieDetails, objectCard, (isFirstCard = true));
-    // refModalFilmContainer.style.display = 'block';
-  } catch (error) {
-    // refModalFilmContainer.style.display = 'none';
-    alertSearchModalFailure();
-  }
-}
-
-export { IS_FROM_FETCH, renderCollection };
+export { IS_FROM_FETCH, renderCollection, ADD_TO_COLLECTION };

@@ -17,9 +17,15 @@ const fetchFilms = async (filmName, page = 1) => {
     const response = await axios.get(request);
     const takeInfo = object => {
       const result = object
-        .filter(
-          ({ poster_path }) => !(poster_path === null) && poster_path.length > 0
-        )
+        .filter(object => {
+          return (
+            object.poster_path &&
+            object.genre_ids &&
+            object.id &&
+            object.release_date &&
+            (object.title || object.original_title)
+          );
+        })
         .map(
           ({
             genre_ids,
@@ -38,7 +44,7 @@ const fetchFilms = async (filmName, page = 1) => {
                 ? title
                 : original_title
                 ? original_title
-                : 'no data',
+                : 'The title is shown above',
             };
           }
         );
