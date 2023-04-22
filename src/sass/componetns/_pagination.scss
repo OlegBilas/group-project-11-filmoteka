@@ -61,7 +61,7 @@
   display: none;
 }
 
-@media screen and (max-width: $mobile) {
+@media screen and (max-width: $tablet) {
     .tui-first, .tui-last {
         display: none;
     }
