@@ -54,10 +54,11 @@ async function onSearch(e) {
       onSpinner('stop');
       alertSuccess();
       renderCollection(res);
-      if (res.total_pages > 1) {
-        createPagination(res.total_pages, query);
-      } else {
+      createPagination(res.total_pages, query);
+      //Якщо у результаті запиту лише одна сторінка
+      if (res.total_pages === 1) {
         startObservering();
+        hidePagination();
       }
     }
 
