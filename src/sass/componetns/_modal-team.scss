@@ -23,7 +23,7 @@
 
   &:hover,
   &:focus {
-    background-color: #b92f2c;
+    background-color: $color-red;
   }
 }
 
@@ -70,8 +70,10 @@
   font-size: 30px;
   line-height: 1.16;
   letter-spacing: 0.03em;
+  display: flex;
+  justify-content: center;
   text-align: center;
-  color: #b92f2c;
+  color: $color-red;
 }
 
 .modal-title__team {
@@ -155,7 +157,7 @@
   text-align: center;
   margin-bottom: 5px;
   border: none;
-  color: #000000;
+  color: $color-black;
 }
 
 .team__profession {
@@ -165,7 +167,7 @@
   letter-spacing: 0.03em;
   text-align: center;
   margin-bottom: 5px;
-  color: #b92f2c;
+  color: $color-red;
 }
 
 .team__social {
@@ -174,11 +176,11 @@
 }
 
 .git-icon {
-  background: opacity($color: #000000);
+  background: opacity($color: $color-black);
   border-radius: 50%;
 }
 
 .git-icon:hover,
 .git-icon:focus {
-  background-color: #b92f2c;
+  background-color: $color-red;
 }
