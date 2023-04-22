@@ -25,9 +25,9 @@ function intersectingHandler(entries) {
 
 function stopObservering() {
   observer.disconnect();
-  console.log('observer.disconnect');
 }
 
+// RenderLibrary - клас для безкінезного рендерингу картом бібліотеки
 // QUE_WATCHED - вхідний параметр конструктора класу, дорівнює одному із значень:
 // QUE чи WATCHED із скрипта localAPI.js (вказує на відповідну активну кнопку хедера)
 class RenderLibrary {
@@ -39,12 +39,14 @@ class RenderLibrary {
   renderingCollectionByPage() {
     onSpinner('start');
     const collection = getFromLocalstorage(this.currentLibrary);
+    // console.log(`all collection ${collection.length}`);
     const collectionPart = this.getCollectionBox(collection);
     // console.log(collectionPart);
 
-    if (collectionPart.length === 0) {
+    if (collectionPart.length === 0 && observer) {
       stopObservering();
       onSpinner('stop');
+      // console.log('enf of collection');
       return alertEndOfCollection();
     }
 

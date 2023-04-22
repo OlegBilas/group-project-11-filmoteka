@@ -54,7 +54,11 @@ async function onSearch(e) {
       onSpinner('stop');
       alertSuccess();
       renderCollection(res);
-      createPagination(res.total_pages, query);
+      if (res.total_pages > 1) {
+        createPagination(res.total_pages, query);
+      } else {
+        startObservering();
+      }
     }
 
     // Якщо результатів пошуку не знайдено, показуємо алерт і порожню галерею
@@ -101,7 +105,6 @@ function onLibraryClick() {
   refs.nav.classList.add('js-home-inactive');
   refs.logo.classList.add('js-library-active');
   hidePagination();
-  refs.galleryList.innerHTML = '';
   refs.homeBtn.classList.remove('active-btn');
   refs.myLibraryBtn.classList.add('active-btn');
   //за умовчанням вікриваємо сторінку черги до перегляду
@@ -111,27 +114,20 @@ function onLibraryClick() {
 }
 
 function onWatchedClick() {
-  // onSpinner('start');
+  refs.galleryList.innerHTML = '';
   hidePagination();
   startObservering(WATCHED);
   refs.watchedBtn.classList.add('active-library-btn');
   refs.queueBtn.classList.remove('active-library-btn');
-  // onSpinner('stop');
 }
 
 function onQueueClick() {
-  // onSpinner('start');
+  refs.galleryList.innerHTML = '';
   hidePagination();
   startObservering(QUE);
   refs.watchedBtn.classList.remove('active-library-btn');
   refs.queueBtn.classList.add('active-library-btn');
-  // onSpinner('stop');
 }
-
-// function renderLibraryByPage(QUE_WATCHED) {
-//   hidePagination();
-//   startObservering(QUE_WATCHED);
-// }
 
 function pageReset() {
   const page = 1;

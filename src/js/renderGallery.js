@@ -10,7 +10,7 @@ const IS_FROM_FETCH = true;
 
 function renderCollection(collection, IS_FROM_FETCH = true) {
   collection = IS_FROM_FETCH ? collection.results : collection;
-  console.log(collection);
+  // console.log(collection);
 
   const films = collection
     .map(film => {
@@ -30,10 +30,16 @@ function renderCollection(collection, IS_FROM_FETCH = true) {
     .join('');
 
   if (films) {
-    if (IS_FROM_FETCH || galleryList.children.length <= CARDS_PER_PAGE) {
+    if (
+      IS_FROM_FETCH ||
+      (!IS_FROM_FETCH && galleryList.children.length === 0)
+    ) {
       galleryList.innerHTML = films;
-    } else {
-      galleryList.insertAdjacentHTML(films, 'beforeend');
+      // console.log('repainted!');
+    } else if (!IS_FROM_FETCH && galleryList.children.length > 1) {
+      // console.log(galleryList.children.length);
+      galleryList.insertAdjacentHTML('beforeend', films);
+      // console.log('Added cards');
     }
     putEventListenersToAll(); //навішуємо слухачів для відкриття модалки фільму
   } else {
@@ -56,7 +62,7 @@ galleryList.addEventListener('click', async event => {
   } catch (error) {
     refModalFilmContainer.style.display = 'none';
     alertSearchModalFailure();
-    console.log(error);
+    // console.log(error);
   }
   onSpinner('stop');
 });
