@@ -326,7 +326,7 @@
 
 .header {
   position: relative;
-
+  overflow: hidden;
   width: 280px;
   height: 460px;
 
@@ -542,18 +542,24 @@
 
 .logo-wrapper {
   position: absolute;
-  left: 45px;
+  display: block;
+  left: 53px;
   bottom: 20px;
-
   transition: 0.5s;
 
   @media screen and (min-width: $tablet) {
     left: 16px;
     bottom: 16px;
+    width: 672px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   @media screen and (min-width: $desktop) {
     left: 32px;
     bottom: 32px;
+    width: 1152px;
+    align-items: baseline;
   }
 }
 
@@ -572,6 +578,9 @@
 }
 
 .logo {
+  @media screen and(max-width:767px) {
+    margin-bottom: 10px;
+  }
   width: auto;
   display: flex;
   align-items: center;
@@ -684,7 +693,7 @@
   display: block;
   width: 1216px;
 
-  z-index: -100;
+  z-index: -1000;
   transition: 3000ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -705,7 +714,7 @@
   // transform: translateX(-100%);
   opacity: 1;
   transition: 3000ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
+}
 
 .active-library-btn {
   color: $color-white;
