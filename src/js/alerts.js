@@ -16,6 +16,10 @@ function alertEmptyForm() {
   Notiflix.Notify.failure('Enter your search query, please.', options);
 }
 
+function alertEmptyFields() {
+  Notiflix.Notify.failure(`Please fill all fields`, options);
+}
+
 function alertSearchFailure() {
   Notiflix.Notify.failure(
     'Search result is not successful. Enter the correct movie name.',
@@ -40,4 +44,5 @@ export {
   alertSearchFailure,
   alertSearchModalFailure,
   alertEndOfCollection,
+  alertEmptyFields,
 };

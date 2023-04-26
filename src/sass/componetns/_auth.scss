@@ -1,0 +1,270 @@
+.form-container.active {
+  transform: translateY(100%);
+  transition: 0.5s;
+  z-index: 1000;
+  padding: 40px;
+}
+.form-container {
+  display: block;
+  position: absolute;
+  top: -100%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  background: #272125;
+  transition: 0.3s;
+}
+.logForm {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.email.input {
+  margin-bottom: 15px;
+}
+
+.logForm_title {
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0px;
+  margin-bottom: 15px;
+}
+
+.input {
+  padding: 16px;
+  border-radius: 7px;
+  border: 0px;
+  background: rgba(255, 255, 255, 0.2);
+  display: block;
+  width: 300px;
+  font-size: 18px;
+  height: 54px;
+  &::placeholder {
+    color: $color-white;
+  }
+  &:focus {
+    color: #b92f2c;
+    outline: none;
+    background-color: $color-white;
+  }
+  &:focus::placeholder {
+    color: #b92f2c;
+  }
+}
+.auth-btn {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 113px;
+  font-weight: 600;
+  color: $color-black;
+  background-color: $color-white;
+  margin-left: auto;
+  margin-right: auto;
+
+  transition: 0.5s;
+
+  &:hover,
+  &:focus {
+    color: $color-white;
+    background-color: $color-black;
+    box-shadow: 0 0 15px $color-black;
+    // letter-spacing: 0.15em;
+  }
+  @media screen and (min-width: $tablet) {
+    width: 109px;
+    // margin-left: 0px;
+    // margin-right: 0px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 117px;
+  }
+}
+
+.svg-enter {
+  width: 20px;
+  height: 20px;
+  transition: 0.5s;
+}
+
+.auth-btn:hover .svg-enter {
+  fill: white;
+  transition: 0.5s;
+}
+
+.auth-box {
+  @media screen and (max-width: 767px) {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+.auth-btn {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 113px;
+  font-weight: 600;
+  color: $color-black;
+  background-color: $color-white;
+  margin-left: auto;
+  margin-right: auto;
+
+  transition: 0.5s;
+
+  &:hover,
+  &:focus {
+    color: $color-white;
+    background-color: $color-black;
+    box-shadow: 0 0 15px $color-black;
+    // letter-spacing: 0.15em;
+  }
+  @media screen and (min-width: $tablet) {
+    width: 109px;
+    // margin-left: 0px;
+    // margin-right: 0px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 117px;
+  }
+}
+
+.svg-enter {
+  width: 20px;
+  height: 20px;
+  transition: 0.5s;
+}
+
+.auth-btn:hover .svg-enter {
+  fill: white;
+  transition: 0.5s;
+}
+
+.auth-box {
+  @media screen and (max-width: 767px) {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+.logForm_buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  height: 50px;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.exit-button {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 5%;
+  right: 2%;
+  width: 35px;
+  height: 35px;
+  color: $color-black;
+  background-color: $color-white;
+  border-radius: 11px;
+  border: none;
+  transition: 0.5s;
+  &:hover,
+  &:focus {
+    fill: $color-white;
+    background-color: $color-black;
+    box-shadow: 0 0 15px $color-black;
+  }
+}
+
+.exit-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.log-in,
+.sign-up {
+  width: 100px;
+  transition: 0.5s;
+  &:hover,
+  &:focus {
+    color: $color-white;
+    background-color: $color-black;
+    box-shadow: 0 0 15px $color-black;
+    transition: 0.5s;
+    background-color: #b92f2c;
+  }
+}
+
+.log-in.active,
+.sign-up.active {
+  background-color: #b92f2c;
+  color: $color-white;
+  transition: 0.5s;
+}
+
+.choose {
+  display: block;
+  color: $color-white;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.lock {
+  // position: absolute;
+  top: 167px;
+  left: 725px;
+  width: 20px;
+  height: 20px;
+}
+
+.lock-button {
+  position: absolute;
+  top: 167px;
+  left: 725px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  width: 20px;
+  height: auto;
+}
+
+.log-user {
+  position: absolute;
+  top: 100px;
+  left: 722px;
+  width: 20px;
+  height: 20px;
+}
+
+.done {
+  position: absolute;
+  width: 40px;
+  height: 110px;
+  top: 90px;
+  left: 770px;
+  transition: 0.5s;
+  &:hover,
+  :focus {
+    background-color: #b92f2c;
+    transition: 0.5s;
+  }
+  &:hover,
+  :focus.checkmark {
+    fill: $color-white;
+  }
+}
+
+.checkmark {
+  width: 25px;
+  height: 40px;
+}
