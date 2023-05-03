@@ -6,6 +6,7 @@ import { alertSuccess, alertEmptyForm, alertSearchFailure } from './alerts';
 import { onSpinner } from './spinner';
 import { startObservering, stopObservering } from './intersectionObserver';
 import { saveActiveBtn, deleteActivePage } from './page-save';
+import { closeMobileMenu } from './auth';
 
 const refs = {
   headerhForm: document.querySelector('.header-form'),
@@ -84,6 +85,7 @@ function onHomeClick() {
   refs.nav.classList.remove('js-home-inactive');
   refs.logo.classList.remove('js-library-active');
   refs.homeBtn.classList.add('active-btn');
+  closeMobileMenu();
   if (refs.myLibraryBtn.classList.contains('active-btn')) {
     stopObservering();
     refs.myLibraryBtn.classList.remove('active-btn');
@@ -108,6 +110,7 @@ function onLibraryClick() {
   hidePagination();
   refs.homeBtn.classList.remove('active-btn');
   refs.myLibraryBtn.classList.add('active-btn');
+  closeMobileMenu();
   //за умовчанням вікриваємо сторінку черги до перегляду
   onQueueClick();
   deleteActivePage();
