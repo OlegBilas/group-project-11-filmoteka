@@ -3,6 +3,13 @@
   transition: 0.5s;
   z-index: 1000;
   padding: 40px;
+
+  @media screen and(max-width:1279px) {
+    padding: 0px;
+  }
+  @media screen and (max-width: 767px) {
+    border-radius: 0px;
+  }
 }
 .form-container {
   display: block;
@@ -19,6 +26,9 @@
   transition: 0.3s;
 }
 .logForm {
+  @media screen and (max-width: 767px) {
+    margin-top: 30px;
+  }
   display: inline-block;
   margin-left: auto;
   margin-right: auto;
@@ -28,12 +38,23 @@
 }
 
 .logForm_title {
+  @media screen and(max-width:1279px) {
+    font-size: 20px;
+    margin-top: 13px;
+  }
+
   color: rgba(255, 255, 255, 0.8);
   margin: 0px;
   margin-bottom: 15px;
 }
 
 .input {
+  @media screen and(max-width:1279px) {
+    width: 270px;
+    height: 45px;
+    margin-right: auto;
+    margin-left: auto;
+  }
   padding: 16px;
   border-radius: 7px;
   border: 0px;
@@ -99,6 +120,9 @@
   @media screen and (max-width: 767px) {
     display: inline-block;
     width: 100%;
+    position: absolute;
+    top: -105px;
+    left: 70px;
   }
 }
 
@@ -151,6 +175,12 @@
 }
 
 .logForm_buttons {
+  @media screen and (max-width: 1279px) {
+    width: 270px;
+  }
+  @media screen and (max-width: 1279px) {
+    width: 270px;
+  }
   display: flex;
   justify-content: space-between;
   width: 300px;
@@ -161,6 +191,15 @@
 }
 
 .exit-button {
+  @media screen and(max-width:1279px) {
+    width: 30px;
+    height: 30px;
+  }
+  @media screen and (max-width: 767px) {
+    position: absolute;
+    top: 5px;
+  }
+
   position: absolute;
   display: flex;
   align-items: center;
@@ -189,6 +228,10 @@
 
 .log-in,
 .sign-up {
+  @media screen and(max-width:1279px) {
+    width: 95px;
+    height: 35px;
+  }
   width: 100px;
   transition: 0.5s;
   &:hover,
@@ -216,7 +259,10 @@
 }
 
 .lock {
-  // position: absolute;
+  @media screen and(max-width:1279px) {
+    width: 17px;
+    height: 17px;
+  }
   top: 167px;
   left: 725px;
   width: 20px;
@@ -224,6 +270,12 @@
 }
 
 .lock-button {
+  @media screen and(max-width:1279px) {
+    width: 20px;
+    height: 20px;
+    top: 122px;
+    left: 462px;
+  }
   position: absolute;
   top: 167px;
   left: 725px;
@@ -239,6 +291,12 @@
 }
 
 .log-user {
+  @media screen and(max-width:1279px) {
+    width: 17px;
+    height: 17px;
+    top: 64px;
+    left: 461px;
+  }
   position: absolute;
   top: 100px;
   left: 722px;
@@ -247,11 +305,24 @@
 }
 
 .done {
+  @media screen and(min-width:767px) {
+    width: 35px;
+    height: 105px;
+    top: 53px;
+    left: 500px;
+  }
+  @media screen and(min-width:1279px) {
+    width: 40px;
+    height: 110px;
+    top: 90px;
+    left: 770px;
+  }
   position: absolute;
-  width: 40px;
-  height: 110px;
-  top: 90px;
-  left: 770px;
+  top: 270px;
+  left: 100px;
+  width: 90px;
+  height: 35px;
+
   transition: 0.5s;
   &:hover,
   :focus {
@@ -265,6 +336,69 @@
 }
 
 .checkmark {
+  @media screen and(max-width:1279px) {
+    width: 23px;
+    height: 35px;
+  }
   width: 25px;
   height: 40px;
+}
+
+.mobile_menu {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 100%;
+  top: 0px;
+  transition: 0.5s;
+}
+
+.mobile_menu.active {
+  @media screen and(min-width:767px) {
+    display: none;
+  }
+  background: #272125;
+  right: 0%;
+  transition: 0.5s;
+  z-index: 105;
+}
+
+.exit-menu_btn {
+  position: absolute;
+  top: 10px;
+  left: 235px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  color: $color-black;
+  background-color: $color-white;
+  border-radius: 11px;
+  border: none;
+  transition: 0.5s;
+  &:hover,
+  &:focus {
+    fill: $color-white;
+    background-color: $color-black;
+    box-shadow: 0 0 15px $color-black;
+  }
+}
+
+.mobile_menu_btn {
+  @media screen and(min-width:767px) {
+    display: none;
+  }
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+}
+
+.menu-icon {
+  width: 30px;
+  height: 30px;
 }

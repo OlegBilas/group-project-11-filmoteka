@@ -12,6 +12,10 @@ const refs = {
   authForm: document.querySelector(`.logForm`),
   lockBtn: document.querySelector(`.lock-button`),
   lockSvg: document.querySelector(`.lock-svg`),
+  mobileMenuOpenBtn: document.querySelector(`.mobile_menu_btn`),
+  mobileMenuCloseBtn: document.querySelector(`.exit-menu_btn`),
+  mobileMenuContainer: document.querySelector(`.mobile_menu`),
+  navBox: document.querySelector(`.header-nav`),
 };
 
 // Відкриття вікна авторизації
@@ -79,6 +83,20 @@ const btnPassOnClick = () => {
   }
 };
 //
+
+// Відкриття мобільного меню
+const openMobileMenu = () => {
+  refs.mobileMenuContainer.classList.add(`active`);
+  refs.navBox.classList.add(`active`);
+};
+
+// Закриття мобільного меню
+const closeMobileMenu = () => {
+  refs.mobileMenuContainer.classList.remove(`active`);
+  refs.navBox.classList.remove(`active`);
+};
+refs.mobileMenuCloseBtn.addEventListener(`click`, closeMobileMenu);
+refs.mobileMenuOpenBtn.addEventListener(`click`, openMobileMenu);
 refs.authForm.addEventListener(`submit`, submitValidForm);
 refs.authBtn.addEventListener(`click`, openAuthWindow);
 refs.closeBtn.addEventListener(`click`, closeAiuthWindow);
@@ -87,3 +105,4 @@ refs.logInBtn.addEventListener(`click`, logInWindow);
 refs.lockBtn.addEventListener(`click`, btnPassOnClick);
 
 export { openAuthWindow };
+export { closeMobileMenu };
