@@ -1,4 +1,6 @@
 import { alertEmptyFields } from './alerts';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { app } from "./firebaseConfig";
 
 const refs = {
   authBtn: document.querySelector(`.auth-btn`),
@@ -17,6 +19,37 @@ const refs = {
   mobileMenuContainer: document.querySelector(`.mobile_menu`),
   navBox: document.querySelector(`.header-nav`),
 };
+
+const auth = getAuth(app);
+
+// Функція реєстрації нового користувача
+const userSignUp = async () => {
+  const signUpEmail = refs.inputEmail.value;
+  const signUpPassword = refs.inputPassword.value;
+  createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log(user);
+      alert('Account created')
+        .catch(error => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode + errorMessage);
+      })
+  })
+}
+
+// Функція авторизації зареєстрованого користувача
+const userLogIn = async () => {
+  const signInEmail = refs.inputEmail.value;
+  const signInPassword = refs.inputPassword.value;
+  signInWithEmailAndPassword(auth, signInEmail, signInPassword)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log(userCredential.user)
+      alert(`You signed in as ${user.email}`)
+  })
+}
 
 // Відкриття вікна авторизації
 const openAuthWindow = () => {
@@ -39,8 +72,8 @@ const signUpWindow = () => {
   refs.formTitle.textContent = `Sign up`;
   refs.inputEmail.placeholder = `Create an Email`;
   refs.inputPassword.placeholder = `Create Password`;
-  //   refs.signUpBtn.addEventListener(`click`, signFunction); // signFunction - це функція ,яка відправлятиме дані
-  //   refs.logInBtn.removeEventListener(`click`, logFunction);
+    refs.signUpBtn.addEventListener(`click`, userSignUp);
+    refs.logInBtn.removeEventListener(`click`, userLogIn);
 };
 
 // Перемикач логінізації
@@ -50,8 +83,8 @@ const logInWindow = () => {
   refs.formTitle.textContent = `Log in`;
   refs.inputEmail.placeholder = `email`;
   refs.inputPassword.placeholder = `password`;
-  //   refs.logInBtn.addEventListener(`click`, logFunction); // logFunction - це функція ,яка відправлятиме дані
-  //   refs.signUpBtn.removeEventListener(`click`, lognFunction);
+    refs.logInBtn.addEventListener(`click`, userLogIn);
+    refs.signUpBtn.removeEventListener(`click`, userSignUp);
 };
 
 // Перевірка на пусті форми
