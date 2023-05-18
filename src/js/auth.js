@@ -100,6 +100,7 @@ const openAuthWindow = () => {
     logInWindow();
   }
   if (refs.authBtn.textContent.includes('Log out')) {
+    // Розлогінізація
     signOut(auth)
       .then(() => {
         toggleLogInButton();
