@@ -68,12 +68,12 @@
   }
 
   &:focus {
-    color: #b92f2c;
+    color: $color-red;
     outline: none;
     background-color: $color-white;
   }
   &:focus::placeholder {
-    color: #b92f2c;
+    color: $color-red;
   }
 }
 // .auth-btn {
@@ -233,13 +233,13 @@
     background-color: $color-black;
     box-shadow: 0 0 15px $color-black;
     transition: 0.5s;
-    background-color: #b92f2c;
+    background-color: $color-red;
   }
 }
 
 .log-in.active,
 .sign-up.active {
-  background-color: #b92f2c;
+  background-color: $color-red;
   color: $color-white;
   transition: 0.5s;
 }
@@ -319,7 +319,7 @@
   transition: 0.5s;
   &:hover,
   :focus {
-    background-color: #b92f2c;
+    background-color: $color-red;
     transition: 0.5s;
   }
   &:hover,
