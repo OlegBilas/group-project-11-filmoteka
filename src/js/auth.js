@@ -1,6 +1,18 @@
-import { alertEmptyFields } from './alerts';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { app } from "./firebaseConfig";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from 'firebase/auth';
+import { app } from './firebaseConfig';
+
+import {
+  alertEmptyFields,
+  alertSuccessRegistrationLogIn,
+  alertFailedRegistrationLogIn,
+  alertInfo
+} from './alerts';
 
 const refs = {
   authBtn: document.querySelector(`.auth-btn`),
@@ -26,43 +38,80 @@ const auth = getAuth(app);
 const userSignUp = async () => {
   const signUpEmail = refs.inputEmail.value;
   const signUpPassword = refs.inputPassword.value;
-  createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
-    .then((userCredential) => {
+  await createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
+    .then(userCredential => {
       const user = userCredential.user;
-      console.log(user);
-      alert('Account created')
-        .catch(error => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode + errorMessage);
-      })
-  })
-}
+      // console.log(user);
+      alertSuccessRegistrationLogIn(
+        `Your account has been created with login ${signUpEmail}`
+      );
+      refs.authForm.reset();
+      toggleLogInButton();
+      closeAuthWindow();
+    })
+    .catch(error => {
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
+      // console.log(errorCode + errorMessage);
+      alertFailedRegistrationLogIn(
+        `Your registration has been failed. Reason: ${error.message}`
+      );
+    });
+};
 
 // Функція авторизації зареєстрованого користувача
 const userLogIn = async () => {
   const signInEmail = refs.inputEmail.value;
   const signInPassword = refs.inputPassword.value;
-  signInWithEmailAndPassword(auth, signInEmail, signInPassword)
-    .then((userCredential) => {
+  await signInWithEmailAndPassword(auth, signInEmail, signInPassword)
+    .then(userCredential => {
       const user = userCredential.user;
-      console.log(userCredential.user)
-      alert(`You signed in as ${user.email}`)
-  })
-}
+      // console.log(user);
+      alertSuccessRegistrationLogIn(
+        `You have been logged in with e-mail ${user.email}`
+      );
+      refs.authForm.reset();
+      toggleLogInButton();
+      closeAuthWindow();
+    })
+    .catch(error => {
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
+      // console.log(errorCode + errorMessage);
+      alertFailedRegistrationLogIn(
+        `Your log in has been failed. Reason: ${error.message}`
+      );
+    });
+};
+
+const toggleLogInButton = () => {
+  const inner = refs.authBtn.innerHTML;
+  if (refs.authBtn.textContent.includes('Log in')) {
+    refs.authBtn.innerHTML = inner.replace('Log in', 'Log out');
+  } else {
+    refs.authBtn.innerHTML = inner.replace('Log out', 'Log in');
+  }
+};
 
 // Відкриття вікна авторизації
 const openAuthWindow = () => {
-  if (refs.authBox.classList.contains(` active`)) {
-    return;
+  if (refs.authBtn.textContent.includes('Log in')) {
+    refs.authBox.classList.add('active');
+    logInWindow();
   }
-  refs.authBox.classList.add(`active`);
-  logInWindow();
+  if (refs.authBtn.textContent.includes('Log out')) {
+    signOut(auth)
+      .then(() => {
+        toggleLogInButton();
+        alertInfo('You have been logged out');
+      })
+      .catch(error => console.log(error));
+  }
 };
+
 // Закриття вікна авторизації
-const closeAiuthWindow = () => {
-  refs.authBox.classList.remove(`active`);
-  return;
+const closeAuthWindow = () => {
+  refs.authBox.classList.remove('active');
 };
 
 // Перемикач реєстрації
@@ -70,10 +119,8 @@ const signUpWindow = () => {
   refs.logInBtn.classList.remove(`active`);
   refs.signUpBtn.classList.add(`active`);
   refs.formTitle.textContent = `Sign up`;
-  refs.inputEmail.placeholder = `Create an Email`;
-  refs.inputPassword.placeholder = `Create Password`;
-    refs.signUpBtn.addEventListener(`click`, userSignUp);
-    refs.logInBtn.removeEventListener(`click`, userLogIn);
+  refs.inputEmail.placeholder = `Enter your e-mail`;
+  refs.inputPassword.placeholder = `Enter password`;
 };
 
 // Перемикач логінізації
@@ -81,14 +128,12 @@ const logInWindow = () => {
   refs.logInBtn.classList.add(`active`);
   refs.signUpBtn.classList.remove(`active`);
   refs.formTitle.textContent = `Log in`;
-  refs.inputEmail.placeholder = `email`;
+  refs.inputEmail.placeholder = `e-mail`;
   refs.inputPassword.placeholder = `password`;
-    refs.logInBtn.addEventListener(`click`, userLogIn);
-    refs.signUpBtn.removeEventListener(`click`, userSignUp);
 };
 
 // Перевірка на пусті форми
-const submitValidForm = event => {
+const submitValidateForm = event => {
   event.preventDefault();
   const {
     elements: { email, password },
@@ -96,17 +141,17 @@ const submitValidForm = event => {
   if (email.value === '' && password.value === '') {
     return alertEmptyFields();
   }
-  const userData = {
-    email: email.value,
-    password: password.value,
-  };
-  console.log(userData);
-  refs.authForm.reset();
+
+  if (refs.signUpBtn.classList.contains('active')) {
+    userSignUp();
+  } else {
+    userLogIn();
+  }
 };
 
-//Зробити видимим\невидимим пароль по кліку на кнопку
+//Зробити видимим/невидимим пароль по кліку на кнопку
 const btnPassOnClick = () => {
-  console.log(refs.lockSvg.href);
+  // console.log(refs.lockSvg.href);
   if (refs.inputPassword.type === `password`) {
     refs.inputPassword.type = `text`;
     refs.lockSvg.href.baseVal = '/icons.adfc4680.svg#icon-unlocked';
@@ -130,12 +175,11 @@ const closeMobileMenu = () => {
 };
 refs.mobileMenuCloseBtn.addEventListener(`click`, closeMobileMenu);
 refs.mobileMenuOpenBtn.addEventListener(`click`, openMobileMenu);
-refs.authForm.addEventListener(`submit`, submitValidForm);
+refs.authForm.addEventListener(`submit`, submitValidateForm);
 refs.authBtn.addEventListener(`click`, openAuthWindow);
-refs.closeBtn.addEventListener(`click`, closeAiuthWindow);
+refs.closeBtn.addEventListener(`click`, closeAuthWindow);
 refs.signUpBtn.addEventListener(`click`, signUpWindow);
 refs.logInBtn.addEventListener(`click`, logInWindow);
 refs.lockBtn.addEventListener(`click`, btnPassOnClick);
 
-export { openAuthWindow };
-export { closeMobileMenu };
+export { openAuthWindow, closeMobileMenu };

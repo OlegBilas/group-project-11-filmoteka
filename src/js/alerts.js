@@ -1,10 +1,10 @@
 import Notiflix from 'notiflix';
 
 const options = {
-  position: 'center-top',
-  distance: '100px',
-  width: '240px',
-  borderRadius: '50px',
+  // position: 'right-top',
+  // distance: '100px',
+  // width: '240px',
+  // borderRadius: '50px',
   fontSize: '16px',
 };
 
@@ -38,6 +38,18 @@ function alertEndOfCollection() {
   Notiflix.Notify.failure("We've reached the end of your collection!", options);
 }
 
+function alertSuccessRegistrationLogIn(message) {
+  Notiflix.Notify.success(message, options);
+}
+
+function alertFailedRegistrationLogIn(message) {
+  Notiflix.Notify.failure(message, options);
+}
+
+function alertInfo(message) {
+  Notiflix.Notify.info(message, options);
+}
+
 export {
   alertSuccess,
   alertEmptyForm,
@@ -45,4 +57,7 @@ export {
   alertSearchModalFailure,
   alertEndOfCollection,
   alertEmptyFields,
+  alertSuccessRegistrationLogIn,
+  alertFailedRegistrationLogIn,
+  alertInfo
 };
