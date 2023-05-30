@@ -140,9 +140,9 @@ export function renderMovieModal(movieData, objectCard) {
   }
 
   putEventListenersToOverlay(refModalFilmContainer); //навішуємо слухачів для закриття модалки фільму
-  localAPIInteraction(objectCard); // навішування обробників на кнопки додавання до/видалення з локального сховища
+  APIInteraction(objectCard); // навішування обробників на кнопки додавання до/видалення з локального сховища
 
-  async function localAPIInteraction(objectCard) {
+  async function APIInteraction(objectCard) {
     const watchedBtn = document.getElementById('watched');
     const queueBtn = document.getElementById('queue');
 

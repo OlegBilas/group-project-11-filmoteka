@@ -42,7 +42,7 @@ async function removeFromFirebase(dataAboutFilm) {
 async function getFromFirebase(QUE_WATCHED) {
   console.log(userId);
   const films = await getDocs(collection(db, `${userId}_${QUE_WATCHED}`));
-  if (films.docs.legth > 0) {
+  if (films.docs.length > 0) {
     return films.docs;
   } else {
     console.error("Error of getting film's data");

@@ -52,15 +52,12 @@ class RenderLibrary {
       collection = getFromLocalstorage(this.currentLibrary);
     }
 
-    // console.log(`all collection ${collection.length}`);
     const collectionPart = this.getCollectionBox(collection);
-    // console.log(collectionPart);
 
     if (collectionPart.length === 0 && observer) {
       stopObservering();
       onSpinner('stop');
-      // console.log('enf of collection');
-      return alertEndOfCollection();
+      // return alertEndOfCollection();
     }
 
     renderCollection(collectionPart, !IS_FROM_FETCH);
