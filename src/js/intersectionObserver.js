@@ -47,7 +47,7 @@ class RenderLibrary {
     let collection;
     if (localStorage.getItem('fireBaseAuthorized')) {
       collection = await getFromFirebase(this.currentLibrary);
-      console.log(collection);
+      // console.log(collection);
     } else {
       collection = getFromLocalstorage(this.currentLibrary);
     }
