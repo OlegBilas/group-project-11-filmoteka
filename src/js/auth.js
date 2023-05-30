@@ -11,7 +11,7 @@ import {
   alertEmptyFields,
   alertSuccessRegistrationLogIn,
   alertFailedRegistrationLogIn,
-  alertInfo
+  alertInfo,
 } from './alerts';
 
 const refs = {
@@ -42,6 +42,8 @@ const userSignUp = async () => {
     .then(userCredential => {
       const user = userCredential.user;
       // console.log(user);
+      // console.log(auth);
+      localStorage.setItem('fireBaseAuthorized', auth.currentUser.uid);
       alertSuccessRegistrationLogIn(
         `Your account has been created with login ${signUpEmail}`
       );
@@ -66,7 +68,8 @@ const userLogIn = async () => {
   await signInWithEmailAndPassword(auth, signInEmail, signInPassword)
     .then(userCredential => {
       const user = userCredential.user;
-      // console.log(user);
+      console.log(user);
+      localStorage.setItem('fireBaseAuthorized', auth.currentUser.uid);
       alertSuccessRegistrationLogIn(
         `You have been logged in with e-mail ${user.email}`
       );
@@ -99,10 +102,11 @@ const openAuthWindow = () => {
     refs.authBox.classList.add('active');
     logInWindow();
   }
-  if (refs.authBtn.textContent.includes('Log out')) {
+  if (localStorage.getItem('fireBaseAuthorized')) {
     // Розлогінізація
     signOut(auth)
       .then(() => {
+        localStorage.removeItem('fireBaseAuthorized');
         toggleLogInButton();
         alertInfo('You have been logged out');
       })
@@ -183,4 +187,4 @@ refs.signUpBtn.addEventListener(`click`, signUpWindow);
 refs.logInBtn.addEventListener(`click`, logInWindow);
 refs.lockBtn.addEventListener(`click`, btnPassOnClick);
 
-export { openAuthWindow, closeMobileMenu };
+export { openAuthWindow, closeMobileMenu, auth, toggleLogInButton };

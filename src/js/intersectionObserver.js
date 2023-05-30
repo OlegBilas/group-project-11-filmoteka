@@ -4,6 +4,12 @@ import { IS_FROM_FETCH, renderCollection } from './renderGallery';
 import { hidePagination, showPagination } from './pagination';
 import { QUE, WATCHED, getFromLocalstorage } from './localAPI';
 import { CARDS_PER_PAGE } from '../index';
+import { auth } from './auth';
+import {
+  getFromFirebase,
+  addToFirebase,
+  removeFromFirebase,
+} from './firebaseStoradge';
 
 let library;
 let observer;
@@ -27,7 +33,7 @@ function stopObservering() {
   observer.disconnect();
 }
 
-// RenderLibrary - клас для безкінезного рендерингу картом бібліотеки
+// RenderLibrary - клас для нескінченного рендерингу карток бібліотеки
 // QUE_WATCHED - вхідний параметр конструктора класу, дорівнює одному із значень:
 // QUE чи WATCHED із скрипта localAPI.js (вказує на відповідну активну кнопку хедера)
 class RenderLibrary {
@@ -36,9 +42,16 @@ class RenderLibrary {
     this.currentLibrary = QUE_WATCHED;
   }
 
-  renderingCollectionByPage() {
+  async renderingCollectionByPage() {
     onSpinner('start');
-    const collection = getFromLocalstorage(this.currentLibrary);
+    let collection;
+    if (localStorage.getItem('fireBaseAuthorized')) {
+      collection = await getFromFirebase(this.currentLibrary);
+      console.log(collection);
+    } else {
+      collection = getFromLocalstorage(this.currentLibrary);
+    }
+
     // console.log(`all collection ${collection.length}`);
     const collectionPart = this.getCollectionBox(collection);
     // console.log(collectionPart);

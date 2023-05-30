@@ -8,6 +8,12 @@ import {
   getFromLocalstorage,
 } from './localAPI';
 import { onWatchedClick, onQueueClick } from '../js/header';
+import { auth } from './auth';
+import {
+  getFromFirebase,
+  addToFirebase,
+  removeFromFirebase,
+} from './firebaseStoradge';
 
 const refModalFilmContainer = document.querySelector('.backdrop-container');
 
@@ -134,9 +140,9 @@ export function renderMovieModal(movieData, objectCard) {
   }
 
   putEventListenersToOverlay(refModalFilmContainer); //навішуємо слухачів для закриття модалки фільму
-  localAPIInteraction(objectCard); // навішування обробників на кнопки додавання до локального сховища
+  localAPIInteraction(objectCard); // навішування обробників на кнопки додавання до/видалення з локального сховища
 
-  function localAPIInteraction(objectCard) {
+  async function localAPIInteraction(objectCard) {
     const watchedBtn = document.getElementById('watched');
     const queueBtn = document.getElementById('queue');
 
@@ -146,14 +152,23 @@ export function renderMovieModal(movieData, objectCard) {
     const headerQueueBtn = document.querySelector('.queue-btn');
 
     // Перевірка на наявність фільму у локальному сховищі
-    let filmsArray = getFromLocalstorage(WATCHED);
+    let filmsArray;
+    if (localStorage.getItem('fireBaseAuthorized')) {
+      filmsArray = await getFromFirebase(WATCHED);
+    } else {
+      filmsArray = getFromLocalstorage(WATCHED);
+    }
     if (filmsArray.find(film => film.id === objectCard.id)) {
       watchedBtn.textContent = 'Remove from watched';
     } else {
       watchedBtn.textContent = 'Add to watched';
     }
 
-    filmsArray = getFromLocalstorage(QUE);
+    if (localStorage.getItem('fireBaseAuthorized')) {
+      filmsArray = await getFromFirebase(QUE);
+    } else {
+      filmsArray = getFromLocalstorage(QUE);
+    }
     if (filmsArray.find(film => film.id === objectCard.id)) {
       queueBtn.textContent = 'Remove from queue';
     } else {
@@ -162,10 +177,19 @@ export function renderMovieModal(movieData, objectCard) {
 
     watchedBtn.addEventListener('click', () => {
       if (watchedBtn.textContent === 'Remove from watched') {
-        removeFromLocalstorage(WATCHED, objectCard);
+        if (localStorage.getItem('fireBaseAuthorized')) {
+          removeFromFirebase(WATCHED, objectCard);
+        } else {
+          removeFromLocalstorage(WATCHED, objectCard);
+        }
         toggleText(watchedBtn);
       } else if (watchedBtn.textContent === 'Add to watched') {
-        addToLocalstorage(WATCHED, objectCard);
+        if (localStorage.getItem('fireBaseAuthorized')) {
+          addToFirebase(WATCHED, objectCard);
+        } else {
+          addToLocalstorage(WATCHED, objectCard);
+        }
+
         toggleText(watchedBtn);
       }
       if (activeNaviganionBtn.classList.contains('my-library-btn')) {
@@ -176,10 +200,19 @@ export function renderMovieModal(movieData, objectCard) {
     });
     queueBtn.addEventListener('click', () => {
       if (queueBtn.textContent === 'Remove from queue') {
-        removeFromLocalstorage(QUE, objectCard);
+        if (localStorage.getItem('fireBaseAuthorized')) {
+          removeFromFirebase(QUE, objectCard);
+        } else {
+          removeFromLocalstorage(QUE, objectCard);
+        }
+
         toggleText(queueBtn);
       } else if (queueBtn.textContent === 'Add to queue') {
-        addToLocalstorage(QUE, objectCard);
+        if (localStorage.getItem('fireBaseAuthorized')) {
+          addToFirebase(QUE, objectCard);
+        } else {
+          addToLocalstorage(QUE, objectCard);
+        }
         toggleText(queueBtn);
       }
       if (activeNaviganionBtn.classList.contains('my-library-btn')) {
