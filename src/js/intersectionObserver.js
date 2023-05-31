@@ -15,10 +15,10 @@ let library;
 let observer;
 
 function startObservering(QUE_WATCHED) {
-  library = new RenderLibrary(QUE_WATCHED);
-  library.renderingCollectionByPage();
   observer = new IntersectionObserver(intersectingHandler);
   observer.observe(document.querySelector('footer'));
+  library = new RenderLibrary(QUE_WATCHED);
+  library.renderingCollectionByPage();
 }
 
 function intersectingHandler(entries) {
@@ -54,10 +54,13 @@ class RenderLibrary {
 
     const collectionPart = this.getCollectionBox(collection);
 
-    if (collectionPart.length === 0 && observer) {
+    if (
+      (collectionPart.length === 0) &&
+      observer
+    ) {
       stopObservering();
       onSpinner('stop');
-      // return alertEndOfCollection();
+      return alertEndOfCollection();
     }
 
     renderCollection(collectionPart, !IS_FROM_FETCH);

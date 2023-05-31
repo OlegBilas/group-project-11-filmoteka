@@ -12,17 +12,15 @@ import {
 
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
-console.log(db);
 const userId = localStorage.getItem('fireBaseAuthorized');
 
 async function addToFirebase(QUE_WATCHED, dataAboutFilm) {
   try {
     if (!dataAboutFilm) return;
-    const docRef = await setDoc(
+    await setDoc(
       doc(db, `${userId}_${QUE_WATCHED}`, dataAboutFilm.id),
       dataAboutFilm
     );
-    console.log('Document written with ID: ', docRef.id);
   } catch (e) {
     console.error('Error adding document: ', e);
   }
@@ -41,14 +39,13 @@ async function removeFromFirebase(QUE_WATCHED, dataAboutFilm) {
 }
 
 async function getFromFirebase(QUE_WATCHED) {
-  // console.log(userId);
+  
   const films = await getDocs(collection(db, `${userId}_${QUE_WATCHED}`));
+  const filmsArray = [];
   if (films.docs.length > 0) {
-    return films.map(doc => doc.data());
-  } else {
-    console.error("Error of getting film's data");
-    return [];
+    films.forEach(doc => filmsArray.push(doc.data()));
   }
+    return filmsArray;
 }
 
 export { getFromFirebase, addToFirebase, removeFromFirebase };
