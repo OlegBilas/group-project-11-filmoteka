@@ -68,7 +68,7 @@ const userLogIn = async () => {
   await signInWithEmailAndPassword(auth, signInEmail, signInPassword)
     .then(userCredential => {
       const user = userCredential.user;
-      console.log(user);
+      // console.log(user);
       localStorage.setItem('fireBaseAuthorized', auth.currentUser.uid);
       alertSuccessRegistrationLogIn(
         `You have been logged in with e-mail ${user.email}`
@@ -186,5 +186,19 @@ refs.closeBtn.addEventListener(`click`, closeAuthWindow);
 refs.signUpBtn.addEventListener(`click`, signUpWindow);
 refs.logInBtn.addEventListener(`click`, logInWindow);
 refs.lockBtn.addEventListener(`click`, btnPassOnClick);
+
+onAuthStateChanged(auth, () => {
+  const watchedBtn = document.querySelector('.watched-btn');
+  const queueBtn = document.querySelector('.queue-btn');
+  const galleryList = document.querySelector('.list');
+  const myLibraryBtn = document.querySelector('.my-library-btn');
+  if (
+    myLibraryBtn.classList.contains('active-btn') &&
+    (watchedBtn.classList.contains('active-library-btn') ||
+      queueBtn.classList.contains('active-library-btn'))
+  ) {
+    galleryList.innerHTML = '';
+  }
+});
 
 export { openAuthWindow, closeMobileMenu, auth, toggleLogInButton };

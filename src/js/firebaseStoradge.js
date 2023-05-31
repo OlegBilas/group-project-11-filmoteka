@@ -8,7 +8,7 @@ import {
   deleteDoc,
   getDocs,
   collection,
-} from 'firebase/firestore';
+} from 'firebase/firestore/lite';
 
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
@@ -32,7 +32,7 @@ async function removeFromFirebase(QUE_WATCHED, dataAboutFilm) {
     const docRef = await deleteDoc(
       doc(db, `${userId}_${QUE_WATCHED}`, dataAboutFilm.id)
     );
-    console.log('Document deleted with ID: ', dataAboutFilm.id);
+
   } catch (e) {
     console.error('Error deleting document: ', e);
   }

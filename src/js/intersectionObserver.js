@@ -15,10 +15,10 @@ let library;
 let observer;
 
 function startObservering(QUE_WATCHED) {
-  observer = new IntersectionObserver(intersectingHandler);
-  observer.observe(document.querySelector('footer'));
   library = new RenderLibrary(QUE_WATCHED);
   library.renderingCollectionByPage();
+  observer = new IntersectionObserver(intersectingHandler);
+  observer.observe(document.querySelector('footer'));
 }
 
 function intersectingHandler(entries) {
@@ -55,17 +55,15 @@ class RenderLibrary {
     const collectionPart = this.getCollectionBox(collection);
 
     if (
-      (collectionPart.length === 0) &&
-      observer
-    ) {
+      (collectionPart.length ===0) && observer) {
       stopObservering();
       onSpinner('stop');
       return alertEndOfCollection();
     }
 
     renderCollection(collectionPart, !IS_FROM_FETCH);
-    this.index += CARDS_PER_PAGE;
     onSpinner('stop');
+    this.index += CARDS_PER_PAGE;
   }
 
   getCollectionBox(collection) {
