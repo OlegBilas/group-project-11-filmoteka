@@ -12,9 +12,9 @@ import {
 
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
-const userId = localStorage.getItem('fireBaseAuthorized');
 
 async function addToFirebase(QUE_WATCHED, dataAboutFilm) {
+  const userId = localStorage.getItem('fireBaseAuthorized');
   try {
     if (!dataAboutFilm) return;
     await setDoc(
@@ -27,6 +27,7 @@ async function addToFirebase(QUE_WATCHED, dataAboutFilm) {
 }
 
 async function removeFromFirebase(QUE_WATCHED, dataAboutFilm) {
+  const userId = localStorage.getItem('fireBaseAuthorized');
   try {
     if (!dataAboutFilm) return;
     const docRef = await deleteDoc(
@@ -39,7 +40,7 @@ async function removeFromFirebase(QUE_WATCHED, dataAboutFilm) {
 }
 
 async function getFromFirebase(QUE_WATCHED) {
-  
+  const userId = localStorage.getItem('fireBaseAuthorized');
   const films = await getDocs(collection(db, `${userId}_${QUE_WATCHED}`));
   const filmsArray = [];
   if (films.docs.length > 0) {
