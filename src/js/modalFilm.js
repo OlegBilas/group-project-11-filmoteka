@@ -8,7 +8,6 @@ import {
   getFromLocalstorage,
 } from './localAPI';
 import { onWatchedClick, onQueueClick } from '../js/header';
-import { auth } from './auth';
 import {
   getFromFirebase,
   addToFirebase,

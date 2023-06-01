@@ -19,7 +19,7 @@ const deleteActivePage = () => {
   localStorage.removeItem(`button`);
 };
 
-// Функція має відпрацьовувати при завантаженні сторінки,якщо гість вперше на сторінці,має відпрацьовувати ф-я onHomeClick()
+// Функція має відпрацьовувати при завантаженні сторінки,якщо гість вперше на сторінці, має відпрацьовувати ф-я onHomeClick()
 const loadActivePage = () => {
   const pageInfo = JSON.parse(localStorage.getItem(`button`));
   //   console.log(pageInfo);

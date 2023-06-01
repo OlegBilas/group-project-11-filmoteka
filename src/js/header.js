@@ -1,7 +1,7 @@
 import { fetchFilms } from './fetchAPI';
-import { IS_FROM_FETCH, renderCollection } from './renderGallery';
+import {renderCollection } from './renderGallery';
 import { createPagination, hidePagination, showPagination } from './pagination';
-import { QUE, WATCHED, getFromLocalstorage } from './localAPI';
+import { QUE, WATCHED } from './localAPI';
 import { alertSuccess, alertEmptyForm, alertSearchFailure } from './alerts';
 import { onSpinner } from './spinner';
 import { startObservering, stopObservering } from './intersectionObserver';
@@ -111,7 +111,7 @@ function onLibraryClick() {
   refs.homeBtn.classList.remove('active-btn');
   refs.myLibraryBtn.classList.add('active-btn');
   closeMobileMenu();
-  //за умовчанням вікриваємо сторінку черги до перегляду
+  //за умовчанням відкриваємо сторінку черги до перегляду
   onQueueClick();
   deleteActivePage();
   saveActiveBtn();

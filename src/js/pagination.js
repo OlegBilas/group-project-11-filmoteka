@@ -5,7 +5,7 @@ import { renderCollection } from './renderGallery';
 let instance;
 const galleryList = document.querySelector('.list');
 const container = document.querySelector('.pagination');
-// функція приймае кількість сторінок та строку за якою робивяс запит і створює пагінацію на сторінці. 
+// функція приймає кількість сторінок та рядок, за яким робиться запит, і створює пагінацію на сторінці. 
 function createPagination(totalPages, filmName) {
     //створення пагінації
   instance = new Pagination(container, {
@@ -36,7 +36,7 @@ function createPagination(totalPages, filmName) {
     },
   });
 
-    //обробка видимость деяких кнопок пагінації
+    //обробка видимості деяких кнопок пагінації
     document.querySelector(".tui-ico-last").textContent = totalPages;
      document.querySelector(".tui-first").classList.add("hidden");
     document.querySelector(".tui-last-child").classList.add("mobile-hidden");
@@ -45,13 +45,13 @@ function createPagination(totalPages, filmName) {
         document.querySelector(".tui-last").classList.add("hidden");
     }
     
-    // при переході на сторінку викликає рендр цієї сторінки та при необхідності робить водимими чи невидимими деякі кнопки
+    // при переході на сторінку викликає рендер цієї сторінки та при необхідності робить видимими чи невидимими деякі кнопки
   instance.on('afterMove', event => {
     const currentPage = event.page;
     [...galleryList.children].forEach(element => element.remove()); //очищує галерею
       fetchAndRender(filmName, currentPage); // виклик асинхронної функції, яка зробить запит на сервер та згенрує галерею
       
-      //обробка видимость деяких кнопок пагінації
+      //обробка видимості деяких кнопок пагінації
       if (totalPages > 5) {
           currentPage <= 3 ?  document.querySelector(".tui-first").classList.add("hidden") :  document.querySelector(".tui-first").classList.remove("hidden");
           document.querySelector(".tui-ico-first").textContent = "1";
@@ -62,7 +62,7 @@ function createPagination(totalPages, filmName) {
           document.querySelector(".tui-last").classList.add("hidden");
       }
 
-      // обробка кнопок пагінації для моділбної версії
+      // обробка кнопок пагінації для мобільної версії
       document.querySelector(".tui-last-child").classList.add("mobile-hidden");
       document.querySelector(".tui-first-child").classList.add("mobile-hidden");
       
@@ -85,11 +85,11 @@ async function fetchAndRender(name, page) {
   renderCollection(data);
 }
 
-// функція , яка ховає пагінацію
+// функція, яка ховає пагінацію
 function hidePagination() {
   container.classList.add('hidden');
 }
-// функція ,яка робить пагінацію видимою
+// функція, яка робить пагінацію видимою
 function showPagination() {
   container.classList.remove('hidden');
 }

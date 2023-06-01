@@ -1,4 +1,3 @@
-import { auth } from './auth';
 import { app } from './firebaseConfig';
 
 import {

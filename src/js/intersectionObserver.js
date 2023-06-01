@@ -1,14 +1,11 @@
 import { onSpinner } from './spinner';
 import { alertEndOfCollection } from './alerts';
 import { IS_FROM_FETCH, renderCollection } from './renderGallery';
-import { hidePagination, showPagination } from './pagination';
-import { QUE, WATCHED, getFromLocalstorage } from './localAPI';
+import { getFromLocalstorage } from './localAPI';
 import { CARDS_PER_PAGE } from '../index';
-import { auth } from './auth';
+
 import {
   getFromFirebase,
-  addToFirebase,
-  removeFromFirebase,
 } from './firebaseStoradge';
 
 let library;
@@ -17,8 +14,10 @@ let observer;
 function startObservering(QUE_WATCHED) {
   library = new RenderLibrary(QUE_WATCHED);
   library.renderingCollectionByPage();
-  observer = new IntersectionObserver(intersectingHandler);
-  observer.observe(document.querySelector('footer'));
+  if (!observer) {
+    observer = new IntersectionObserver(intersectingHandler);
+    observer.observe(document.querySelector('footer'));
+  }
 }
 
 function intersectingHandler(entries) {
@@ -30,7 +29,7 @@ function intersectingHandler(entries) {
 }
 
 function stopObservering() {
-  observer.disconnect();
+  observer && observer.disconnect();
 }
 
 // RenderLibrary - клас для нескінченного рендерингу карток бібліотеки
@@ -54,8 +53,7 @@ class RenderLibrary {
 
     const collectionPart = this.getCollectionBox(collection);
 
-    if (
-      (collectionPart.length ===0) && observer) {
+    if (collectionPart.length === 0) {
       stopObservering();
       onSpinner('stop');
       return alertEndOfCollection();
@@ -71,4 +69,4 @@ class RenderLibrary {
   }
 }
 
-export { startObservering, stopObservering };
+export { startObservering, stopObservering, observer };
