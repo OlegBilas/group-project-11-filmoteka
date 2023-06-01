@@ -4,22 +4,19 @@ import { IS_FROM_FETCH, renderCollection } from './renderGallery';
 import { getFromLocalstorage } from './localAPI';
 import { CARDS_PER_PAGE } from '../index';
 
-import {
-  getFromFirebase,
-} from './firebaseStoradge';
+import { getFromFirebase } from './firebaseStoradge';
 
 let library;
 let observer;
 
 function startObservering(QUE_WATCHED) {
-  
-    library = new RenderLibrary(QUE_WATCHED);
-    library.renderingCollectionByPage();
-  
-  // if (!observer) {
-    observer = new IntersectionObserver(intersectingHandler);
-    observer.observe(document.querySelector('footer'));
-  // }
+  library = new RenderLibrary(QUE_WATCHED);
+  library.renderingCollectionByPage();
+
+  //  if (!observer) {
+  observer = new IntersectionObserver(intersectingHandler);
+  observer.observe(document.querySelector('footer'));
+  //  }
 }
 
 function intersectingHandler(entries) {
@@ -58,7 +55,9 @@ class RenderLibrary {
     if (collectionPart.length === 0) {
       stopObservering();
       onSpinner('stop');
-      return alertEndOfCollection();
+      if (this.index!==0) {
+        return alertEndOfCollection();
+      }
     }
 
     renderCollection(collectionPart, !IS_FROM_FETCH);

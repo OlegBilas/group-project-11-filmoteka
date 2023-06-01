@@ -7,6 +7,7 @@ import {
 } from 'firebase/auth';
 import { app } from './firebaseConfig';
 
+import { onHomeClick } from './header';
 import {
   alertEmptyFields,
   alertSuccessRegistrationLogIn,
@@ -42,7 +43,6 @@ const userSignUp = async () => {
     .then(userCredential => {
       const user = userCredential.user;
       // console.log(user);
-      // console.log(auth);
       localStorage.setItem('fireBaseAuthorized', auth.currentUser.uid);
       alertSuccessRegistrationLogIn(
         `Your account has been created with login ${signUpEmail}`
@@ -187,18 +187,9 @@ refs.signUpBtn.addEventListener(`click`, signUpWindow);
 refs.logInBtn.addEventListener(`click`, logInWindow);
 refs.lockBtn.addEventListener(`click`, btnPassOnClick);
 
+//Спостерігач зміни стану аутентифікації користувача 
 onAuthStateChanged(auth, () => {
-  const watchedBtn = document.querySelector('.watched-btn');
-  const queueBtn = document.querySelector('.queue-btn');
-  const galleryList = document.querySelector('.list');
-  const myLibraryBtn = document.querySelector('.my-library-btn');
-  if (
-    myLibraryBtn.classList.contains('active-btn') &&
-    (watchedBtn.classList.contains('active-library-btn') ||
-      queueBtn.classList.contains('active-library-btn'))
-  ) {
-    galleryList.innerHTML = '';
-  }
+  onHomeClick();
 });
 
 export { openAuthWindow, closeMobileMenu, auth, toggleLogInButton };

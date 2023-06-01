@@ -118,6 +118,7 @@ function onLibraryClick() {
 }
 
 function onWatchedClick() {
+  stopObservering();
   refs.galleryList.innerHTML = '';
   hidePagination();
   startObservering(WATCHED);
@@ -126,6 +127,7 @@ function onWatchedClick() {
 }
 
 function onQueueClick() {
+  stopObservering();
   refs.galleryList.innerHTML = '';
   hidePagination();
   startObservering(QUE);

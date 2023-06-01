@@ -36,7 +36,7 @@ function renderCollection(collection, IS_FROM_FETCH = true) {
     ) {
       galleryList.innerHTML = films;
       // console.log('repainted!');
-    } else if (!IS_FROM_FETCH && galleryList.children.length > 1) {
+    } else if (!IS_FROM_FETCH && galleryList.children.length > 0) {
       // console.log(galleryList.children.length);
       galleryList.insertAdjacentHTML('beforeend', films);
       // console.log('Added cards');
