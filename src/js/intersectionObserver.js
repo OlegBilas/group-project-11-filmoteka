@@ -13,10 +13,10 @@ function startObservering(QUE_WATCHED) {
   library = new RenderLibrary(QUE_WATCHED);
   library.renderingCollectionByPage();
 
-  //  if (!observer) {
-  observer = new IntersectionObserver(intersectingHandler);
-  observer.observe(document.querySelector('footer'));
-  //  }
+  if (!observer) {
+    observer = new IntersectionObserver(intersectingHandler);
+    observer.observe(document.querySelector('footer'));
+  }
 }
 
 function intersectingHandler(entries) {
@@ -45,7 +45,6 @@ class RenderLibrary {
     let collection;
     if (localStorage.getItem('fireBaseAuthorized')) {
       collection = await getFromFirebase(this.currentLibrary);
-      // console.log(collection);
     } else {
       collection = getFromLocalstorage(this.currentLibrary);
     }
@@ -55,12 +54,15 @@ class RenderLibrary {
     if (collectionPart.length === 0) {
       stopObservering();
       onSpinner('stop');
-      if (this.index!==0) {
+      if (this.index > 0) {
         return alertEndOfCollection();
       }
     }
 
     renderCollection(collectionPart, !IS_FROM_FETCH);
+
+    console.log(collectionPart);
+
     onSpinner('stop');
     this.index += CARDS_PER_PAGE;
   }
@@ -70,4 +72,4 @@ class RenderLibrary {
   }
 }
 
-export { startObservering, stopObservering, observer };
+export { startObservering, stopObservering };
