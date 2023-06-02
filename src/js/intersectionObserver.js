@@ -12,11 +12,8 @@ let observer;
 function startObservering(QUE_WATCHED) {
   library = new RenderLibrary(QUE_WATCHED);
   library.renderingCollectionByPage();
-
-  if (!observer) {
-    observer = new IntersectionObserver(intersectingHandler);
-    observer.observe(document.querySelector('footer'));
-  }
+  observer = new IntersectionObserver(intersectingHandler);
+  observer.observe(document.querySelector('footer'));
 }
 
 function intersectingHandler(entries) {
