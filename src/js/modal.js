@@ -40,47 +40,59 @@ function putEventListenersToOverlay(refOverlay) {
 function putEventListeners(modalButtons, overlaysArr, closeButtons) {
   /* Перебираємо масив кнопок */
   modalButtons.forEach(function (item) {
-    item.addEventListener('click', function (e) {
-      /* Запобігаємо стандартній дії елемента. Тому що кнопку можна зробити по-різному. 
+    //страховка від дублювання обробника події
+    if (!item.dataset.click) {
+      item.setAttribute('data-click', 'true');
+      item.addEventListener('click', function (e) {
+        /* Запобігаємо стандартній дії елемента. Тому що кнопку можна зробити по-різному. 
       Хтось зробить посиланням, хтось кнопкою. Потрібно підстрахуватися. */
-      e.preventDefault();
+        e.preventDefault();
 
-      /* При кожному натисканні на кнопку ми будемо забирати вміст атрибуту data-modal
+        /* При кожному натисканні на кнопку ми будемо забирати вміст атрибуту data-modal
       і будемо шукати модальне вікно з таким же атрибутом, і бекдроп, що відповідає модальному вікну. */
-      const modalId = item.getAttribute('data-modal');
-      const modalElem = document.querySelector(
-        '[data-modal="' + modalId + '"]:not(button):not(a)'
-      );
+        const modalId = item.getAttribute('data-modal');
+        const modalElem = document.querySelector(
+          '[data-modal="' + modalId + '"]:not(button):not(a)'
+        );
 
-      const overlay = modalElem.closest('.js-overlay-modal');
-      /* Після того, як знайшли потрібний бекдроп, видалимо клас is-hidden
+        const overlay = modalElem.closest('.js-overlay-modal');
+        /* Після того, як знайшли потрібний бекдроп, видалимо клас is-hidden
       у бекдропа, щоб показати останній, і блокуємо скролл на <body>. */
-      overlay.classList.remove('is-hidden');
-      document.addEventListener('keydown', onPressEscape);
-      disableBodyScroll(document.body);
-    }); // end click
+        overlay.classList.remove('is-hidden');
+        document.addEventListener('keydown', onPressEscape);
+        disableBodyScroll(document.body);
+      }); // end click
+    }
   }); // end foreach
 
   closeButtons.forEach(function (item) {
-    item.addEventListener('click', function (e) {
-      // Приховаємо бекдроп разом з модальним вікном і відновимо скролл на <body>
-      const overlay = item.closest('.js-overlay-modal');
-      overlay.classList.add('is-hidden');
-      if (!item.classList.contains('js-open-modal')) {
-        document.removeEventListener('keydown', onPressEscape);
-        enableBodyScroll(document.body); // added
-      }
-    }); // end foreach
-
-    // Додамо прослуховувача на клік по всіх оверлеях і встановимо їх приховування на кліку поза модалкою
-    overlaysArr.forEach(item => {
+    //страховка від дублювання обробника події
+    if (!item.dataset.click) {
+      item.setAttribute('data-click', 'true');
       item.addEventListener('click', function (e) {
-        if (e.target === e.currentTarget) {
-          item.classList.add('is-hidden');
+        // Приховаємо бекдроп разом з модальним вікном і відновимо скролл на <body>
+        const overlay = item.closest('.js-overlay-modal');
+        overlay.classList.add('is-hidden');
+        if (!item.classList.contains('js-open-modal')) {
           document.removeEventListener('keydown', onPressEscape);
           enableBodyScroll(document.body); // added
         }
-      });
+      }); // end foreach
+    }
+
+    // Додамо прослуховувача на клік по всіх оверлеях і встановимо їх приховування на кліку поза модалкою
+    overlaysArr.forEach(item => {
+      //страховка від дублювання обробника події
+      if (!item.dataset.click) {
+        item.setAttribute('data-click', 'true');
+        item.addEventListener('click', function (e) {
+          if (e.target === e.currentTarget) {
+            item.classList.add('is-hidden');
+            document.removeEventListener('keydown', onPressEscape);
+            enableBodyScroll(document.body); // added
+          }
+        });
+      }
     });
   }); // end foreach
 }
