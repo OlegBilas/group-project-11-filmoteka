@@ -7,7 +7,7 @@ import {
   deleteDoc,
   getDocs,
   collection,
-} from 'firebase/firestore/lite';
+} from 'firebase/firestore';
 
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
@@ -32,7 +32,6 @@ async function removeFromFirebase(QUE_WATCHED, dataAboutFilm) {
     const docRef = await deleteDoc(
       doc(db, `${userId}_${QUE_WATCHED}`, dataAboutFilm.id)
     );
-
   } catch (e) {
     console.error('Error deleting document: ', e);
   }
@@ -45,7 +44,7 @@ async function getFromFirebase(QUE_WATCHED) {
   if (films.docs.length > 0) {
     films.forEach(doc => filmsArray.push(doc.data()));
   }
-    return filmsArray;
+  return filmsArray;
 }
 
 export { getFromFirebase, addToFirebase, removeFromFirebase };
