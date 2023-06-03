@@ -8,7 +8,6 @@ import { getFromFirebase } from './firebaseStoradge';
 
 let library;
 let observer;
-let firstRender = true;
 
 function startObservering(QUE_WATCHED) {
   library = new RenderLibrary(QUE_WATCHED);
