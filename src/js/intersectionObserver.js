@@ -8,13 +8,16 @@ import { getFromFirebase } from './firebaseStoradge';
 
 let library;
 let observer;
+let firstRender = true;
 
 function startObservering(QUE_WATCHED) {
   library = new RenderLibrary(QUE_WATCHED);
   library.renderingCollectionByPage();
+  // if (!observer) {
   observer = new IntersectionObserver(intersectingHandler);
   observer.observe(document.querySelector('footer'));
 }
+// }
 
 function intersectingHandler(entries) {
   entries.forEach(entry => {
@@ -57,7 +60,6 @@ class RenderLibrary {
     }
 
     renderCollection(collectionPart, !IS_FROM_FETCH);
-
     console.log(collectionPart);
 
     onSpinner('stop');

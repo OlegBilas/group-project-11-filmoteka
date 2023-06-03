@@ -1,5 +1,5 @@
 import { fetchFilms } from './fetchAPI';
-import {renderCollection } from './renderGallery';
+import { renderCollection } from './renderGallery';
 import { createPagination, hidePagination, showPagination } from './pagination';
 import { QUE, WATCHED } from './localAPI';
 import { alertSuccess, alertEmptyForm, alertSearchFailure } from './alerts';
@@ -118,7 +118,7 @@ function onLibraryClick() {
 }
 
 function onWatchedClick() {
-  stopObservering();
+  // stopObservering();
   refs.galleryList.innerHTML = '';
   hidePagination();
   startObservering(WATCHED);
@@ -127,7 +127,7 @@ function onWatchedClick() {
 }
 
 function onQueueClick() {
-  stopObservering();
+  // stopObservering();
   refs.galleryList.innerHTML = '';
   hidePagination();
   startObservering(QUE);
