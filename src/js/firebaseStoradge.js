@@ -7,7 +7,8 @@ import {
   deleteDoc,
   getDocs,
   collection,
-} from 'firebase/firestore';
+} from 'firebase/firestore/lite';
+// import { getFromLocalstorage } from './localAPI';
 
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
@@ -44,6 +45,7 @@ async function getFromFirebase(QUE_WATCHED) {
   if (films.docs.length > 0) {
     films.forEach(doc => filmsArray.push(doc.data()));
   }
+
   return filmsArray;
 }
 

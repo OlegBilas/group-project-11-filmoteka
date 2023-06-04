@@ -13,6 +13,18 @@ import {
   addToFirebase,
   removeFromFirebase,
 } from './firebaseStoradge';
+import i18next from './translator';
+
+const NAME_BUTTON = {
+  'Add to watched': 'Add to watched',
+  'Remove from watched': 'Remove from watched',
+  'Add to queue': 'Add to queue',
+  'Remove from queue': 'Remove from queue',
+  'Додати до перегляду': 'Додати до перегляду',
+  'Вилучити з перегляду': 'Вилучити з перегляду',
+  'Додати до черги': 'Add Додати до черги',
+  'Вилучити з черги': 'Вилучити з черги',
+};
 
 const refModalFilmContainer = document.querySelector('.backdrop-container');
 
@@ -53,24 +65,24 @@ export function renderMovieModal(movieData, objectCard) {
                     <h2 class="form__title">${original_title}</h2>
                     <ul class="form__info-list">
                         <li class="form__info-item">
-                            <p class="form__info-name">Vote / Votes</p>
+                            <p class="form__info-name" data-translate>Vote / Votes</p>
                             <p class="form__info-details"> <span class="film__rating">${vote_average}</span>/<span class="film__voice">${vote_count}</span></p>
                         </li>
                         <li class="form__info-item">
-                            <p class="form__info-name">Popularity</p>
+                            <p class="form__info-name" data-translate>Popularity</p>
                             <p class="form__info-details">${popularity}</p>
                         </li>
                         <li class="form__info-item">
-                            <p class="form__info-name">Original Title</p>
+                            <p class="form__info-name" data-translate>Original Title</p>
                             <p class="form__info-details details-title">${original_title}</p>
                         </li>
                         <li class="form__info-item">
-                            <p class="form__info-name">Genre</p>
+                            <p class="form__info-name" data-translate>Genre</p>
                             <p class="form__info-details">${genres}</p>
                         </li>
                     </ul>
                     <div class="form__about">
-                        <h3 class="form__about-name">About</h3>
+                        <h3 class="form__about-name" data-translate>About</h3>
                         <p class="form__about-details">${overview}</p>
                     </div>
                     <div class="form__btn-list">
@@ -107,24 +119,24 @@ export function renderMovieModal(movieData, objectCard) {
                   <h2 class="form__title">${original_title}</h2>
                   <ul class="form__info-list">
                       <li class="form__info-item">
-                          <p class="form__info-name">Vote / Votes</p>
+                          <p class="form__info-name" data-translate>Vote / Votes</p>
                           <p class="form__info-details"> <span class="film__rating">${vote_average}</span>/<span class="film__voice">${vote_count}</span></p>
                       </li>
                       <li class="form__info-item">
-                          <p class="form__info-name">Popularity</p>
+                          <p class="form__info-name" data-translate>Popularity</p>
                           <p class="form__info-details">${popularity}</p>
                       </li>
                       <li class="form__info-item">
-                          <p class="form__info-name">Original Title</p>
+                          <p class="form__info-name" data-translate>Original Title</p>
                           <p class="form__info-details details-title">${original_title}</p>
                       </li>
                       <li class="form__info-item">
-                          <p class="form__info-name">Genre</p>
+                          <p class="form__info-name" data-translate>Genre</p>
                           <p class="form__info-details">${genres}</p>
                       </li>
                   </ul>
                   <div class="form__about">
-                      <h3 class="form__about-name">About</h3>
+                      <h3 class="form__about-name" data-translate>About</h3>
                       <p class="form__about-details">${overview}</p>
                   </div>
                   <div class="form__btn-list">
@@ -136,6 +148,11 @@ export function renderMovieModal(movieData, objectCard) {
         </div>
     </div>
 `;
+  }
+
+  if (i18next.language === 'uk') {
+    const refs = refModalFilmContainer.querySelectorAll('[data-translate]');
+    refs.forEach(ref => (ref.innerHTML = i18next.t(ref.textContent)));
   }
 
   putEventListenersToOverlay(refModalFilmContainer); //навішуємо слухачів для закриття модалки фільму
@@ -158,9 +175,9 @@ export function renderMovieModal(movieData, objectCard) {
       filmsArray = getFromLocalstorage(WATCHED);
     }
     if (filmsArray.find(film => film.id === objectCard.id)) {
-      watchedBtn.textContent = 'Remove from watched';
+      watchedBtn.textContent = translate(NAME_BUTTON['Remove from watched']);
     } else {
-      watchedBtn.textContent = 'Add to watched';
+      watchedBtn.textContent = translate(NAME_BUTTON['Add to watched']);
     }
 
     if (localStorage.getItem('fireBaseAuthorized')) {
@@ -169,20 +186,26 @@ export function renderMovieModal(movieData, objectCard) {
       filmsArray = getFromLocalstorage(QUE);
     }
     if (filmsArray.find(film => film.id === objectCard.id)) {
-      queueBtn.textContent = 'Remove from queue';
+      queueBtn.textContent = translate(NAME_BUTTON['Remove from queue']);
     } else {
-      queueBtn.textContent = 'Add to queue';
+      queueBtn.textContent = translate(NAME_BUTTON['Add to queue']);
     }
 
     watchedBtn.addEventListener('click', () => {
-      if (watchedBtn.textContent === 'Remove from watched') {
+      if (
+        watchedBtn.textContent === NAME_BUTTON['Remove from watched'] ||
+        watchedBtn.textContent === NAME_BUTTON['Вилучити з перегляду']
+      ) {
         if (localStorage.getItem('fireBaseAuthorized')) {
           removeFromFirebase(WATCHED, objectCard);
         } else {
           removeFromLocalstorage(WATCHED, objectCard);
         }
         toggleText(watchedBtn);
-      } else if (watchedBtn.textContent === 'Add to watched') {
+      } else if (
+        watchedBtn.textContent === NAME_BUTTON['Add to watched'] ||
+        watchedBtn.textContent === NAME_BUTTON['Додати до перегляду']
+      ) {
         if (localStorage.getItem('fireBaseAuthorized')) {
           addToFirebase(WATCHED, objectCard);
         } else {
@@ -198,7 +221,10 @@ export function renderMovieModal(movieData, objectCard) {
       }
     });
     queueBtn.addEventListener('click', () => {
-      if (queueBtn.textContent === 'Remove from queue') {
+      if (
+        queueBtn.textContent === NAME_BUTTON['Remove from queue'] ||
+        queueBtn.textContent === NAME_BUTTON['Вилучити з черги']
+      ) {
         if (localStorage.getItem('fireBaseAuthorized')) {
           removeFromFirebase(QUE, objectCard);
         } else {
@@ -206,7 +232,10 @@ export function renderMovieModal(movieData, objectCard) {
         }
 
         toggleText(queueBtn);
-      } else if (queueBtn.textContent === 'Add to queue') {
+      } else if (
+        queueBtn.textContent === NAME_BUTTON['Add to queue'] ||
+        queueBtn.textContent === NAME_BUTTON['Додати до черги']
+      ) {
         if (localStorage.getItem('fireBaseAuthorized')) {
           addToFirebase(QUE, objectCard);
         } else {
@@ -224,20 +253,36 @@ export function renderMovieModal(movieData, objectCard) {
 
   function toggleText(btn) {
     switch (btn.textContent) {
-      case 'Add to watched':
-        btn.textContent = 'Remove from watched';
+      case NAME_BUTTON['Add to watched']:
+        btn.textContent = NAME_BUTTON['Remove from watched'];
         break;
 
-      case 'Remove from watched':
-        btn.textContent = 'Add to watched';
+      case NAME_BUTTON['Remove from watched']:
+        btn.textContent = NAME_BUTTON['Add to watched'];
         break;
 
-      case 'Add to queue':
-        btn.textContent = 'Remove from queue';
+      case NAME_BUTTON['Add to queue']:
+        btn.textContent = NAME_BUTTON['Remove from queue'];
         break;
 
-      case 'Remove from queue':
-        btn.textContent = 'Add to queue';
+      case NAME_BUTTON['Remove from queue']:
+        btn.textContent = NAME_BUTTON['Add to queue'];
+        break;
+
+      case NAME_BUTTON['Додати до перегляду']:
+        btn.textContent = NAME_BUTTON['Вилучити з перегляду'];
+        break;
+
+      case NAME_BUTTON['Вилучити з перегляду']:
+        btn.textContent = NAME_BUTTON['Додати до перегляду'];
+        break;
+
+      case NAME_BUTTON['Додати до черги']:
+        btn.textContent = NAME_BUTTON['Вилучити з черги'];
+        break;
+
+      case NAME_BUTTON['Вилучити з черги']:
+        btn.textContent = NAME_BUTTON['Додати до черги'];
         break;
     }
   }
@@ -252,5 +297,23 @@ export function renderMovieModal(movieData, objectCard) {
     const innerHTML = refModalFilmContainer.innerHTML;
     innerHTML.replace(videoIframe.outerHTML, '');
     refModalFilmContainer.innerHTML = innerHTML;
+  }
+
+  function translate(textContent) {
+    if (i18next.language === 'uk') {
+      switch (textContent) {
+        case NAME_BUTTON['Add to watched']:
+          return NAME_BUTTON['Додати до перегляду'];
+
+        case NAME_BUTTON['Remove from watched']:
+          return NAME_BUTTON['Вилучити з перегляду'];
+
+        case NAME_BUTTON['Add to queue']:
+          return NAME_BUTTON['Додати до черги'];
+
+        case NAME_BUTTON['Remove from queue']:
+          return NAME_BUTTON['Вилучити з черги'];
+      }
+    }
   }
 }

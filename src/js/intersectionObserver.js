@@ -8,6 +8,7 @@ import { getFromFirebase } from './firebaseStoradge';
 
 let library;
 let observer;
+let first;
 
 function startObservering(QUE_WATCHED) {
   library = new RenderLibrary(QUE_WATCHED);
@@ -15,12 +16,17 @@ function startObservering(QUE_WATCHED) {
   // if (!observer) {
   observer = new IntersectionObserver(intersectingHandler);
   observer.observe(document.querySelector('footer'));
+  first = true;
+  // }
 }
-// }
 
 function intersectingHandler(entries) {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
+    if (
+      entry.isIntersecting &&
+      ((!first && localStorage.getItem('fireBaseAuthorized')) ||
+        !localStorage.getItem('fireBaseAuthorized'))
+    ) {
       library.renderingCollectionByPage();
     }
   });
@@ -44,10 +50,10 @@ class RenderLibrary {
     let collection;
     if (localStorage.getItem('fireBaseAuthorized')) {
       try {
-        result = await getFromFirebase(this.currentLibrary);
-        result.then(collection => this.renderPartOfCollection(collection));
+        collection = await getFromFirebase(this.currentLibrary);
+        this.renderPartOfCollection(collection);
       } catch (error) {
-        alert(error.message);
+        console.log(error.message);
       }
     } else {
       collection = getFromLocalstorage(this.currentLibrary);
@@ -60,12 +66,17 @@ class RenderLibrary {
     if (collectionPart.length === 0) {
       stopObservering();
       onSpinner('stop');
-      if (this.index > 0) {
+      if (
+        this.index > 0 &&
+        ((!first && localStorage.getItem('fireBaseAuthorized')) ||
+          !localStorage.getItem('fireBaseAuthorized'))
+      ) {
         return alertEndOfCollection();
       }
     }
 
     renderCollection(collectionPart, !IS_FROM_FETCH);
+    first = false;
     console.log(collectionPart);
 
     onSpinner('stop');

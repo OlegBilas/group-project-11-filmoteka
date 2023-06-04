@@ -1,4 +1,5 @@
 import Notiflix from 'notiflix';
+import i18next from './translator';
 
 const options = {
   // position: 'right-top',
@@ -9,33 +10,57 @@ const options = {
 };
 
 function alertSuccess() {
-  Notiflix.Notify.success('We`ve found what you were looking for!', options);
+  Notiflix.Notify.success(
+    i18next.language === 'uk'
+      ? 'Ми знайшли те, що Ви шукали!'
+      : 'We`ve found what you were looking for!',
+    options
+  );
 }
 
 function alertEmptyForm() {
-  Notiflix.Notify.failure('Enter your search query, please.', options);
+  Notiflix.Notify.failure(
+    i18next.language === 'uk'
+      ? 'Введіть Ваш пошуковий запит, будь ласка.'
+      : 'Enter your search query, please.',
+    options
+  );
 }
 
 function alertEmptyFields() {
-  Notiflix.Notify.failure(`Please fill all fields`, options);
+  Notiflix.Notify.failure(
+    i18next.language === 'uk'
+      ? `Будь ласка, заповніть всі поля`
+      : `Please fill all fields`,
+    options
+  );
 }
 
 function alertSearchFailure() {
   Notiflix.Notify.failure(
-    'Search result is not successful. Enter the correct movie name.',
+    i18next.language === 'uk'
+      ? 'Результат пошуку невдалий. Введіть коректну назву фільму.'
+      : 'Search result is not successful. Enter the correct movie name.',
     options
   );
 }
 
 function alertSearchModalFailure() {
   Notiflix.Notify.failure(
-    'Search result about this film is not successful',
+    i18next.language === 'uk'
+      ? 'Результат пошуку по цьому фільму був невдалим'
+      : 'Search result about this film is not successful',
     options
   );
 }
 
 function alertEndOfCollection() {
-  Notiflix.Notify.failure("We've reached the end of your collection!", options);
+  Notiflix.Notify.failure(
+    i18next.language === 'uk'
+      ? 'Ми досягли кінця колекції Ваших фільмів!'
+      : "We've reached the end of your collection!",
+    options
+  );
 }
 
 function alertSuccessRegistrationLogIn(message) {
@@ -59,5 +84,5 @@ export {
   alertEmptyFields,
   alertSuccessRegistrationLogIn,
   alertFailedRegistrationLogIn,
-  alertInfo
+  alertInfo,
 };

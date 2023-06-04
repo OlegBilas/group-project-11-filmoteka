@@ -14,6 +14,8 @@ import {
   alertFailedRegistrationLogIn,
   alertInfo,
 } from './alerts';
+import { enableBodyScroll } from 'body-scroll-lock';
+import i18next from './translator';
 
 const refs = {
   authBtn: document.querySelector(`.auth-btn`),
@@ -45,7 +47,9 @@ const userSignUp = async () => {
       // console.log(user);
       localStorage.setItem('fireBaseAuthorized', auth.currentUser.uid);
       alertSuccessRegistrationLogIn(
-        `Your account has been created with login ${signUpEmail}`
+        i18next.language === 'uk'
+          ? `Ваш акаунт створено з логіном ${signUpEmail}`
+          : `Your account has been created with login ${signUpEmail}`
       );
       refs.authForm.reset();
       toggleLogInButton();
@@ -56,7 +60,9 @@ const userSignUp = async () => {
       // const errorMessage = error.message;
       // console.log(errorCode + errorMessage);
       alertFailedRegistrationLogIn(
-        `Your registration has been failed. Reason: ${error.message}`
+        i18next.language === 'uk'
+          ? `Your registration has been failed. Reason: ${error.message}`
+          : `Ваша реєстрація невдала. Причина: ${error.message}`
       );
     });
 };
@@ -71,7 +77,9 @@ const userLogIn = async () => {
       // console.log(user);
       localStorage.setItem('fireBaseAuthorized', auth.currentUser.uid);
       alertSuccessRegistrationLogIn(
-        `You have been logged in with e-mail ${user.email}`
+        i18next.language === 'uk'
+          ? `Ви ввійшли з електронної пошти ${user.email}`
+          : `You have been logged in with e-mail ${user.email}`
       );
       refs.authForm.reset();
       toggleLogInButton();
@@ -82,7 +90,9 @@ const userLogIn = async () => {
       // const errorMessage = error.message;
       // console.log(errorCode + errorMessage);
       alertFailedRegistrationLogIn(
-        `Your log in has been failed. Reason: ${error.message}`
+        i18next.language === 'uk'
+          ? `Ваш вхід невдалий. Причина: ${error.message}`
+          : `Your log in has been failed. Reason: ${error.message}`
       );
     });
 };
@@ -91,14 +101,21 @@ const toggleLogInButton = () => {
   const inner = refs.authBtn.innerHTML;
   if (refs.authBtn.textContent.includes('Log in')) {
     refs.authBtn.innerHTML = inner.replace('Log in', 'Log out');
-  } else {
+  } else if (refs.authBtn.textContent.includes('Log out')) {
     refs.authBtn.innerHTML = inner.replace('Log out', 'Log in');
+  } else if (refs.authBtn.textContent.includes('Вхід')) {
+    refs.authBtn.innerHTML = inner.replace('Вхід', 'Вихід');
+  } else if (refs.authBtn.textContent.includes('Вихід')) {
+    refs.authBtn.innerHTML = inner.replace('Вихід', 'Вхід');
   }
 };
 
 // Відкриття вікна авторизації
 const openAuthWindow = () => {
-  if (refs.authBtn.textContent.includes('Log in')) {
+  if (
+    refs.authBtn.textContent.includes('Log in') ||
+    refs.authBtn.textContent.includes('Вхід')
+  ) {
     refs.authBox.classList.add('active');
     logInWindow();
   }
@@ -108,7 +125,12 @@ const openAuthWindow = () => {
       .then(() => {
         localStorage.removeItem('fireBaseAuthorized');
         toggleLogInButton();
-        alertInfo('You have been logged out');
+        alertInfo(
+          i18next.language === 'uk'
+            ? 'Ви вийшли з акаунту'
+            : 'You have been logged out'
+        );
+        enableBodyScroll(document.body);
       })
       .catch(error => console.log(error));
   }
@@ -123,18 +145,25 @@ const closeAuthWindow = () => {
 const signUpWindow = () => {
   refs.logInBtn.classList.remove(`active`);
   refs.signUpBtn.classList.add(`active`);
-  refs.formTitle.textContent = `Sign up`;
-  refs.inputEmail.placeholder = `Enter your e-mail`;
-  refs.inputPassword.placeholder = `Enter password`;
+  refs.formTitle.textContent =
+    i18next.language === 'uk' ? 'Реєстрація' : `Sign up`;
+  refs.inputEmail.placeholder =
+    i18next.language === 'uk'
+      ? 'Введіть Вашу електронну пошту'
+      : `Enter your e-mail`;
+  refs.inputPassword.placeholder =
+    i18next.language === 'uk' ? 'Введіть пароль' : `Enter password`;
 };
 
 // Перемикач логінізації
 const logInWindow = () => {
   refs.logInBtn.classList.add(`active`);
   refs.signUpBtn.classList.remove(`active`);
-  refs.formTitle.textContent = `Log in`;
-  refs.inputEmail.placeholder = `e-mail`;
-  refs.inputPassword.placeholder = `password`;
+  refs.formTitle.textContent = i18next.language === 'uk' ? 'Вхід' : `Log in`;
+  refs.inputEmail.placeholder =
+    i18next.language === 'uk' ? 'електронна пошта' : `e-mail`;
+  refs.inputPassword.placeholder =
+    i18next.language === 'uk' ? 'пароль' : `password`;
 };
 
 // Перевірка на пусті форми
@@ -152,6 +181,7 @@ const submitValidateForm = event => {
   } else {
     userLogIn();
   }
+  enableBodyScroll(document.body);
 };
 
 //Зробити видимим/невидимим пароль по кліку на кнопку
@@ -187,7 +217,7 @@ refs.signUpBtn.addEventListener(`click`, signUpWindow);
 refs.logInBtn.addEventListener(`click`, logInWindow);
 refs.lockBtn.addEventListener(`click`, btnPassOnClick);
 
-//Спостерігач зміни стану аутентифікації користувача 
+//Спостерігач зміни стану аутентифікації користувача
 onAuthStateChanged(auth, () => {
   onHomeClick();
 });

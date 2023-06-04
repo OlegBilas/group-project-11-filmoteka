@@ -1,16 +1,22 @@
 import axios from 'axios';
 import { getGenresById } from './genres';
+import i18next from './translator';
 
 const KEY = `731f4a410992078035fa504a629d03c1`;
 const URL = `https://api.themoviedb.org/3`;
 const imgURL = `https://image.tmdb.org/t/p/w500`;
 
+const lang =
+  i18next.language === 'en' || i18next.language === 'uk'
+    ? i18next.language
+    : 'en';
+
 //
 // ЗАПИТ ЗА КЛЮЧОВИМ СЛОВОМ АБО ПОПУЛЯРНИХ ФІЛЬМІВ
 const fetchFilms = async (filmName, page = 1) => {
   const request = filmName
-    ? `${URL}/search/movie?api_key=${KEY}&language=en-US&query=${filmName}&page=${page}`
-    : `${URL}/trending/all/day?api_key=${KEY}&page=${page}`;
+    ? `${URL}/search/movie?api_key=${KEY}&language=${lang}&include_image_language=${lang}&region=${lang}&query=${filmName}&page=${page}`
+    : `${URL}/trending/all/day?api_key=${KEY}&language=${lang}&include_image_language=${lang}&region=${lang}&page=${page}`;
 
   try {
     const response = await axios.get(request);
@@ -65,7 +71,7 @@ const fetchFilms = async (filmName, page = 1) => {
 const fetchYouTubeKey = async filmId => {
   try {
     const response = await axios.get(
-      `${URL}/movie/${filmId}/videos?api_key=${KEY}&language=en-US`
+      `${URL}/movie/${filmId}/videos?api_key=${KEY}&language=${lang}&include_image_language=${lang}&region=${lang}`
     );
 
     return response.data.results[0] ? response.data.results[0].key : '';
@@ -78,13 +84,13 @@ const fetchYouTubeKey = async filmId => {
 const fetchFilmsById = async filmId => {
   try {
     const response = await axios.get(
-      `${URL}/movie/${filmId}?api_key=${KEY}&language=en-US`
+      `${URL}/movie/${filmId}?api_key=${KEY}&language=${lang}&include_image_language=${lang}&region=${lang}`
     );
     const {
       genres,
       id,
       poster_path,
-      original_title,
+      title,
       overview,
       popularity,
       vote_average,
@@ -95,7 +101,7 @@ const fetchFilmsById = async filmId => {
       genres: genres.map(genre => genre.name).join(', '),
       id,
       poster_path: `${imgURL}${poster_path}`,
-      original_title,
+      original_title: title,
       overview,
       popularity,
       vote_average,
