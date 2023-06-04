@@ -7,7 +7,7 @@ import translationUK from '../dictionaries/translationUK.json';
 i18next.use(LanguageDetector);
 i18next.init({
   // lng: 'uk', // if you're using a language detector, do not define the lng option
-  debug: true,
+  debug: false,
   resources: {
     en: {
       translation: translationEN,

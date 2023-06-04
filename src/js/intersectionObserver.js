@@ -77,7 +77,7 @@ class RenderLibrary {
 
     renderCollection(collectionPart, !IS_FROM_FETCH);
     first = false;
-    console.log(collectionPart);
+    // console.log(collectionPart);
 
     onSpinner('stop');
     this.index += CARDS_PER_PAGE;
