@@ -3,7 +3,6 @@ import { renderMovieModal } from './modalFilm';
 import { putEventListenersToAll } from './modal';
 import { alertSearchModalFailure } from './alerts';
 import { onSpinner } from './spinner';
-import { CARDS_PER_PAGE } from '../index';
 
 const galleryList = document.querySelector('.list');
 const IS_FROM_FETCH = true;
@@ -77,4 +76,4 @@ function getDataCard(element) {
   return { poster_path, id, title, genres, year };
 }
 
-export { IS_FROM_FETCH, renderCollection, ADD_TO_COLLECTION };
+export { IS_FROM_FETCH, renderCollection };

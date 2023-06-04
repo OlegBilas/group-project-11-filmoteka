@@ -1,4 +1,4 @@
-import {  loadActivePage } from './js/page-save';
+import { loadActivePage } from './js/page-save';
 import { toggleLogInButton } from './js/auth';
 
 const CARDS_PER_PAGE = 20; // кількість карток в галереї на сторінку
