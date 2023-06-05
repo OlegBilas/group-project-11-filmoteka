@@ -14,16 +14,17 @@ import {
   removeFromFirebase,
 } from './firebaseStoradge';
 import i18next from './translator';
+import { lang } from './fetchAPI';
 
 const NAME_BUTTON = {
-  'Add to watched': 'Add to watched',
-  'Remove from watched': 'Remove from watched',
-  'Add to queue': 'Add to queue',
-  'Remove from queue': 'Remove from queue',
-  'Додати до перегляду': 'Додати до перегляду',
-  'Вилучити з перегляду': 'Вилучити з перегляду',
-  'Додати до черги': 'Add Додати до черги',
-  'Вилучити з черги': 'Вилучити з черги',
+  Add_to_watched: 'Add to watched',
+  Remove_from_watched: 'Remove from watched',
+  Add_to_queue: 'Add to queue',
+  Remove_from_queue: 'Remove from queue',
+  Add_to_watched_UK: 'Додати до перегляду',
+  Remove_from_watched_UK: 'Вилучити з перегляду',
+  Add_to_queue_UK: 'Add Додати до черги',
+  Remove_from_queue_UK: 'Вилучити з черги',
 };
 
 const refModalFilmContainer = document.querySelector('.backdrop-container');
@@ -150,8 +151,9 @@ export function renderMovieModal(movieData, objectCard) {
 `;
   }
 
-  if (i18next.language === 'uk') {
+  if (lang === 'uk') {
     const refs = refModalFilmContainer.querySelectorAll('[data-translate]');
+    console.log(refs);
     refs.forEach(ref => (ref.innerHTML = i18next.t(ref.textContent)));
   }
 
@@ -175,9 +177,9 @@ export function renderMovieModal(movieData, objectCard) {
       filmsArray = getFromLocalstorage(WATCHED);
     }
     if (filmsArray.find(film => film.id === objectCard.id)) {
-      watchedBtn.textContent = translate(NAME_BUTTON['Remove from watched']);
+      watchedBtn.textContent = translate(NAME_BUTTON.Remove_from_watched);
     } else {
-      watchedBtn.textContent = translate(NAME_BUTTON['Add to watched']);
+      watchedBtn.textContent = translate(NAME_BUTTON.Add_to_watched);
     }
 
     if (localStorage.getItem('fireBaseAuthorized')) {
@@ -186,15 +188,15 @@ export function renderMovieModal(movieData, objectCard) {
       filmsArray = getFromLocalstorage(QUE);
     }
     if (filmsArray.find(film => film.id === objectCard.id)) {
-      queueBtn.textContent = translate(NAME_BUTTON['Remove from queue']);
+      queueBtn.textContent = translate(NAME_BUTTON.Remove_from_queue);
     } else {
-      queueBtn.textContent = translate(NAME_BUTTON['Add to queue']);
+      queueBtn.textContent = translate(NAME_BUTTON.Add_to_queue);
     }
 
     watchedBtn.addEventListener('click', () => {
       if (
-        watchedBtn.textContent === NAME_BUTTON['Remove from watched'] ||
-        watchedBtn.textContent === NAME_BUTTON['Вилучити з перегляду']
+        watchedBtn.textContent === NAME_BUTTON.Remove_from_watched ||
+        watchedBtn.textContent === NAME_BUTTON.Remove_from_watched_UK
       ) {
         if (localStorage.getItem('fireBaseAuthorized')) {
           removeFromFirebase(WATCHED, objectCard);
@@ -203,8 +205,8 @@ export function renderMovieModal(movieData, objectCard) {
         }
         toggleText(watchedBtn);
       } else if (
-        watchedBtn.textContent === NAME_BUTTON['Add to watched'] ||
-        watchedBtn.textContent === NAME_BUTTON['Додати до перегляду']
+        watchedBtn.textContent === NAME_BUTTON.Add_to_watched ||
+        watchedBtn.textContent === NAME_BUTTON.Add_to_watched_UK
       ) {
         if (localStorage.getItem('fireBaseAuthorized')) {
           addToFirebase(WATCHED, objectCard);
@@ -222,8 +224,8 @@ export function renderMovieModal(movieData, objectCard) {
     });
     queueBtn.addEventListener('click', () => {
       if (
-        queueBtn.textContent === NAME_BUTTON['Remove from queue'] ||
-        queueBtn.textContent === NAME_BUTTON['Вилучити з черги']
+        queueBtn.textContent === NAME_BUTTON.Remove_from_queue ||
+        queueBtn.textContent === NAME_BUTTON.Remove_from_queue_UK
       ) {
         if (localStorage.getItem('fireBaseAuthorized')) {
           removeFromFirebase(QUE, objectCard);
@@ -233,8 +235,8 @@ export function renderMovieModal(movieData, objectCard) {
 
         toggleText(queueBtn);
       } else if (
-        queueBtn.textContent === NAME_BUTTON['Add to queue'] ||
-        queueBtn.textContent === NAME_BUTTON['Додати до черги']
+        queueBtn.textContent === NAME_BUTTON.Add_to_queue ||
+        queueBtn.textContent === NAME_BUTTON.Add_to_queue_UK
       ) {
         if (localStorage.getItem('fireBaseAuthorized')) {
           addToFirebase(QUE, objectCard);
@@ -253,36 +255,36 @@ export function renderMovieModal(movieData, objectCard) {
 
   function toggleText(btn) {
     switch (btn.textContent) {
-      case NAME_BUTTON['Add to watched']:
-        btn.textContent = NAME_BUTTON['Remove from watched'];
+      case NAME_BUTTON.Add_to_watched:
+        btn.textContent = NAME_BUTTON.Remove_from_watched;
         break;
 
-      case NAME_BUTTON['Remove from watched']:
-        btn.textContent = NAME_BUTTON['Add to watched'];
+      case NAME_BUTTON.Remove_from_watched:
+        btn.textContent = NAME_BUTTON.Add_to_watched;
         break;
 
-      case NAME_BUTTON['Add to queue']:
-        btn.textContent = NAME_BUTTON['Remove from queue'];
+      case NAME_BUTTON.Add_to_queue:
+        btn.textContent = NAME_BUTTON.Remove_from_queue;
         break;
 
-      case NAME_BUTTON['Remove from queue']:
-        btn.textContent = NAME_BUTTON['Add to queue'];
+      case NAME_BUTTON.Remove_from_queue:
+        btn.textContent = NAME_BUTTON.Add_to_queue;
         break;
 
-      case NAME_BUTTON['Додати до перегляду']:
-        btn.textContent = NAME_BUTTON['Вилучити з перегляду'];
+      case NAME_BUTTON.Add_to_watched_UK:
+        btn.textContent = NAME_BUTTON.Remove_from_watched_UK;
         break;
 
-      case NAME_BUTTON['Вилучити з перегляду']:
-        btn.textContent = NAME_BUTTON['Додати до перегляду'];
+      case NAME_BUTTON.Remove_from_watched_UK:
+        btn.textContent = NAME_BUTTON.Add_to_watched_UK;
         break;
 
-      case NAME_BUTTON['Додати до черги']:
-        btn.textContent = NAME_BUTTON['Вилучити з черги'];
+      case NAME_BUTTON.Add_to_queue_UK:
+        btn.textContent = NAME_BUTTON.Remove_from_queue_UK;
         break;
 
-      case NAME_BUTTON['Вилучити з черги']:
-        btn.textContent = NAME_BUTTON['Додати до черги'];
+      case NAME_BUTTON.Remove_from_queue_UK:
+        btn.textContent = NAME_BUTTON.Add_to_queue_UK;
         break;
     }
   }
@@ -300,19 +302,23 @@ export function renderMovieModal(movieData, objectCard) {
   }
 
   function translate(textContent) {
-    if (i18next.language === 'uk') {
+    if (lang === 'uk') {
       switch (textContent) {
-        case NAME_BUTTON['Add to watched']:
-          return NAME_BUTTON['Додати до перегляду'];
+        case NAME_BUTTON.Add_to_watched:
+          console.log(NAME_BUTTON.Add_to_watched_UK);
+          return NAME_BUTTON.Add_to_watched_UK;
 
-        case NAME_BUTTON['Remove from watched']:
-          return NAME_BUTTON['Вилучити з перегляду'];
+        case NAME_BUTTON.Remove_from_watched:
+          console.log(NAME_BUTTON.Add_to_watched_UK);
+          return NAME_BUTTON.Remove_from_watched_UK;
 
-        case NAME_BUTTON['Add to queue']:
-          return NAME_BUTTON['Додати до черги'];
+        case NAME_BUTTON.Add_to_queue:
+          console.log(NAME_BUTTON.Add_to_watched_UK);
+          return NAME_BUTTON.Add_to_queue_UK;
 
-        case NAME_BUTTON['Remove from queue']:
-          return NAME_BUTTON['Вилучити з черги'];
+        case NAME_BUTTON.Remove_from_queue:
+          console.log(NAME_BUTTON.Add_to_watched_UK);
+          return NAME_BUTTON.Remove_from_queue_UK;
       }
     }
   }

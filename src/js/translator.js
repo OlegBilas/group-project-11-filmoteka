@@ -22,5 +22,4 @@ const refs = document.querySelectorAll('[data-translate]');
 refs.forEach(ref => {
   ref.innerHTML = i18next.t(ref.textContent.trim());
 });
-
 export default i18next;

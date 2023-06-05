@@ -114,4 +114,4 @@ const fetchFilmsById = async filmId => {
     throw new Error(responce.status);
   }
 };
-export { fetchFilms, fetchFilmsById };
+export { fetchFilms, fetchFilmsById, lang };
