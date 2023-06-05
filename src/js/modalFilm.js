@@ -153,7 +153,6 @@ export function renderMovieModal(movieData, objectCard) {
 
   if (lang === 'uk') {
     const refs = refModalFilmContainer.querySelectorAll('[data-translate]');
-    console.log(refs);
     refs.forEach(ref => (ref.innerHTML = i18next.t(ref.textContent)));
   }
 
@@ -305,19 +304,15 @@ export function renderMovieModal(movieData, objectCard) {
     if (lang === 'uk') {
       switch (textContent) {
         case NAME_BUTTON.Add_to_watched:
-          console.log(NAME_BUTTON.Add_to_watched_UK);
           return NAME_BUTTON.Add_to_watched_UK;
 
         case NAME_BUTTON.Remove_from_watched:
-          console.log(NAME_BUTTON.Add_to_watched_UK);
           return NAME_BUTTON.Remove_from_watched_UK;
 
         case NAME_BUTTON.Add_to_queue:
-          console.log(NAME_BUTTON.Add_to_watched_UK);
           return NAME_BUTTON.Add_to_queue_UK;
 
         case NAME_BUTTON.Remove_from_queue:
-          console.log(NAME_BUTTON.Add_to_watched_UK);
           return NAME_BUTTON.Remove_from_queue_UK;
       }
     }
