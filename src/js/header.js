@@ -7,6 +7,7 @@ import { onSpinner } from './spinner';
 import { startObservering, stopObservering } from './intersectionObserver';
 import { saveActiveBtn, deleteActivePage } from './page-save';
 import { closeMobileMenu } from './auth';
+import { enableBodyScroll } from 'body-scroll-lock';
 
 const refs = {
   headerhForm: document.querySelector('.header-form'),
@@ -99,6 +100,7 @@ function onHomeClick() {
   onSpinner('stop');
   deleteActivePage();
   saveActiveBtn();
+  enableBodyScroll(document.body);
 }
 
 function onLibraryClick() {
@@ -115,6 +117,7 @@ function onLibraryClick() {
   onQueueClick();
   deleteActivePage();
   saveActiveBtn();
+  enableBodyScroll(document.body);
 }
 
 function onWatchedClick() {
