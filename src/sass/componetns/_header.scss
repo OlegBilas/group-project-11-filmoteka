@@ -337,7 +337,7 @@
 .watched-btn {
   background-color: $color-white;
   color: $color-red;
-  width: 102px;
+  min-width: 102px;
 
   transition: 0.5s;
 
