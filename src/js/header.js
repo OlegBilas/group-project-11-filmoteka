@@ -87,8 +87,8 @@ function onHomeClick() {
   refs.logo.classList.remove('js-library-active');
   refs.homeBtn.classList.add('active-btn');
   closeMobileMenu();
+  stopObservering();
   if (refs.myLibraryBtn.classList.contains('active-btn')) {
-    stopObservering();
     refs.myLibraryBtn.classList.remove('active-btn');
   }
 
