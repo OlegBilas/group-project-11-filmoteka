@@ -98,7 +98,7 @@ function onHomeClick() {
   });
   showPagination();
   onSpinner('stop');
-  deleteActivePage();
+  // deleteActivePage();
   saveActiveBtn();
   enableBodyScroll(document.body);
 }
@@ -115,13 +115,13 @@ function onLibraryClick() {
   closeMobileMenu();
   //за умовчанням відкриваємо сторінку черги до перегляду
   onQueueClick();
-  deleteActivePage();
+  // deleteActivePage();
   saveActiveBtn();
   enableBodyScroll(document.body);
 }
 
 function onWatchedClick() {
-  // stopObservering();
+  stopObservering();
   refs.galleryList.innerHTML = '';
   hidePagination();
   startObservering(WATCHED);
@@ -130,7 +130,7 @@ function onWatchedClick() {
 }
 
 function onQueueClick() {
-  // stopObservering();
+  stopObservering();
   refs.galleryList.innerHTML = '';
   hidePagination();
   startObservering(QUE);

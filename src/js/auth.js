@@ -15,7 +15,7 @@ import {
   alertInfo,
 } from './alerts';
 import { enableBodyScroll } from 'body-scroll-lock';
-import i18next from './translator';
+import { lang } from './fetchAPI';
 
 const refs = {
   authBtn: document.querySelector(`.auth-btn`),
@@ -47,7 +47,7 @@ const userSignUp = async () => {
       // console.log(user);
       localStorage.setItem('fireBaseAuthorized', auth.currentUser.uid);
       alertSuccessRegistrationLogIn(
-        i18next.language === 'uk'
+        lang === 'uk'
           ? `Ваш акаунт створено з логіном ${signUpEmail}`
           : `Your account has been created with login ${signUpEmail}`
       );
@@ -60,7 +60,7 @@ const userSignUp = async () => {
       // const errorMessage = error.message;
       // console.log(errorCode + errorMessage);
       alertFailedRegistrationLogIn(
-        i18next.language === 'uk'
+        lang === 'uk'
           ? `Your registration has been failed. Reason: ${error.message}`
           : `Ваша реєстрація невдала. Причина: ${error.message}`
       );
@@ -77,7 +77,7 @@ const userLogIn = async () => {
       // console.log(user);
       localStorage.setItem('fireBaseAuthorized', auth.currentUser.uid);
       alertSuccessRegistrationLogIn(
-        i18next.language === 'uk'
+        lang === 'uk'
           ? `Ви ввійшли з електронної пошти ${user.email}`
           : `You have been logged in with e-mail ${user.email}`
       );
@@ -90,7 +90,7 @@ const userLogIn = async () => {
       // const errorMessage = error.message;
       // console.log(errorCode + errorMessage);
       alertFailedRegistrationLogIn(
-        i18next.language === 'uk'
+        lang === 'uk'
           ? `Ваш вхід невдалий. Причина: ${error.message}`
           : `Your log in has been failed. Reason: ${error.message}`
       );
@@ -126,9 +126,7 @@ const openAuthWindow = () => {
         localStorage.removeItem('fireBaseAuthorized');
         toggleLogInButton();
         alertInfo(
-          i18next.language === 'uk'
-            ? 'Ви вийшли з акаунту'
-            : 'You have been logged out'
+          lang === 'uk' ? 'Ви вийшли з акаунту' : 'You have been logged out'
         );
         enableBodyScroll(document.body);
       })
@@ -145,25 +143,20 @@ const closeAuthWindow = () => {
 const signUpWindow = () => {
   refs.logInBtn.classList.remove(`active`);
   refs.signUpBtn.classList.add(`active`);
-  refs.formTitle.textContent =
-    i18next.language === 'uk' ? 'Реєстрація' : `Sign up`;
+  refs.formTitle.textContent = lang === 'uk' ? 'Реєстрація' : `Sign up`;
   refs.inputEmail.placeholder =
-    i18next.language === 'uk'
-      ? 'Введіть Вашу електронну пошту'
-      : `Enter your e-mail`;
+    lang === 'uk' ? 'Введіть Вашу електронну пошту' : `Enter your e-mail`;
   refs.inputPassword.placeholder =
-    i18next.language === 'uk' ? 'Введіть пароль' : `Enter password`;
+    lang === 'uk' ? 'Введіть пароль' : `Enter password`;
 };
 
 // Перемикач логінізації
 const logInWindow = () => {
   refs.logInBtn.classList.add(`active`);
   refs.signUpBtn.classList.remove(`active`);
-  refs.formTitle.textContent = i18next.language === 'uk' ? 'Вхід' : `Log in`;
-  refs.inputEmail.placeholder =
-    i18next.language === 'uk' ? 'електронна пошта' : `e-mail`;
-  refs.inputPassword.placeholder =
-    i18next.language === 'uk' ? 'пароль' : `password`;
+  refs.formTitle.textContent = lang === 'uk' ? 'Вхід' : `Log in`;
+  refs.inputEmail.placeholder = lang === 'uk' ? 'електронна пошта' : `e-mail`;
+  refs.inputPassword.placeholder = lang === 'uk' ? 'пароль' : `password`;
 };
 
 // Перевірка на пусті форми
@@ -219,7 +212,10 @@ refs.lockBtn.addEventListener(`click`, btnPassOnClick);
 
 //Спостерігач зміни стану аутентифікації користувача
 onAuthStateChanged(auth, () => {
-  onHomeClick();
+  const fireBaseAuthorized = localStorage.getItem('fireBaseAuthorized');
+  if (!fireBaseAuthorized || fireBaseAuthorized !== auth.currentUser?.uid) {
+    onHomeClick();
+  }
 });
 
 export { openAuthWindow, closeMobileMenu, auth, toggleLogInButton };

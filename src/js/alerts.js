@@ -1,5 +1,5 @@
 import Notiflix from 'notiflix';
-import i18next from './translator';
+import { lang } from './fetchAPI';
 
 const options = {
   // position: 'right-top',
@@ -11,7 +11,7 @@ const options = {
 
 function alertSuccess() {
   Notiflix.Notify.success(
-    i18next.language === 'uk'
+    lang === 'uk'
       ? 'Ми знайшли те, що Ви шукали!'
       : 'We`ve found what you were looking for!',
     options
@@ -20,7 +20,7 @@ function alertSuccess() {
 
 function alertEmptyForm() {
   Notiflix.Notify.failure(
-    i18next.language === 'uk'
+    lang === 'uk'
       ? 'Введіть Ваш пошуковий запит, будь ласка.'
       : 'Enter your search query, please.',
     options
@@ -29,16 +29,14 @@ function alertEmptyForm() {
 
 function alertEmptyFields() {
   Notiflix.Notify.failure(
-    i18next.language === 'uk'
-      ? `Будь ласка, заповніть всі поля`
-      : `Please fill all fields`,
+    lang === 'uk' ? `Будь ласка, заповніть всі поля` : `Please fill all fields`,
     options
   );
 }
 
 function alertSearchFailure() {
   Notiflix.Notify.failure(
-    i18next.language === 'uk'
+    lang === 'uk'
       ? 'Результат пошуку невдалий. Введіть коректну назву фільму.'
       : 'Search result is not successful. Enter the correct movie name.',
     options
@@ -47,7 +45,7 @@ function alertSearchFailure() {
 
 function alertSearchModalFailure() {
   Notiflix.Notify.failure(
-    i18next.language === 'uk'
+    lang === 'uk'
       ? 'Результат пошуку по цьому фільму був невдалим'
       : 'Search result about this film is not successful',
     options
@@ -56,7 +54,7 @@ function alertSearchModalFailure() {
 
 function alertEndOfCollection() {
   Notiflix.Notify.failure(
-    i18next.language === 'uk'
+    lang === 'uk'
       ? 'Ми досягли кінця колекції Ваших фільмів!'
       : "We've reached the end of your collection!",
     options

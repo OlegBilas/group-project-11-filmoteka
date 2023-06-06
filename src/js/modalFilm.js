@@ -23,7 +23,7 @@ const NAME_BUTTON = {
   Remove_from_queue: 'Remove from queue',
   Add_to_watched_UK: 'Додати до перегляду',
   Remove_from_watched_UK: 'Вилучити з перегляду',
-  Add_to_queue_UK: 'Add Додати до черги',
+  Add_to_queue_UK: 'Додати до черги',
   Remove_from_queue_UK: 'Вилучити з черги',
 };
 
