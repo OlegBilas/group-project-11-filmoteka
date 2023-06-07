@@ -74,9 +74,12 @@
   justify-content: center;
   text-align: center;
   color: $color-red;
+  @media screen and (max-width: 767px) {
+    flex-wrap: wrap;
+  }
 }
 
-.modal-title__team {
+.modal-title__name {
   font-size: 34px;
   font-style: italic;
 }
