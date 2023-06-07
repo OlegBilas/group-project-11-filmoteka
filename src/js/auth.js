@@ -15,7 +15,7 @@ import {
   alertInfo,
 } from './alerts';
 import { enableBodyScroll } from 'body-scroll-lock';
-import { lang } from './fetchAPI';
+import { lang } from './translator';
 
 const refs = {
   authBtn: document.querySelector(`.auth-btn`),

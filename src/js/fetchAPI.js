@@ -1,15 +1,10 @@
 import axios from 'axios';
 import { getGenresById } from './genres';
-import i18next from './translator';
+import { lang } from './translator';
 
 const KEY = `731f4a410992078035fa504a629d03c1`;
 const URL = `https://api.themoviedb.org/3`;
 const imgURL = `https://image.tmdb.org/t/p/w500`;
-
-let lang = 'en';
-if (i18next.language === 'uk-UA' || i18next.language === 'uk') {
-  lang = 'uk';
-}
 
 //
 // ЗАПИТ ЗА КЛЮЧОВИМ СЛОВОМ АБО ПОПУЛЯРНИХ ФІЛЬМІВ

@@ -5,7 +5,7 @@ import { QUE, WATCHED } from './localAPI';
 import { alertSuccess, alertEmptyForm, alertSearchFailure } from './alerts';
 import { onSpinner } from './spinner';
 import { startObservering, stopObservering } from './intersectionObserver';
-import { saveActiveBtn, deleteActivePage } from './page-save';
+import { saveActiveBtn } from './page-save';
 import { closeMobileMenu } from './auth';
 import { enableBodyScroll } from 'body-scroll-lock';
 

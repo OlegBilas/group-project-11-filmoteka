@@ -13,8 +13,7 @@ import {
   addToFirebase,
   removeFromFirebase,
 } from './firebaseStoradge';
-import i18next from './translator';
-import { lang } from './fetchAPI';
+import { i18nextInstance, lang } from './translator';
 
 const NAME_BUTTON = {
   Add_to_watched: 'Add to watched',
@@ -151,13 +150,11 @@ export function renderMovieModal(movieData, objectCard) {
 `;
   }
 
-  if (lang === 'uk') {
-    const refs = refModalFilmContainer.querySelectorAll('[data-translate]');
-    refs.forEach(ref => (ref.innerHTML = i18next.t(ref.textContent)));
-  }
+  const refs = refModalFilmContainer.querySelectorAll('[data-translate]');
+  refs.forEach(ref => (ref.innerHTML = i18nextInstance.t(ref.textContent)));
 
   putEventListenersToOverlay(refModalFilmContainer); //навішуємо слухачів для закриття модалки фільму
-  APIInteraction(objectCard); // навішування обробників на кнопки додавання до/видалення з локального сховища
+  APIInteraction(objectCard); // навішування обробників на кнопки додавання до/видалення з бази firebase/локального сховища
 
   async function APIInteraction(objectCard) {
     const watchedBtn = document.getElementById('watched');
@@ -176,9 +173,15 @@ export function renderMovieModal(movieData, objectCard) {
       filmsArray = getFromLocalstorage(WATCHED);
     }
     if (filmsArray.find(film => film.id === objectCard.id)) {
-      watchedBtn.textContent = translate(NAME_BUTTON.Remove_from_watched);
+      watchedBtn.textContent =
+        lang === 'uk'
+          ? NAME_BUTTON.Remove_from_watched_UK
+          : NAME_BUTTON.Remove_from_watched;
     } else {
-      watchedBtn.textContent = translate(NAME_BUTTON.Add_to_watched);
+      watchedBtn.textContent =
+        lang === 'uk'
+          ? NAME_BUTTON.Add_to_watched_UK
+          : NAME_BUTTON.Add_to_watched;
     }
 
     if (localStorage.getItem('fireBaseAuthorized')) {
@@ -187,9 +190,13 @@ export function renderMovieModal(movieData, objectCard) {
       filmsArray = getFromLocalstorage(QUE);
     }
     if (filmsArray.find(film => film.id === objectCard.id)) {
-      queueBtn.textContent = translate(NAME_BUTTON.Remove_from_queue);
+      queueBtn.textContent =
+        lang === 'uk'
+          ? NAME_BUTTON.Remove_from_queue_UK
+          : NAME_BUTTON.Remove_from_queue;
     } else {
-      queueBtn.textContent = translate(NAME_BUTTON.Add_to_queue);
+      queueBtn.textContent =
+        lang === 'uk' ? NAME_BUTTON.Add_to_queue_UK : NAME_BUTTON.Add_to_queue;
     }
 
     watchedBtn.addEventListener('click', () => {
@@ -212,15 +219,16 @@ export function renderMovieModal(movieData, objectCard) {
         } else {
           addToLocalstorage(WATCHED, objectCard);
         }
-
         toggleText(watchedBtn);
       }
+
       if (activeNaviganionBtn.classList.contains('my-library-btn')) {
         onWatchedClick();
         headerWatchedBtn.classList.add('active-library-btn');
         headerQueueBtn.classList.remove('active-library-btn');
       }
     });
+
     queueBtn.addEventListener('click', () => {
       if (
         queueBtn.textContent === NAME_BUTTON.Remove_from_queue ||
@@ -231,7 +239,6 @@ export function renderMovieModal(movieData, objectCard) {
         } else {
           removeFromLocalstorage(QUE, objectCard);
         }
-
         toggleText(queueBtn);
       } else if (
         queueBtn.textContent === NAME_BUTTON.Add_to_queue ||
@@ -298,23 +305,5 @@ export function renderMovieModal(movieData, objectCard) {
     const innerHTML = refModalFilmContainer.innerHTML;
     innerHTML.replace(videoIframe.outerHTML, '');
     refModalFilmContainer.innerHTML = innerHTML;
-  }
-
-  function translate(textContent) {
-    if (lang === 'uk') {
-      switch (textContent) {
-        case NAME_BUTTON.Add_to_watched:
-          return NAME_BUTTON.Add_to_watched_UK;
-
-        case NAME_BUTTON.Remove_from_watched:
-          return NAME_BUTTON.Remove_from_watched_UK;
-
-        case NAME_BUTTON.Add_to_queue:
-          return NAME_BUTTON.Add_to_queue_UK;
-
-        case NAME_BUTTON.Remove_from_queue:
-          return NAME_BUTTON.Remove_from_queue_UK;
-      }
-    }
   }
 }
