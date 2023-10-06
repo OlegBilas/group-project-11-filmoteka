@@ -1,5 +1,5 @@
 .container {
-  background-color: $color-white;
+  // background-color: $color-white;
   margin-right: auto;
   margin-left: auto;
 }
@@ -41,12 +41,13 @@
 }
 
 .film-meta {
-  padding-top: 10px;
-  padding-bottom: 12px;
+  background-color: whitesmoke;
   font-family: Roboto, sans-serif;
   font-size: 12px;
+  border-bottom: 1px solid black;
   font-weight: 500;
   overflow: hidden;
+  padding: 6px;
 }
 
 .film-name {
@@ -54,6 +55,7 @@
   color: $color-black;
   text-transform: uppercase;
   max-width: 95%;
+  font-weight: 700;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -113,7 +115,7 @@
   }
 
   .film-meta {
-    padding-top: 10px;
+    padding: 9px;
   }
 }
 
@@ -140,8 +142,7 @@
   }
 
   .film-meta {
-    padding-top: 12px;
-    padding-bottom: 14px;
+    padding: 12px;
     font-size: 20px;
     line-height: 1.2;
   }
